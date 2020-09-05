@@ -9,12 +9,18 @@ const fs    = require('fs')
 const tool  = require('./tool')
 
 const config = {
+  // 模块组路径
   // modulesPath: '../src/modules'
   modulesPath: './',
   module_config: {
-    assets_name     : 'assets',
-    components_name : 'components',
-    views_name      : 'views'
+    // 静态文件 文件夹名
+    assets_name     : '/assets',
+    // 组件 文件夹名
+    components_name : '/components',
+    // 路由视图 文件夹名
+    views_name      : '/views',
+    // 模块文档 文件夹名
+    docs_name       : '/docs'
   }
 }
 
@@ -65,8 +71,15 @@ class modulesControler {
     message:  '展示已有模块列表',
     fun:      _ => {
       return new Promise((resolve, reject) => {
-        this.showModules()
-        resolve()
+        modulesControler.init()
+          .then(({modules}) => {
+            this._modules = modules
+            this.showModules()
+            resolve()
+          }).catch(err => {
+            console.log(err)
+            reject()
+          })
       })
     }
   },{
@@ -77,14 +90,7 @@ class modulesControler {
         this.mkNewModule()
           .then(message => {
             console.log(message)
-            modulesControler.init()
-              .then(({modules}) => {
-                this._modules = modules
-                resolve()
-              }).catch(err => {
-                console.log(err)
-                reject()
-              })
+            resolve()
           }).catch(err => {
             console.log(err)
             resolve()
@@ -93,17 +99,23 @@ class modulesControler {
     }
   },]
   menu () {
-    console.log('=====================================')
-    let isPrintLn
+    console.log('==========模块控制帮助工具==========')
+    let isPrintLn = false;
     for (let i = 0; i < this.menus.length; i++) {
+      isPrintLn = false;
       process.stdout.write(
         (i + 1) + '. ' + this.menus[i].name.padEnd(16, ' ')
       );
       if ((i+1) % 2 === 0) {
+        isPrintLn = true;
         process.stdout.write('\n');
       }
     }
-    process.stdout.write('\n');
+    if (!isPrintLn) {
+      process.stdout.write('\n');
+    }
+    console.log('====================================')
+
     return new Promise((resolve, reject) => {
       this._getInput('>>>> ')
         .then(index => {
@@ -131,6 +143,7 @@ class modulesControler {
     const assets_name     = (module_config && module_config.assets_name)      || '/assets'
     const components_name = (module_config && module_config.components_name)  || '/components'
     const views_name      = (module_config && module_config.views_name)       || '/views'
+    const docs_name       = (module_config && module_config.docs_name)        || '/docs'
 
     const createFolderByPrint = path => {
       return new Promise((resolve, reject) => {
@@ -146,12 +159,13 @@ class modulesControler {
     }
     const createAssets = _ => {
       return new Promise((resolve, reject) => {
-        createFolderByPrint(modulePath + assets_name)
+        let assetsPath = modulePath + assets_name
+        createFolderByPrint(assetsPath)
           .then(path => {
             Promise.all([
-              createFolderByPrint(modulePath + assets_name + '/css'),
-              createFolderByPrint(modulePath + assets_name + '/image'),
-              createFolderByPrint(modulePath + assets_name + '/js')
+              createFolderByPrint(assetsPath + '/css'),
+              createFolderByPrint(assetsPath + '/image'),
+              createFolderByPrint(assetsPath + '/js')
             ]).then(([css_path, image_path, js_path]) => {
               resolve()
             }).catch(reject)
@@ -168,6 +182,7 @@ class modulesControler {
           createAssets(),
           createFolderByPrint(modulePath + components_name),
           createFolderByPrint(modulePath + views_name),
+          createFolderByPrint(modulePath + docs_name),
         ]).then(_ => {
           resolve('新模块创建成功')
         }).catch((err, path)=> {
