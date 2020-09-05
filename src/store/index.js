@@ -1,15 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-Vue.use(Vuex)
+if (process.env.NODE_ENV === '') {
+} else if (process.env.NODE_ENV === 'production') {
+} else if (process.env.NODE_ENV === 'development') {
+  Vue.use(Vuex)
+} else {
+}
 
 export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
+  state: require('./state.js').default,
+  mutations: require('./mutations.js').default,
+  actions: require('./actions.js').default,
+  modules: require('./modules').default
 })
