@@ -1,18 +1,14 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <el-button>默认按钮</el-button>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img
+      width="300" height="300"
+      alt="Vue logo"
+      src="../assets/logo.png">
   </div>
 </template>
 
 <script>
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
+  name: 'Home'
 }
 </script>
