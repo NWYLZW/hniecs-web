@@ -6,5 +6,5 @@
  */
 
 export default Vue => {
-  Vue.use(require('./element-ui.js'))
+  Vue.use(require('./element-ui.js').default)
 }
