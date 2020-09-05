@@ -5,6 +5,9 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+// 注册外置插件
+require('./plugins').default(Vue)
+
 new Vue({
   router,
   store,
