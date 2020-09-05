@@ -1,5 +1,5 @@
 /**
- * @desp        module管理控制 moduleControler.js
+ * @desp        module管理控制 modulesControler.js
  * @author      yijie
  * @createTime  2020-09-05 16:05
  * @log[0]      2020-09-05 16:05 yijie 创建了该文件
@@ -18,14 +18,14 @@ const config = {
   }
 }
 
-class moduleControler {
+class modulesControler {
   _modules = []
 
   static create () {
     return new Promise((resolve, reject) => {
       this.init()
         .then(args => {
-          resolve(new moduleControler(args))
+          resolve(new modulesControler(args))
         }).catch(err => {
           reject(err)
         })
@@ -77,7 +77,7 @@ class moduleControler {
         this.mkNewModule()
           .then(message => {
             console.log(message)
-            moduleControler.init()
+            modulesControler.init()
               .then(({modules}) => {
                 this._modules = modules
                 resolve()
@@ -94,13 +94,24 @@ class moduleControler {
   },]
   menu () {
     console.log('=====================================')
-    this.menus.forEach((item, index) => {
-      console.log((index + 1) + '.', item.name)
-    })
-    console.log('=====================================')
+    let isPrintLn
+    for (let i = 0; i < this.menus.length; i++) {
+      process.stdout.write(
+        (i + 1) + '. ' + this.menus[i].name.padEnd(16, ' ')
+      );
+      if ((i+1) % 2 === 0) {
+        process.stdout.write('\n');
+      }
+    }
+    process.stdout.write('\n');
     return new Promise((resolve, reject) => {
-      this._getInput('输入你的选择')
+      this._getInput('>>>> ')
         .then(index => {
+          if (this.menus[index - 1] === undefined) {
+            console.log('未知输入')
+            reject()
+            return;
+          }
           this.menus[index - 1].fun()
             .then(resolve)
             .catch(reject)
@@ -182,7 +193,7 @@ class moduleControler {
   }
 }
 
-const moduleControlerPromise = moduleControler.create()
+const moduleControlerPromise = modulesControler.create()
 
 moduleControlerPromise
   .then(mc => {
