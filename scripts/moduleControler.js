@@ -174,8 +174,8 @@ class modulesControler {
       console.log((index+1)+ '.', module)
     })
   }
-  _mkModule (moduleName, module_config) {
-    const modulePath      = config.modulesPath + moduleName
+  _mkModule (moduleNameMessage, module_config) {
+    const modulePath      = config.modulesPath + moduleNameMessage.moduleName
 
     const assets_name     = (module_config && module_config.assets_name)      || '/assets'
     const components_name = (module_config && module_config.components_name)  || '/components'
@@ -220,8 +220,8 @@ class modulesControler {
                       createFolderByPrint(assetsJsPath + '/common'),
                       createTemplateFile(assetsJsPath + '/rpc.js', './template/rpc.js', file_content => {
                         return file_content.format({
-                          moduleName  : moduleName,
-                          author      : 'yijie',
+                          moduleName  : moduleNameMessage.moduleName + ' ' + moduleNameMessage.module_CN_Name,
+                          author      : moduleNameMessage.createAuthorName,
                           createDate  : new Date().format('yyyy-MM-dd')
                         })
                       })
@@ -252,7 +252,7 @@ class modulesControler {
           createFolderByPrint(modulePath + views_name),
           createFolderByPrint(modulePath + docs_name),
         ]).then(_ => {
-          resolve('新模块创建成功')
+          resolve(`新模块${moduleNameMessage.module_CN_Name}创建成功`)
         }).catch((err, path)=> {
           reject(err)
         })
@@ -261,16 +261,21 @@ class modulesControler {
   }
   mkNewModule () {
     return new Promise((resolve, reject) => {
-      this._getInput('输入新模块名: ')
-        .then(newModuleName => {
-          if (this._modules.indexOf(newModuleName) !== -1) {
+      this._getInput('输入新模块名字: ')
+        .then(moduleName => {
+          if (this._modules.indexOf(moduleName) !== -1) {
             reject('目录下已存在该名字模块')
             return;
           }
-          this._mkModule(newModuleName, config.module_config)
-            .then(message => {
-              resolve(message)
-            }).catch(reject)
+          this._getInput('输入新模块中文名字: ').then(module_CN_Name => {
+            this._getInput('输入创建者名字: ').then(createAuthorName => {
+              this._mkModule({
+                moduleName, module_CN_Name, createAuthorName
+              }, config.module_config).then(message => {
+                resolve(message)
+              }).catch(reject)
+            })
+          })
         })
     })
   }
