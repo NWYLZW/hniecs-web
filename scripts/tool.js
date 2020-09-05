@@ -52,7 +52,26 @@ const createFolder = path => {
   })
 }
 
+/**
+ * 新建一个文本文件
+ * @param path    文件路径
+ * @param content 文件内容
+ * @returns {Promise<unknown>} then((path, content) => {}).catch((err, path) => {})
+ */
+const newFile = (path, content) => {
+  return new Promise((resolve, reject) => {
+    fs.writeFile(path, content, 'utf8', error => {
+      if (error) {
+        reject(error, path)
+      }
+      resolve(path, content)
+    })
+  })
+}
+
 module.exports = {
   getFoldersByPath,
-  createFolder
+  createFolder,
+
+  newFile
 }

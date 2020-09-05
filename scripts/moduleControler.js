@@ -7,11 +7,48 @@
 const fs    = require('fs')
 
 const tool  = require('./tool')
+String.prototype.format = function (args) {
+  var result = this;
+  if (arguments.length > 0) {
+    if (arguments.length === 1 && typeof (args) == "object") {
+      for (var key in args) {
+        if (args[key] !== undefined) {
+          var reg = new RegExp("({" + key + "})", "g");
+          result = result.replace(reg, args[key]);
+        }
+      }
+    } else {
+      for (var i = 0; i < arguments.length; i++) {
+        if (arguments[i] !== undefined) {
+          var reg = new RegExp("({)" + i + "(})", "g");
+          result = result.replace(reg, arguments[i]);
+        }
+      }
+    }
+  }
+  return result;
+}
+Date.prototype.format = function (fmt) {
+  var o = {
+    "M+": this.getMonth() + 1,                      // 月份
+    "d+": this.getDate(),                           // 日
+    "h+": this.getHours(),                          // 小时
+    "m+": this.getMinutes(),                        // 分
+    "s+": this.getSeconds(),                        // 秒
+    "q+": Math.floor((this.getMonth() + 3) / 3), // 季度
+    "S": this.getMilliseconds()                     // 毫秒
+  };
+  if (/(y+)/.test(fmt))
+    fmt = fmt.replace(RegExp.$1, (this.getFullYear() + ""));
+  for (var k in o)
+    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+  return fmt;
+}
 
 const config = {
   // 模块组路径
-  // modulesPath: '../src/modules'
-  modulesPath: './',
+  // modulesPath: '../src/modules/'
+  modulesPath: './modules/',
   module_config: {
     // 静态文件 文件夹名
     assets_name     : '/assets',
@@ -138,7 +175,7 @@ class modulesControler {
     })
   }
   _mkModule (moduleName, module_config) {
-    const modulePath = config.modulesPath + moduleName
+    const modulePath      = config.modulesPath + moduleName
 
     const assets_name     = (module_config && module_config.assets_name)      || '/assets'
     const components_name = (module_config && module_config.components_name)  || '/components'
@@ -157,16 +194,47 @@ class modulesControler {
           })
       })
     }
+    const createTemplateFile = (filePath, templateFilePath, format_fun) => {
+      return new Promise((resolve, reject) => {
+        fs.readFile(templateFilePath, (error, data) => {
+          if (error) {
+            reject(error)
+          }
+          tool.newFile(
+            filePath, format_fun(
+              data.toString()
+            )
+          ).then(resolve).catch(reject)
+        })
+      })
+    }
     const createAssets = _ => {
       return new Promise((resolve, reject) => {
-        let assetsPath = modulePath + assets_name
-        createFolderByPrint(assetsPath)
-          .then(path => {
+        createFolderByPrint(modulePath + assets_name)
+          .then(assetsPath => {
+            const createJsFolder = JsFolderPath => {
+              return new Promise((resolve, reject) => {
+                createFolderByPrint(JsFolderPath)
+                  .then(assetsJsPath => {
+                    Promise.all([
+                      createFolderByPrint(assetsJsPath + '/common'),
+                      createTemplateFile(assetsJsPath + '/rpc.js', './template/rpc.js', file_content => {
+                        return file_content.format({
+                          moduleName  : moduleName,
+                          author      : 'yijie',
+                          createDate  : new Date().format('yyyy-MM-dd')
+                        })
+                      })
+                    ]).then(resolve)
+                  }).catch(reject)
+              })
+            }
+
             Promise.all([
               createFolderByPrint(assetsPath + '/css'),
               createFolderByPrint(assetsPath + '/image'),
-              createFolderByPrint(assetsPath + '/js')
-            ]).then(([css_path, image_path, js_path]) => {
+              createJsFolder(assetsPath + '/js')
+            ]).then(_ => {
               resolve()
             }).catch(reject)
           }).catch(reject)
