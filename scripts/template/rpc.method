@@ -1,0 +1,13 @@
+/**
+* @desc    {information.desc}
+*          {参数名}{是否必填}{参数类型}{默认值}{解释}
+* @params  {param.name}{param.require}{param.type}{param.default}{param.message}
+*/
+{information.method_name}(params) {
+  const information = {information}
+  return library.ajax_{information.method}(
+    {information.api_path},
+    {information.method_name},
+    params
+  )
+}

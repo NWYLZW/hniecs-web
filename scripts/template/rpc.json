@@ -1,0 +1,12 @@
+[{
+  "desc": "接口介绍信息",
+  "method": "get",
+  "api_path": "/module/app/action",
+  "params": [{
+    "name": "xxx",
+    "is_require": true,
+    "type": "int",
+    "default": "",
+    "message": "xxx"
+  }]
+}]

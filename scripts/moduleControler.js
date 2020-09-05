@@ -119,17 +119,52 @@ class modulesControler {
           })
       })
     }
-  },{
+  }, {
     name:     '创建模块',
     message:  '创建一个新的应用模块',
-    fun:      _ => {
+    fun: _ => {
       return new Promise((resolve, reject) => {
         this.mkNewModule()
           .then(message => {
             console.log(message)
             resolve()
           }).catch(err => {
-            console.log(err)
+          console.log(err)
+          resolve()
+        })
+      })
+    }
+  }, {
+    name:     '生成接口',
+    message:  '通过module下面的rpc.json自动生成rpc.js文件',
+    fun: _ => {
+      return new Promise((resolve, reject) => {
+        resolve()
+      })
+    }
+  }, {
+    name:     '生成文档',
+    message:  '根据项目下所有的项目相关文件信息，在doc目录下生成指定路径、内容、格式的markdown格式文档',
+    fun: _ => {
+      return new Promise((resolve, reject) => {
+        // TODO 根据项目下所有的项目相关文件信息，在doc目录下生成指定路径、内容、格式的markdown格式文档
+        console.log('待开发')
+        resolve()
+      })
+    }
+  }, {
+    name:     '帮助',
+    message:  '输入指令序号，获取指令的介绍信息',
+    fun: _ => {
+      return new Promise((resolve, reject) => {
+        this._getInput('输入指令序号，获取指令的介绍信息\n>>>> ')
+          .then(index => {
+            if (this.menus[index - 1] === undefined) {
+              console.log('未知输入')
+              reject()
+              return;
+            }
+            console.log(this.menus[index - 1].name, '指令相关信息:\n' + this.menus[index - 1].message)
             resolve()
           })
       })
@@ -218,13 +253,14 @@ class modulesControler {
                   .then(assetsJsPath => {
                     Promise.all([
                       createFolderByPrint(assetsJsPath + '/common'),
+                      tool.newFile(assetsJsPath + '/rpc.json', '[]'),
                       createTemplateFile(assetsJsPath + '/rpc.js', './template/rpc.js', file_content => {
                         return file_content.format({
                           moduleName  : moduleNameMessage.moduleName + ' ' + moduleNameMessage.module_CN_Name,
                           author      : moduleNameMessage.createAuthorName,
                           createDate  : new Date().format('yyyy-MM-dd')
                         })
-                      })
+                      }),
                     ]).then(resolve)
                   }).catch(reject)
               })
@@ -250,6 +286,7 @@ class modulesControler {
           createAssets(),
           createFolderByPrint(modulePath + components_name),
           createFolderByPrint(modulePath + views_name),
+          // TODO 添加index.md
           createFolderByPrint(modulePath + docs_name),
         ]).then(_ => {
           resolve(`新模块${moduleNameMessage.module_CN_Name}创建成功`)
