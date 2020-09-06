@@ -11,5 +11,8 @@ export default [{
   component: _ => import(
     /* webChunkName: "door-index" */
     '@modules/door/views/index/Index.vue'
-  )
+  ),
+  meta: {
+    title: '湖南工程学院计算机协会'
+  }
 }]
