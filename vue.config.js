@@ -1,7 +1,9 @@
 /**
- * @desc        项目webpack配置文件
- * @author      yijie
- * @createTime  2020-09-05
+ * @desc      项目webpack配置文件
+ * @author    yijie
+ * @date      2020-09-05
+ * @logs[0]   yijie 2020-09-05 创建了vue.config.js文件
+ * @logs[1]   yijie 2020-09-07 修改了头部注释的格式
  */
 const resolve = dir => require('path').join(__dirname, dir)
 
@@ -46,9 +48,7 @@ module.exports = {
       // mock文件夹
       '@mock': resolve('src/mock'),
       // 模块组
-      '@modules': resolve('src/modules'),
-      // 基础模块
-      '@m_base': resolve('src/modules/base')
+      '@modules': resolve('src/modules')
     }
 
     if (process.env.NODE_ENV === '') {
