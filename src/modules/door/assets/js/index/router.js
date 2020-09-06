@@ -10,6 +10,6 @@ export default [{
   name: 'door-index-index',
   component: _ => import(
     /* webChunkName: "door-index" */
-    '../../../views/index/Home.vue'
+    '@modules/door/views/index/Index.vue'
   )
 }]

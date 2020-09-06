@@ -45,6 +45,8 @@ module.exports = {
       ...config.resolve.alias,
       // 公用静态资源文件夹
       '@assets': resolve('src/assets'),
+      // 公用组件文件夹
+      '@components': resolve('src/components'),
       // mock文件夹
       '@mock': resolve('src/mock'),
       // 模块组
@@ -64,5 +66,21 @@ module.exports = {
     } else if (process.env.NODE_ENV === 'development') {
     } else {
     }
-  }
+  },
+
+  css: {
+    loaderOptions: {
+      // sass-loader
+      sass: {
+        // 导入全局变量
+        prependData: (_ => {
+          // 全局ui变量
+          const uiVariables = `@import '@/assets/style/ui/variables.scss';`
+          // 全局字体
+          const font = `@import '@/assets/style/font.scss';`
+          return uiVariables + `\n` + font
+        })()
+      }
+    }
+  },
 }

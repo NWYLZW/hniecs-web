@@ -4,6 +4,9 @@
   </div>
 </template>
 
+<style>
+@import 'assets/style/ui/label.scss';
+</style>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
