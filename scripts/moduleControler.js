@@ -47,8 +47,7 @@ Date.prototype.format = function (fmt) {
 
 const config = {
   // 模块组路径
-  // modulesPath: '../src/modules/'
-  modulesPath: './modules/',
+  modulesPath: '../src/modules/',
   moduleConfig: {
     // 静态文件 文件夹名
     assets_name     : '/assets',
