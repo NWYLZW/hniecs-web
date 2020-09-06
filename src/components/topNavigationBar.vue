@@ -20,9 +20,29 @@
           :class="{
             'sel': selItem === navItem
           }">
-          <span class="icon hniecs-iconfont" v-html="navItem.iconUTF8"></span>
+          <span class="icon hniecs-iconfont" v-html="navItem.iconUTF8"/>
           <span class="title">{{ navItem.name }}</span>
         </div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="avatar">
+        <el-avatar
+          :size="48"
+          src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"/>
+      </div>
+      <div class="apps">
+        <el-tooltip
+          :key="index"
+          v-for="(app, index) in apps"
+          :content="app.name" placement="top">
+        <span
+          class="app hniecs-iconfont"
+          :style="{
+            color: app.color || 'auto'
+          }"
+          v-html="app.iconUTF8"/>
+        </el-tooltip>
       </div>
     </div>
   </div>
@@ -41,6 +61,15 @@ export default {
       type: Array,
       default: _ => {
         return []
+      }
+    },
+    apps: {
+      type: Array,
+      default: _ => {
+        return [{
+          name: '后台管理',
+          iconUTF8: '&#xe76e;'
+        }]
       }
     }
   },
@@ -91,6 +120,7 @@ export default {
     top: calc(50% - 32px);
 
     position: relative;
+    float: left;
     height: $size;
     line-height: $size;
 
@@ -143,6 +173,40 @@ export default {
         font-size: 20px;
         border-bottom: 4px solid map-get($use-colors, border);
         text-shadow: 0 0 10px map-get($use-colors, font-color);
+      }
+    }
+  }
+  > .right {
+    @extend .cant-sel;
+    $size: 64px;
+    top: calc(50% - 32px);
+
+    position: relative;
+    float: right;
+    height: $size;
+    line-height: $size;
+
+    > .apps {
+      position: relative; float: left;
+      line-height: $size;
+      height: $size;
+      font-size: 32px;
+
+      > .app {
+        @extend .pointer;
+        color: map-get($use-colors, font-color);
+        margin: 10px;
+      }
+    }
+    > .avatar {
+      $size: 48px;
+      position: relative; float: left;
+      top: calc(50% - 24px);
+      width: $size; height: $size;
+
+      /deep/ img {
+        @extend .pointer;
+        width: 100%;height: 100%;
       }
     }
   }
