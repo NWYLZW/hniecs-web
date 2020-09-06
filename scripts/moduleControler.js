@@ -61,11 +61,23 @@ const config = {
   }
 }
 
+/**
+ * rpc 文件助手
+ * @type {{generateRpcJsFileByJson(*)}}
+ */
 const rpcHelper = {
+  /**
+   * 通过rpcJson 生成一个rpc.js文件
+   * @param rpcJSON
+   */
   generateRpcJsFileByJson(rpcJSON) {
+    return rpcJSON
   }
 }
 
+/**
+ * 模块组控制对象
+ */
 class modulesControler {
   _modules = []
 
