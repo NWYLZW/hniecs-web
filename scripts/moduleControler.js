@@ -49,7 +49,7 @@ const config = {
   // 模块组路径
   // modulesPath: '../src/modules/'
   modulesPath: './modules/',
-  module_config: {
+  moduleConfig: {
     // 静态文件 文件夹名
     assets_name     : '/assets',
     // 组件 文件夹名
@@ -61,9 +61,18 @@ const config = {
   }
 }
 
+const rpcHelper = {
+  generateRpcJsFileByJson(rpcJSON) {
+  }
+}
+
 class modulesControler {
   _modules = []
 
+  /**
+   * 创建一个modulesControler实例
+   * @returns {Promise<unknown>}  .then(mc => {}).catch(err => {})
+   */
   static create () {
     return new Promise((resolve, reject) => {
       this.init()
@@ -74,6 +83,10 @@ class modulesControler {
         })
     })
   }
+  /**
+   * 初始化modulesControler实例的数据
+   * @returns {Promise<unknown>} .then(args => {}).catch(err => {})
+   */
   static init () {
     return new Promise((resolve, reject) => {
       Promise.all([
@@ -87,7 +100,20 @@ class modulesControler {
       })
     })
   }
+  /**
+   * 模块组控制对象 构造方法
+   * @param modules 模块组
+   */
+  constructor ({modules}) {
+    this._modules = modules
+  }
 
+  /**
+   * 获取用户的一个输入
+   * @param label   输入前的提示信息
+   * @returns {Promise<unknown>} .then(input => {})
+   * @private
+   */
   _getInput (label) {
     return new Promise(resolve => {
       const rl = require('readline')
@@ -99,10 +125,8 @@ class modulesControler {
       })
     })
   }
-  constructor ({modules}) {
-    this._modules = modules
-  }
 
+  // 菜单
   menus = [{
     name:     '模块列表',
     message:  '展示已有模块列表',
@@ -170,6 +194,10 @@ class modulesControler {
       })
     }
   },]
+  /**
+   * 展示一个菜单
+   * @returns {Promise<unknown>} .then(_ => {}).catch(err => {})
+   */
   menu () {
     console.log('==========模块控制帮助工具==========')
     let isPrintLn = false;
@@ -203,19 +231,30 @@ class modulesControler {
     })
   }
 
+  /**
+   * 展示已有的模块
+   */
   showModules () {
     console.log('现在已有' + this._modules.length + '个模块')
     this._modules.forEach((module, index) => {
       console.log((index+1)+ '.', module)
     })
   }
-  _mkModule (moduleNameMessage, module_config) {
-    const modulePath      = config.modulesPath + moduleNameMessage.moduleName
 
-    const assets_name     = (module_config && module_config.assets_name)      || '/assets'
-    const components_name = (module_config && module_config.components_name)  || '/components'
-    const views_name      = (module_config && module_config.views_name)       || '/views'
-    const docs_name       = (module_config && module_config.docs_name)        || '/docs'
+  /**
+   * 创建一个模块
+   * @param moduleMessage         模块信息字典 {moduleName, module_CN_Name, createAuthorName}
+   * @param moduleConfig          模块配置
+   * @returns {Promise<unknown>}  .then(messasge => {}).catch(err)
+   * @private
+   */
+  _mkModule (moduleMessage, moduleConfig) {
+    const modulePath      = config.modulesPath + moduleMessage.moduleName
+
+    const assets_name     = (moduleConfig && moduleConfig.assets_name)      || '/assets'
+    const components_name = (moduleConfig && moduleConfig.components_name)  || '/components'
+    const views_name      = (moduleConfig && moduleConfig.views_name)       || '/views'
+    const docs_name       = (moduleConfig && moduleConfig.docs_name)        || '/docs'
 
     const createFolderByPrint = path => {
       return new Promise((resolve, reject) => {
@@ -256,8 +295,8 @@ class modulesControler {
                       tool.newFile(assetsJsPath + '/rpc.json', '[]'),
                       createTemplateFile(assetsJsPath + '/rpc.js', './template/rpc.js', file_content => {
                         return file_content.format({
-                          moduleName  : moduleNameMessage.moduleName + ' ' + moduleNameMessage.module_CN_Name,
-                          author      : moduleNameMessage.createAuthorName,
+                          moduleName  : moduleMessage.moduleName + ' ' + moduleMessage.module_CN_Name,
+                          author      : moduleMessage.createAuthorName,
                           createDate  : new Date().format('yyyy-MM-dd')
                         })
                       }),
@@ -289,13 +328,17 @@ class modulesControler {
           // TODO 添加index.md
           createFolderByPrint(modulePath + docs_name),
         ]).then(_ => {
-          resolve(`新模块${moduleNameMessage.module_CN_Name}创建成功`)
+          resolve(`新模块${moduleMessage.module_CN_Name}创建成功`)
         }).catch((err, path)=> {
           reject(err)
         })
       })
     })
   }
+  /**
+   * 创建一个新的模块
+   * @returns {Promise<unknown>} .then(messasge => {}).catch(err)
+   */
   mkNewModule () {
     return new Promise((resolve, reject) => {
       this._getInput('输入新模块名字: ')
@@ -308,7 +351,7 @@ class modulesControler {
             this._getInput('输入创建者名字: ').then(createAuthorName => {
               this._mkModule({
                 moduleName, module_CN_Name, createAuthorName
-              }, config.module_config).then(message => {
+              }, config.moduleConfig).then(message => {
                 resolve(message)
               }).catch(reject)
             })
