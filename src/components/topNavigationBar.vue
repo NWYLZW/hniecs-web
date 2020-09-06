@@ -3,6 +3,7 @@
     @author   fengzili
     @date     2020-09-07
     @logs[0]  fengzili 2020-09-07 创建了文件topNavigationBar.vue
+    @logs[0]  fengzili 2020-09-07 完成了左侧导航条
 -->
 <template>
   <div class="main">
@@ -53,16 +54,19 @@ export default {
   name: 'topNavigationBar',
   components: {},
   props: {
+    // 左侧图标右边的文案
     name: {
       type: String,
       default: ''
     },
+    // 页面列表
     navItems: {
       type: Array,
       default: _ => {
         return []
       }
     },
+    // app列表
     apps: {
       type: Array,
       default: _ => {
@@ -75,13 +79,19 @@ export default {
   },
   data () {
     return {
+      // 导航条左侧图标
       leftIconSrc: require('@assets/logo.png'),
+      // 当前选择的页面
       selItem: undefined
     }
   },
   computed: {},
   watch: {},
   methods: {
+    /**
+     * 切换导航栏
+     * @param navItem
+     */
     changeNavItem (navItem) {
       this.selItem = navItem
       if (this.$route.path !== navItem.url) {
