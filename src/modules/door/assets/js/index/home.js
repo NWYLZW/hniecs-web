@@ -20,6 +20,21 @@ export default {
         message: '本协会已与百度达成战略合作关系',
         url: 'http://baidu.com',
         backgroundImage: 'https://www.baidu.com/img/flexible/logo/pc/result.png'
+      }, {
+        title: '百度一下，你就知道',
+        message: '本协会已与百度达成战略合作关系',
+        url: 'http://baidu.com',
+        backgroundImage: 'https://www.baidu.com/img/flexible/logo/pc/result.png'
+      }, {
+        title: '百度一下，你就知道',
+        message: '本协会已与百度达成战略合作关系',
+        url: 'http://baidu.com',
+        backgroundImage: 'https://www.baidu.com/img/flexible/logo/pc/result.png'
+      }, {
+        title: '百度一下，你就知道',
+        message: '本协会已与百度达成战略合作关系',
+        url: 'http://baidu.com',
+        backgroundImage: 'https://www.baidu.com/img/flexible/logo/pc/result.png'
       }]
     }
   },
