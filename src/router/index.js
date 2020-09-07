@@ -17,7 +17,11 @@ if (process.env.NODE_ENV === '') {
 } else {
 }
 
-const baseRoutes = []
+const baseRoutes = [{
+  path: '',
+  name: 'index',
+  redirect: '/door/index/index'
+}]
 
 const routes = [
   ...modulesRoutes,
