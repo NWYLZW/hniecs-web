@@ -21,20 +21,15 @@ export default {
         url: 'http://baidu.com',
         backgroundImage: 'https://www.baidu.com/img/flexible/logo/pc/result.png'
       }, {
-        title: '百度一下，你就知道',
-        message: '本协会已与百度达成战略合作关系',
-        url: 'http://baidu.com',
-        backgroundImage: 'https://www.baidu.com/img/flexible/logo/pc/result.png'
+        title: '谷歌一下，你就知道',
+        message: '本协会已与谷歌达成战略合作关系',
+        url: 'http://google.com',
+        backgroundImage: 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png'
       }, {
-        title: '百度一下，你就知道',
-        message: '本协会已与百度达成战略合作关系',
-        url: 'http://baidu.com',
-        backgroundImage: 'https://www.baidu.com/img/flexible/logo/pc/result.png'
-      }, {
-        title: '百度一下，你就知道',
-        message: '本协会已与百度达成战略合作关系',
-        url: 'http://baidu.com',
-        backgroundImage: 'https://www.baidu.com/img/flexible/logo/pc/result.png'
+        title: '必应一下，你就知道',
+        message: '本协会已与必应达成战略合作关系',
+        url: 'http://bing.com',
+        backgroundImage: 'https://cn.bing.com/sa/simg/hpc27i.png'
       }]
     }
   },
