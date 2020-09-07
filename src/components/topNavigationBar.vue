@@ -47,7 +47,7 @@
             <div class="label" style="max-width: 50%;">
               <div class="name">磁盘空间</div>
               <el-progress
-                type="circle" width="100"
+                type="circle" :width="100"
                 :percentage="1" status="success"></el-progress>
             </div>
             <div class="label" style="max-width: 50%;">
@@ -55,6 +55,10 @@
               <div class="content">磁盘总大小 100M, 目前已使用 1M。</div>
             </div>
           </div>
+          <el-tooltip placement="bottom">
+            <div slot="content">个性设置</div>
+            <el-button icon="el-icon-setting" circle></el-button>
+          </el-tooltip>
           <div style="clear: both;"></div>
         </div>
       </el-popover>
