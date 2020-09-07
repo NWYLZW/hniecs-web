@@ -7,7 +7,7 @@
     @logs[2]  fengzili 2020-09-07 修复要点击俩次item才会出现下划线的bug 莫名其妙的
 -->
 <template>
-  <div class="main">
+  <div class="topNavigationBar-main">
     <div class="left">
       <div class="icon">
         <img alt="" :src="leftIconSrc"/>
@@ -186,7 +186,7 @@ export default {
   color: map-get($use-colors, font-color);
 }
 
-.main {
+.topNavigationBar-main {
   @extend .Regular;
 
   $paddings: 100px;

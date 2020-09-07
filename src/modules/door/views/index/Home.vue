@@ -22,7 +22,11 @@
     </el-carousel>
     <div class="panels">
       <el-card class="articles panel">
-        <div class="panel-label"><i class="hniecs-iconfont">&#xe7a3;</i>热门文章</div>
+        <div class="panel-label">
+          <el-badge :value="1" class="item">
+            <i class="hniecs-iconfont">&#xe7a3;</i>热门文章
+          </el-badge>
+        </div>
         <div class="content">
           <div class="article">
             <div class="title">计算机协会开始招新了</div>
@@ -40,7 +44,25 @@
         <markData class="content"></markData>
       </el-card>
       <el-card class="messages panel">
-        <div class="panel-label"><i class="hniecs-iconfont">&#xe6a9;</i>站内信息</div>
+        <div class="panel-label">
+          <el-badge :value="2" class="item" type="primary">
+            <i class="hniecs-iconfont">&#xe6a9;</i>站内信息
+          </el-badge>
+        </div>
+        <div class="content">
+          <el-alert
+            class="message"
+            title="注册成功"
+            description="欢迎加入HNIECS大家庭"
+            type="success" show-icon
+            :closable="false"/>
+          <el-alert
+            class="message"
+            title="个人信息改动"
+            description="修改了登录密码"
+            type="warning" show-icon
+            :closable="false"/>
+        </div>
       </el-card>
       <div style="clear: both"></div>
     </div>
