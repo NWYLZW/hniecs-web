@@ -9,13 +9,13 @@
     <topNavigationBar
       name="HNIECE"
       :nav-items="[{
-        url: '/door/index/index',
+        url: '/door/index/home',
         name: '首页', iconUTF8: '&#xe7a7;'
       }, {
-        url: '/door/index/index',
+        url: '/door/index/resource',
         name: '资源', iconUTF8: '&#xe743;'
       }, {
-        url: '/door/index/index',
+        url: '/door/index/mall',
         name: '集市', iconUTF8: '&#xe74e;'
       }]"/>
     <router-view/>

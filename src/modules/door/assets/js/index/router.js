@@ -13,6 +13,37 @@ export default [{
     '@modules/door/views/index/Index.vue'
   ),
   meta: {
-    title: '湖南工程学院计算机协会 首页'
-  }
+    title: '湖南工程学院计算机协会'
+  },
+  children: [{
+    path: '/door/index/home',
+    name: 'door-index-home',
+    component: _ => import(
+      /* webChunkName: "door-index" */
+      '@modules/door/views/index/Home.vue'
+    ),
+    meta: {
+      title: '湖南工程学院计算机协会 首页'
+    }
+  }, {
+    path: '/door/index/resource',
+    name: 'door-index-resource',
+    component: _ => import(
+      /* webChunkName: "door-index" */
+      '@modules/door/views/index/Resource.vue'
+    ),
+    meta: {
+      title: '协会资源'
+    }
+  }, {
+    path: '/door/index/mall',
+    name: 'door-index-mall',
+    component: _ => import(
+      /* webChunkName: "door-index" */
+      '@modules/door/views/index/Mall.vue'
+    ),
+    meta: {
+      title: '协会集市'
+    }
+  }]
 }]

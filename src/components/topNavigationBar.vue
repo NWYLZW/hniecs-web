@@ -144,13 +144,19 @@ export default {
   data () {
     return {
       // 导航条左侧图标
-      leftIconSrc: require('@assets/logo.png'),
+      leftIconSrc: require('@assets/image/logo.png'),
       // 当前选择的页面
       selItem: undefined
     }
   },
   computed: {},
-  watch: {},
+  watch: {
+    selItem () {
+      if (this.$route.path !== this.selItem.url) {
+        this.$router.push(this.selItem.url)
+      }
+    }
+  },
   methods: {
     /**
      * 切换导航栏
@@ -158,9 +164,6 @@ export default {
      */
     changeNavItem (navItem) {
       this.selItem = navItem
-      if (this.$route.path !== navItem.url) {
-        this.$router.push(navItem.url)
-      }
     }
   },
   mounted () {
