@@ -69,6 +69,7 @@
   }
   $content-width: calc(100% - 40px);
   h3.title {
+    @extend .a-link;
     position: relative;
     width: $content-width;
     bottom: calc(-100% + 40px);left: 20px;
@@ -79,6 +80,7 @@
     transition: .2s;
   }
   h5.message {
+    @extend .a-link;
     position: relative;
     width: $content-width;
     bottom: -100%;left: 20px;
