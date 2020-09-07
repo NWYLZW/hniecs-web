@@ -20,7 +20,7 @@
           @click="changeNavItem(navItem)"
           class="nav item"
           :class="{
-            'sel': selItem.name === navItem.name
+            'sel': selItem && selItem.name === navItem.name
           }">
           <span class="icon hniecs-iconfont" v-html="navItem.iconUTF8"/>
           <span class="title">{{ navItem.name }}</span>
