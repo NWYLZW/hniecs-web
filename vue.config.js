@@ -76,9 +76,11 @@ module.exports = {
         prependData: (_ => {
           // 全局ui变量
           const uiVariables = '@import \'@/assets/style/ui/variables.scss\';'
+          // 全局ui变量
+          const base = '@import \'@/assets/style/ui/base.scss\';'
           // 全局字体
           const font = '@import \'@/assets/style/font.scss\';'
-          return uiVariables + '\n' + font
+          return uiVariables + '\n' + base + '\n' + font
         })()
       }
     }

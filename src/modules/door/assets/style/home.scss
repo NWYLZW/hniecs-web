@@ -6,4 +6,58 @@
   .top-carousel {
     margin-top: 20px;
   }
+  .panels {
+    padding: {
+      top: 20px;
+      bottom: 20px;
+    };
+    width: 100%;
+
+    > .panel {
+      float: left;
+      margin: {
+        left: 20px; right: 20px;
+      };
+      border-radius: 8px;
+
+      .panel-label {
+        @extend .a-link;
+        padding-bottom: 10px;
+        border-bottom: 1px solid lightgray;
+        font-size: 26px;
+        font-weight: 1000;
+      }
+    }
+    .panel.articles {
+      width: 350px;
+
+      .article {
+        padding-bottom: 20px;
+        margin-top: 10px;
+        border-bottom: 1px solid lightgray;
+        .title {
+          @extend .a-link;
+          font-size: 20px;
+          font-weight: 1000;
+          color: #78bbef;
+        }
+        .messages {
+          margin-bottom: 10px;
+          font-size: 14px;
+          color: #c2c2c2;
+          .author {
+            position: relative;float: left;
+            margin-right: 10px;
+          }
+          .date {
+            position: relative;float: left;
+          }
+        }
+        .content {
+          font-size: 16px;
+          color: #7f7f7f;
+        }
+      }
+    }
+  }
 }

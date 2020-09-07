@@ -19,6 +19,34 @@
         </h5>
       </el-carousel-item>
     </el-carousel>
+    <div class="panels">
+      <el-card class="articles panel">
+        <div class="panel-label">热门文章</div>
+        <div class="content">
+          <div class="article">
+            <div class="title">一篇测试文章</div>
+            <div class="messages">
+              <div class="author">yijie</div>
+              <div class="date">2020-09-07</div>
+              <div style="clear: both"></div>
+            </div>
+            <div class="content">我也不知道干啥，写在这里玩玩</div>
+          </div>
+          <div class="article">
+            <div class="title">一篇测试文章</div>
+            <div class="messages">
+              <div class="author">yijie</div>
+              <div class="date">2020-09-07</div>
+              <div style="clear: both"></div>
+            </div>
+            <div class="content">我也不知道干啥，写在这里玩玩</div>
+          </div>
+        </div>
+      </el-card>
+      <el-card class="mark panel">
+      </el-card>
+    </div>
+    <div class="messages-data-panel"></div>
   </div>
 </template>
 
