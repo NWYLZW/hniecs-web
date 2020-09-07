@@ -15,8 +15,8 @@ export default {
   data () {
     return {
       carousels: [{
-        title: '计算机协会火热招新',
-        message: '计算机协会火热招新中，欢迎大家加入计协大家庭',
+        title: '计算机协会招新火热进行中',
+        message: '计算机协会招新火热进行中，欢迎大家加入计协大家庭',
         url: 'http://hniecs.club',
         backgroundImage: '/static/images/door/logo.big.png'
       }, {

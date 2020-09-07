@@ -25,13 +25,13 @@
         <div class="panel-label"><i class="hniecs-iconfont">&#xe7a3;</i>热门文章</div>
         <div class="content">
           <div class="article">
-            <div class="title">一篇测试文章</div>
+            <div class="title">计算机协会开始招新了</div>
             <div class="messages">
               <div class="author">yijie</div>
               <div class="date">2020-09-07</div>
               <div style="clear: both"></div>
             </div>
-            <div class="content">我也不知道干啥，写在这里玩玩</div>
+            <div class="content">又到了一年一度的招新季，迎来了我们新一届的2020级新生...</div>
           </div>
         </div>
       </el-card>
