@@ -14,6 +14,9 @@
       }, {
         url: '/door/index/index',
         name: '资源', iconUTF8: '&#xe743;'
+      }, {
+        url: '/door/index/index',
+        name: '集市', iconUTF8: '&#xe74e;'
       }]"/>
     <router-view/>
   </div>
