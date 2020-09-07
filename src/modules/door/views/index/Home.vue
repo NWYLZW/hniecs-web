@@ -13,8 +13,8 @@
         :key="index"
         v-for="(carousel, index) in carousels"
         :style="'background-image: url(' + carousel.backgroundImage + ')'">
-        <h3 class="title">{{ carousel.title }}</h3>
-        <h5 class="message">
+        <h3 @click="toDetailUrl(carousel)" class="title">{{ carousel.title }}</h3>
+        <h5 @click="toDetailUrl(carousel)" class="message">
           {{ carousel.message }}
         </h5>
       </el-carousel-item>

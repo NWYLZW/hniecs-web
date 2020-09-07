@@ -40,7 +40,15 @@ export default {
   },
   computed: {},
   watch: {},
-  methods: {},
+  methods: {
+    /**
+     * 前往轮播图详情页面
+     * @param carousel 轮播图字典
+     */
+    toDetailUrl (carousel) {
+      window.open(carousel.url, '_blank')
+    }
+  },
   mounted () {
   }
 }
