@@ -75,10 +75,10 @@ module.exports = {
         // 导入全局变量
         prependData: (_ => {
           // 全局ui变量
-          const uiVariables = `@import '@/assets/style/ui/variables.scss';`
+          const uiVariables = '@import \'@/assets/style/ui/variables.scss\';'
           // 全局字体
-          const font = `@import '@/assets/style/font.scss';`
-          return uiVariables + `\n` + font
+          const font = '@import \'@/assets/style/font.scss\';'
+          return uiVariables + '\n' + font
         })()
       }
     }
