@@ -17,6 +17,15 @@
       }, {
         url: '/door/index/mall',
         name: '集市', iconUTF8: '&#xe74e;'
+      }, {
+        url: '/door/index/mall',
+        name: '博客', iconUTF8: '&#xe7a3;'
+      }, {
+        url: '/door/index/mall',
+        name: 'Code', iconUTF8: '&#xe6f2;'
+      }, {
+        url: '/door/index/mall',
+        name: '更多', iconUTF8: '&#xe74f;'
       }]"/>
     <router-view/>
   </div>
