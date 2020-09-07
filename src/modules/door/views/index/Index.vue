@@ -42,6 +42,10 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+.main {
+  padding: {
+    bottom: 20px;
+  };
+}
 </style>

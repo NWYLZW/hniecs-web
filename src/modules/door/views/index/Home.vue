@@ -3,6 +3,7 @@
     @author   fengzili
     @date     2020-09-07
     @logs[0]  fengzili 2020-09-07 创建了文件Home.vue
+    @logs[1]  fengzili 2020-09-08 添加打卡组件，修复样式错误
 -->
 <template>
   <div class="main">
@@ -41,6 +42,7 @@
       <el-card class="messages panel">
         <div class="panel-label"><i class="hniecs-iconfont">&#xe6a9;</i>站内信息</div>
       </el-card>
+      <div style="clear: both"></div>
     </div>
   </div>
 </template>

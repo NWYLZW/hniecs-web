@@ -49,6 +49,9 @@ export default {
   computed: {},
   watch: {},
   methods: {
+    /**
+     * 绘制日历热力图
+     */
     drawCalendar () {
       const curYear = 2020
       function getVirtulData (year) {
