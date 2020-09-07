@@ -36,6 +36,7 @@
       </el-card>
       <el-card class="mark panel">
         <div class="panel-label"><i class="hniecs-iconfont">&#xeb90;</i>打卡</div>
+        <markData class="content"></markData>
       </el-card>
       <el-card class="messages panel">
         <div class="panel-label"><i class="hniecs-iconfont">&#xe6a9;</i>站内信息</div>

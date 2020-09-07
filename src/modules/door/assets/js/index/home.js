@@ -4,9 +4,13 @@
  * @date      2020-09-07
  * @logs[0]   yijie 2020-09-07 创建了文件home.js
  */
+import markData from '@modules/door/components/user/markData'
+
 export default {
   name: 'home',
-  components: {},
+  components: {
+    markData
+  },
   props: {},
   data () {
     return {
