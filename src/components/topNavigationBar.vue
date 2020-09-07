@@ -122,10 +122,11 @@ export default {
     apps: {
       type: Array,
       default: _ => {
+        // let l = {
+        //   name: '后台管理',
+        //   iconUTF8: '&#xe76e;'
+        // }
         return [{
-          name: '后台管理',
-          iconUTF8: '&#xe76e;'
-        }, {
           name: '我的消息',
           iconUTF8: '&#xe6a2;',
           menus: [{
