@@ -3,7 +3,8 @@
     @author   fengzili
     @date     2020-09-07
     @logs[0]  fengzili 2020-09-07 创建了文件topNavigationBar.vue
-    @logs[0]  fengzili 2020-09-07 完成了左侧导航条
+    @logs[1]  fengzili 2020-09-07 完成了左侧导航条
+    @logs[2]  fengzili 2020-09-07 修复要点击俩次item才会出现下划线的bug 莫名其妙的
 -->
 <template>
   <div class="main">
@@ -19,7 +20,7 @@
           @click="changeNavItem(navItem)"
           class="nav item"
           :class="{
-            'sel': selItem === navItem
+            'sel': selItem.name === navItem.name
           }">
           <span class="icon hniecs-iconfont" v-html="navItem.iconUTF8"/>
           <span class="title">{{ navItem.name }}</span>
