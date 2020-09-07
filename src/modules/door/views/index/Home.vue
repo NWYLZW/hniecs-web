@@ -8,7 +8,7 @@
   <div class="main">
     <el-carousel
       class="top-carousel"
-      :interval="5000" type="card" height="300px">
+      :interval="5000" type="card" height="360px">
       <el-carousel-item
         :key="index"
         v-for="(carousel, index) in carousels"
@@ -21,17 +21,8 @@
     </el-carousel>
     <div class="panels">
       <el-card class="articles panel">
-        <div class="panel-label">热门文章</div>
+        <div class="panel-label"><i class="hniecs-iconfont">&#xe7a3;</i>热门文章</div>
         <div class="content">
-          <div class="article">
-            <div class="title">一篇测试文章</div>
-            <div class="messages">
-              <div class="author">yijie</div>
-              <div class="date">2020-09-07</div>
-              <div style="clear: both"></div>
-            </div>
-            <div class="content">我也不知道干啥，写在这里玩玩</div>
-          </div>
           <div class="article">
             <div class="title">一篇测试文章</div>
             <div class="messages">
@@ -44,9 +35,12 @@
         </div>
       </el-card>
       <el-card class="mark panel">
+        <div class="panel-label"><i class="hniecs-iconfont">&#xeb90;</i>打卡</div>
+      </el-card>
+      <el-card class="messages panel">
+        <div class="panel-label"><i class="hniecs-iconfont">&#xe6a9;</i>站内信息</div>
       </el-card>
     </div>
-    <div class="messages-data-panel"></div>
   </div>
 </template>
 
@@ -57,6 +51,8 @@
 /deep/ .el-carousel__item {
   transition: .3s;
   border-radius: 8px;
+
+  border: 1px solid gray;
 
   background-position: center;
   background-repeat: no-repeat;

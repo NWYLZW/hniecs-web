@@ -16,7 +16,7 @@
     > .panel {
       float: left;
       margin: {
-        left: 20px; right: 20px;
+        left: 10px; right: 10px;
       };
       border-radius: 8px;
 
@@ -30,7 +30,6 @@
     }
     .panel.articles {
       width: 350px;
-
       .article {
         padding-bottom: 20px;
         margin-top: 10px;
@@ -58,6 +57,12 @@
           color: #7f7f7f;
         }
       }
+    }
+    .panel.mark {
+      width: 750px;
+    }
+    .panel.messages {
+      width: calc(100% - 1166px);
     }
   }
 }
