@@ -28,14 +28,28 @@
           </el-badge>
         </div>
         <div class="content">
-          <div class="article">
-            <div class="title">计算机协会开始招新了</div>
+          <div class="article"
+            :key="index"
+            v-for="(article, index) in articles">
+            <el-tooltip v-if="article.showTooltip" placement="top">
+              <div slot="content">{{article.title}}</div>
+              <div class="title">
+                <i class="hniecs-iconfont">&#xe61e;</i>{{ article.showTitle() }}
+              </div>
+            </el-tooltip>
+            <div v-else class="title">
+              <i class="hniecs-iconfont">&#xe61e;</i>{{ article.showTitle() }}
+            </div>
             <div class="messages">
-              <div class="author">yijie</div>
-              <div class="date">2020-09-07</div>
+              <div class="author">
+                <i class="hniecs-iconfont">&#xeb9c;</i>{{ article.author }}
+              </div>
+              <div class="date">
+                <i class="hniecs-iconfont">&#xe626;</i>{{ new Date(article.dateTime).format('yy-MM-dd') }}
+              </div>
               <div style="clear: both"></div>
             </div>
-            <div class="content">又到了一年一度的招新季，迎来了我们新一届的2020级新生...</div>
+            <div class="content">{{ article.content }}</div>
           </div>
         </div>
       </el-card>

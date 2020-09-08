@@ -14,6 +14,7 @@ export default {
   props: {},
   data () {
     return {
+      // 轮播图
       carousels: [{
         title: '计算机协会招新火热进行中',
         message: '计算机协会招新火热进行中，欢迎大家加入计协大家庭',
@@ -34,6 +35,23 @@ export default {
         message: '本协会已与必应达成战略合作关系',
         url: 'http://bing.com',
         backgroundImage: 'https://cn.bing.com/sa/simg/hpc27i.png'
+      }],
+      // 文章
+      articles: [{
+        title: '计算机协会开始招新了',
+        showTooltip: false,
+        showTitle: function () {
+          const maxLength = 8
+          if (this.title.length > maxLength) {
+            this.showTooltip = true
+            return this.title.slice(0, maxLength) + '...'
+          }
+          this.showTooltip = false
+          return this.title
+        },
+        content: '又到了一年一度的招新季，迎来了我们新一届的2020级新生...',
+        author: 'yijie',
+        dateTime: new Date('2020/09/07').getTime()
       }]
     }
   },
