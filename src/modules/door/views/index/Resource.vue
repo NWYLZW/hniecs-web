@@ -5,8 +5,7 @@
   @logs[0]  yijie 2020-09-07 创建了文件Resource.vue
 -->
 <template>
-  <div class="main">
-    资源页面
+  <div class="Resource-main">
   </div>
 </template>
 

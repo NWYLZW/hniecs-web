@@ -13,8 +13,10 @@
       :interval="5000" type="card" height="360px">
       <el-carousel-item
         :key="index"
-        v-for="(carousel, index) in carousels"
-        :style="'background-image: url(' + carousel.backgroundImage + ')'">
+        v-for="(carousel, index) in carousels">
+        <el-image
+          style="position: absolute;width: 100%; height: 100%"
+          :src="carousel.backgroundImage" fit="scale-down"/>
         <h3 @click="toDetailUrl(carousel)" class="title">{{ carousel.title }}</h3>
         <h5 @click="toDetailUrl(carousel)" class="message">
           {{ carousel.message }}
@@ -120,15 +122,7 @@
 
   border: 1px solid gray;
 
-  background-position: center;
-  background-repeat: no-repeat;
-
-  &:nth-child(2n) {
-    background-color: #99a9bf;
-  }
-  &:nth-child(2n+1) {
-    background-color: #d3dce6;
-  }
+  background-color: #e2e2e2;
   $content-width: calc(100% - 40px);
   h3.title {
     @extend .a-link;

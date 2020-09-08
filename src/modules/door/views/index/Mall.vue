@@ -6,7 +6,6 @@
 -->
 <template>
   <div class="main">
-    集市页面
   </div>
 </template>
 
