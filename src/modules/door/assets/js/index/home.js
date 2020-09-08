@@ -58,7 +58,7 @@ export default {
       // 友情链接
       webs: [{
         title: '协会主站',
-        icoUrl: process.env.BASE_URL + '/static/images/door/logo.big.png?time=2020-09-08 21:00',
+        icoUrl: '/favicon.ico?time=2020-09-08 21:00',
         url: '/',
         message: '湖南工程学院计算机协会主站点'
       }, {
