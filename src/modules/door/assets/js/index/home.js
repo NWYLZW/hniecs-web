@@ -19,7 +19,7 @@ export default {
         title: '计算机协会招新火热进行中',
         message: '计算机协会招新火热进行中，欢迎大家加入计协大家庭',
         url: 'http://hniecs.club',
-        backgroundImage: '/static/images/door/logo.big.png'
+        backgroundImage: process.env.BASE_URL + 'static/images/door/logo.big.png'
       }, {
         title: '百度一下，你就知道',
         message: '本协会已与百度达成战略合作关系',
@@ -52,6 +52,20 @@ export default {
         content: '又到了一年一度的招新季，迎来了我们新一届的2020级新生...',
         author: 'yijie',
         dateTime: new Date('2020/09/07').getTime()
+      }],
+      // 是否展示友链
+      showWebs: false,
+      // 友情链接
+      webs: [{
+        title: '协会主站',
+        icoUrl: process.env.BASE_URL + '/static/images/door/logo.big.png?time=2020-09-08 21:00',
+        url: '/',
+        message: '湖南工程学院计算机协会主站点'
+      }, {
+        title: 'afirehong',
+        icoUrl: 'http://afirehong.cn/usr/themes/Miracles/favicon.ico?time=2020-09-08 21:00',
+        url: 'http://afirehong.cn/',
+        message: 'afirehong'
       }]
     }
   },

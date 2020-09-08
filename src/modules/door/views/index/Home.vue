@@ -21,9 +21,33 @@
       </el-carousel-item>
     </el-carousel>
     <div class="panels">
-      <el-card class="articles panel">
+      <el-card class="panel webs">
         <div class="panel-label">
-          <el-badge :value="1" class="item">
+          <i class="hniecs-iconfont">&#xe636;</i>友情链接
+          <div class="option">
+            <i class="hniecs-iconfont is-show-content"
+               @click="showWebs = !showWebs"
+               :class="showWebs?'left':'down'">&#xe665;
+            </i>
+          </div>
+        </div>
+        <div class="content"
+          :class="!showWebs?'dontShowContent':''">
+          <el-tooltip
+            :key="index"
+            v-for="(web, index) in webs"
+            effect="dark" placement="bottom"
+                      :content="web.message">
+            <el-card class="web">
+              <img class="icon" :src="web.icoUrl" alt="">
+              <div class="label">{{ web.title }}</div>
+            </el-card>
+          </el-tooltip>
+        </div>
+      </el-card>
+      <el-card class="panel articles">
+        <div class="panel-label">
+          <el-badge :value="1">
             <i class="hniecs-iconfont">&#xe7a3;</i>热门文章
           </el-badge>
         </div>
@@ -53,13 +77,13 @@
           </div>
         </div>
       </el-card>
-      <el-card class="mark panel">
+      <el-card class="panel mark">
         <div class="panel-label">
           <i class="hniecs-iconfont">&#xeb90;</i>活跃记录
         </div>
         <markData class="content"></markData>
       </el-card>
-      <el-card class="messages panel">
+      <el-card class="panel messages">
         <div class="panel-label">
           <el-badge :value="2" class="item" type="primary">
             <i class="hniecs-iconfont">&#xe6a9;</i>站内信息

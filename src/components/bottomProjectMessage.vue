@@ -40,7 +40,7 @@ export default {
       // 学校名称
       schoolName: '湖南工程学院',
       // 协会图标
-      rightIconSrc: require('@assets/image/logo.png'),
+      rightIconSrc: require('@assets/image/logo.svg'),
       qqQrcodeSrc: require('@assets/image/qrcode/qq.jpg')
     }
   }

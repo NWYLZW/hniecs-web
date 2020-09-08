@@ -146,7 +146,7 @@ export default {
   data () {
     return {
       // 导航条左侧图标
-      leftIconSrc: require('@assets/image/logo.png'),
+      leftIconSrc: require('@assets/image/logo.svg'),
       // 当前选择的页面
       selItem: undefined
     }
