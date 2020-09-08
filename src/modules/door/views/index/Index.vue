@@ -3,6 +3,7 @@
   @author   yijie
   @date     2020-09-07
   @logs[0]  yijie 2020-09-07 创建了文件Index.vue
+  @logs[1]  yijie 2020-09-08 添加底部信息
 -->
 <template>
   <div class="main">

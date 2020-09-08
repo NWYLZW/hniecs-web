@@ -4,6 +4,7 @@
   @date     2020-09-07
   @logs[0]  yijie 2020-09-07 创建了文件Home.vue
   @logs[1]  yijie 2020-09-08 添加打卡组件，修复样式错误
+  @logs[2]  yijie 2020-09-08 添加友情链接
 -->
 <template>
   <div class="main">
