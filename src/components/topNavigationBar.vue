@@ -160,11 +160,10 @@ export default {
   watch: {
     cur_route_path () {
       this.lock_sel = true
-      this.navItems.forEach(item => {
-        if (item.url === this.cur_route_path) {
-          this.selItem = item
-        }
-      })
+      const findItem = this.findPathItem(this.cur_route_path)
+      if (findItem) {
+        this.selItem = findItem
+      }
       this.lock_sel = false
     },
     selItem () {
@@ -175,6 +174,19 @@ export default {
     }
   },
   methods: {
+    /**
+     * 查找某个路径对应的nav item
+     * @param path 某个路径
+     */
+    findPathItem (path) {
+      let findItem = false
+      this.navItems.forEach(item => {
+        if (item.url === path) {
+          findItem = item
+        }
+      })
+      return findItem
+    },
     /**
      * 切换导航栏
      * @param navItem
@@ -192,7 +204,12 @@ export default {
     }
   },
   mounted () {
-    this.selItem = this.navItems[0]
+    const findItem = this.findPathItem(this.cur_route_path)
+    if (findItem) {
+      this.selItem = findItem
+    } else {
+      this.selItem = this.navItems[0]
+    }
   }
 }
 </script>
