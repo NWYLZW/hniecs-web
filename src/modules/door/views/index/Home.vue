@@ -1,9 +1,9 @@
 <!--
-    @desc     主页面 Home页面
-    @author   fengzili
-    @date     2020-09-07
-    @logs[0]  fengzili 2020-09-07 创建了文件Home.vue
-    @logs[1]  fengzili 2020-09-08 添加打卡组件，修复样式错误
+  @desc     主页面 Home页面
+  @author   yijie
+  @date     2020-09-07
+  @logs[0]  yijie 2020-09-07 创建了文件Home.vue
+  @logs[1]  yijie 2020-09-08 添加打卡组件，修复样式错误
 -->
 <template>
   <div class="main">

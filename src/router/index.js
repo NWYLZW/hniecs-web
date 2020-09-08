@@ -3,9 +3,12 @@
  * @author    yijie
  * @date      2020-09-05
  * @logs[0]   yijie 2020-09-05 创建了index.js文件
+ * @logs[0]   yijie 2020-09-08 添加了pageNotFound页面
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
+import errorRouter from '@modules/error/assets/js/router.js'
 
 let modulesRoutes = []
 if (process.env.NODE_ENV === '') {
@@ -17,11 +20,15 @@ if (process.env.NODE_ENV === '') {
 } else {
 }
 
-const baseRoutes = [{
-  path: '',
-  name: 'index',
-  redirect: '/door/index/index'
-}]
+const baseRoutes = [
+  ...errorRouter, {
+    path: '',
+    name: 'index',
+    redirect: '/door/index/index'
+  }, {
+    path: '*',
+    redirect: '/error/index/pageNotFound'
+  }]
 
 const routes = [
   ...modulesRoutes,

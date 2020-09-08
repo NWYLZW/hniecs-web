@@ -1,8 +1,8 @@
 <!--
-    @desc     资源页面 Resource页面
-    @author   fengzili
-    @date     2020-09-07
-    @logs[0]  fengzili 2020-09-07 创建了文件Resource.vue
+  @desc     资源页面 Resource页面
+  @author   yijie
+  @date     2020-09-07
+  @logs[0]  yijie 2020-09-07 创建了文件Resource.vue
 -->
 <template>
   <div class="main">

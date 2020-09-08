@@ -9,10 +9,10 @@
 <template>
   <div class="topNavigationBar-main">
     <div class="left">
-      <div class="icon">
+      <div @click="toHome" class="icon">
         <img alt="" :src="leftIconSrc"/>
       </div>
-      <div class="name">{{ name }}</div>
+      <div @click="toHome" class="name">{{ name }}</div>
       <div class="navs">
         <div
           :key="index"
@@ -151,9 +151,24 @@ export default {
       selItem: undefined
     }
   },
-  computed: {},
+  computed: {
+    // 当前路由路径
+    cur_route_path () {
+      return this.$route.path
+    }
+  },
   watch: {
+    cur_route_path () {
+      this.lock_sel = true
+      this.navItems.forEach(item => {
+        if (item.url === this.cur_route_path) {
+          this.selItem = item
+        }
+      })
+      this.lock_sel = false
+    },
     selItem () {
+      if (this.lock_sel) return
       if (this.$route.path !== this.selItem.url) {
         this.$router.push(this.selItem.url)
       }
@@ -166,6 +181,14 @@ export default {
      */
     changeNavItem (navItem) {
       this.selItem = navItem
+    },
+    /**
+     * 前往首页
+     */
+    toHome () {
+      if (this.$route.path !== '/door/index/home') {
+        this.$router.push('/door/index/home')
+      }
     }
   },
   mounted () {

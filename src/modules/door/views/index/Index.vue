@@ -1,8 +1,8 @@
 <!--
-    @desc     door.index入口页面 Index页面
-    @author   fengzili
-    @date     2020-09-07
-    @logs[0]  fengzili 2020-09-07 创建了文件Index.vue
+  @desc     door.index入口页面 Index页面
+  @author   yijie
+  @date     2020-09-07
+  @logs[0]  yijie 2020-09-07 创建了文件Index.vue
 -->
 <template>
   <div class="main">
@@ -18,13 +18,13 @@
         url: '/door/index/mall',
         name: '集市', iconUTF8: '&#xe74e;'
       }, {
-        url: '/door/index/mall',
+        url: '/door/index/blog',
         name: '博客', iconUTF8: '&#xe7a3;'
       }, {
-        url: '/door/index/mall',
+        url: '/door/index/code',
         name: 'Code', iconUTF8: '&#xe6f2;'
       }, {
-        url: '/door/index/mall',
+        url: '/door/index/more',
         name: '更多', iconUTF8: '&#xe74f;'
       }]"/>
     <router-view/>
