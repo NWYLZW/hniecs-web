@@ -78,6 +78,16 @@ export default {
      */
     toDetailUrl (carousel) {
       window.open(carousel.url, '_blank')
+    },
+    /**
+     * 前往一个友情连接
+     * @param web
+     */
+    toWeb (web) {
+      if (web.url) {
+        console.log(web)
+        window.location.href = web.url
+      }
     }
   },
   mounted () {

@@ -39,7 +39,7 @@
             v-for="(web, index) in webs"
             effect="dark" placement="bottom"
                       :content="web.message">
-            <el-card class="web">
+            <el-card class="web" @click.native="toWeb(web)">
               <img class="icon" :src="web.icoUrl" alt="">
               <div class="label">{{ web.title }}</div>
             </el-card>
