@@ -28,16 +28,19 @@
         name: '更多', iconUTF8: '&#xe74f;'
       }]"/>
     <router-view/>
+    <bottomProjectMessage/>
   </div>
 </template>
 
 <script>
 import topNavigationBar from '@/components/topNavigationBar'
+import bottomProjectMessage from '@/components/bottomProjectMessage'
 
 export default {
   name: 'Index',
   components: {
-    topNavigationBar
+    topNavigationBar,
+    bottomProjectMessage
   }
 }
 </script>

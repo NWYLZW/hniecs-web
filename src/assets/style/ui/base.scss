@@ -2,6 +2,7 @@
   cursor: pointer;
   transition: .2s;
   &:hover {
-    color: #1f9aff;
+    color: #008bff;
+    text-shadow: 0 0 10px #eeeeee;
   }
 }
