@@ -10,6 +10,11 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+// 修改原生对象方法
+import '@assets/js/nativeObject/Object'
+import '@assets/js/nativeObject/Date'
+import '@assets/js/nativeObject/Number'
+
 Vue.config.productionTip = false
 
 // 注册外置插件
