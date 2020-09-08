@@ -28,7 +28,7 @@
         font-size: 26px;
         font-weight: 1000;
 
-        .option {
+        .options {
           float: right;
           user-select: none;
           i {
@@ -44,7 +44,7 @@
       .content {
         max-height: 1000px;
         overflow: hidden;
-        transition: .5s linear;
+        transition: .2s;
       }
       .content.dontShowContent {
         max-height: 0;

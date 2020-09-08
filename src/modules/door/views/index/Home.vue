@@ -27,7 +27,7 @@
       <el-card class="panel webs">
         <div class="panel-label">
           <i class="hniecs-iconfont">&#xe636;</i>友情链接
-          <div class="option">
+          <div class="options">
             <i class="hniecs-iconfont is-show-content"
                @click="showWebs = !showWebs"
                :class="showWebs?'left':'down'">&#xe665;
