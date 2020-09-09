@@ -7,10 +7,10 @@
 const envs = require('./envs.js')
 
 const apiHosts = [
-  'http://www2.fengzli.cn'
+  'http://hniecs.com'
 ]
 const allowedHosts = [
-  '.fengzli.cn'
+  '.hniecs.com'
 ]
 
 const publicHost = envs.publicHost || 'localhost'
@@ -24,12 +24,12 @@ const devServer = {
 
   // 配置apis
   proxy: {
-    '/dev_web/api': {
+    '/static-json/': {
       // 跨域
       changeOrigin: true,
       target: apiHosts[0],
       pathRewrite: {
-        '^/dev_web/api': apiHosts[0] + '/php_v1_api/'
+        '^/static-json/': apiHosts[0] + '/static-json/'
       }
     }
   },

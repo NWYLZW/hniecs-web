@@ -18,10 +18,4 @@ _axios.interceptors.response.use(
   ...require('./interceptors.js').default.response
 )
 
-_axios.paramses = {
-  'static-json': {
-    baseUrl: 'hniecs.com/static-json/'
-  }
-}
-
 export default _axios
