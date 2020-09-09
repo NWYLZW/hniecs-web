@@ -36,9 +36,10 @@ export default {
       return response.data
     },
     error => {
+      const response = error.response
       if (error) {
         // 请求已发出，但不在2xx范围内
-        require('./errorHandler.js').default(error.status, error.data)
+        require('./errorHandler.js').default(response.status, response.statusText)
         return Promise.reject(error)
       } else {
         // 断网
