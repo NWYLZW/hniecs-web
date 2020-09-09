@@ -45,9 +45,15 @@
         max-height: 1000px;
         overflow: hidden;
         transition: .2s;
-      }
-      .content.dontShowContent {
-        max-height: 0;
+
+        &.flex-box {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+        }
+        &.dontShowContent {
+          max-height: 0;
+        }
       }
 
       &.webs, &.services {
@@ -56,7 +62,7 @@
         .web {
           @extend .a-link;
           position: relative;float: left;
-          margin: 10px;
+          margin: 9px;
           width: 128px; height: 148px;
 
           /deep/ .el-card__body {

@@ -36,7 +36,7 @@
             </i>
           </div>
         </div>
-        <div class="content"
+        <div class="content flex-box"
              :class="!showServices?'dontShowContent':''">
           <el-tooltip
             :key="index"
@@ -60,7 +60,7 @@
             </i>
           </div>
         </div>
-        <div class="content"
+        <div class="content flex-box"
              :class="!showWebs?'dontShowContent':''">
           <el-tooltip
             :key="index"
