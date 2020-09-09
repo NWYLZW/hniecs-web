@@ -17,6 +17,8 @@ module.exports = {
       '@assets': resolve('src/assets'),
       // 公用组件文件夹
       '@components': resolve('src/components'),
+      // store文件夹
+      '@store': resolve('src/store'),
       // mock文件夹
       '@mock': resolve('src/mock'),
       // 模块组

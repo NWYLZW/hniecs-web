@@ -6,7 +6,7 @@
  * @logs[0]     {author} {createDate} 创建了rpc.js文件
  */
 // mock拦截ajax请求 伪造假数据
-// import '@/mock'
+// import '@mock'
 //库函数
 import library from '@/module/common/js/library'
 library.set_special_domain({

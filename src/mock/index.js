@@ -43,7 +43,7 @@ function index (options) {
   const queryObj = getQueryObject(queryStr)
 
   // 动态导包
-  const module = require('@/mock/' + appName + '/' + moduleName + '.js').default
+  const module = require('@mock/' + appName + '/' + moduleName + '.js').default
 
   const callbackFun = module[actionName]
   // TODO 设置忽略路由

@@ -34,8 +34,8 @@
 </template>
 
 <script>
-import topNavigationBar from '@/components/topNavigationBar'
-import bottomProjectMessage from '@/components/bottomProjectMessage'
+import topNavigationBar from '@components/topNavigationBar'
+import bottomProjectMessage from '@components/bottomProjectMessage'
 
 export default {
   name: 'Index',
