@@ -138,5 +138,10 @@ export default {
     }
   },
   mounted () {
+    this.$axios
+      .get('/static-json/door/home/carousels')
+      .then(response => {
+        console.log(response)
+      })
   }
 }
