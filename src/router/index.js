@@ -13,10 +13,10 @@ import errorRouter from '@modules/error/assets/js/router.js'
 let modulesRoutes = []
 if (process.env.NODE_ENV === '') {
 } else if (process.env.NODE_ENV === 'production') {
-  modulesRoutes = require('../config.pro.js').routes
+  modulesRoutes = require('../config/pro.js').routes
 } else if (process.env.NODE_ENV === 'development') {
   Vue.use(VueRouter)
-  modulesRoutes = require('../config.dev.js').routes
+  modulesRoutes = require('../config/dev.js').routes
 } else {
 }
 
