@@ -24,9 +24,35 @@
       </el-carousel-item>
     </el-carousel>
     <div class="panels">
+      <el-card class="panel services">
+        <div class="panel-label">
+          <svg class="hniecs-iconsymbol" aria-hidden="true">
+            <use xlink:href="#hniecs-server2"/>
+          </svg> 服务
+          <div class="options">
+            <i class="hniecs-iconfont is-show-content"
+               @click="showServices = !showServices"
+               :class="showServices?'left':'down'">&#xe665;
+            </i>
+          </div>
+        </div>
+        <div class="content"
+             :class="!showServices?'dontShowContent':''">
+          <el-tooltip
+            :key="index"
+            v-for="(web, index) in services"
+            effect="dark" placement="bottom"
+            :content="web.is.build?'建设中':web.message">
+            <el-card class="web" @click.native="toWeb(web)">
+              <img class="icon" :src="web.icoUrl" alt="">
+              <div class="label">{{ web.title }}</div>
+            </el-card>
+          </el-tooltip>
+        </div>
+      </el-card>
       <el-card class="panel webs">
         <div class="panel-label">
-          <i class="hniecs-iconfont">&#xe636;</i>友情链接
+          <i class="hniecs-iconfont">&#xe636;</i> 友情链接
           <div class="options">
             <i class="hniecs-iconfont is-show-content"
                @click="showWebs = !showWebs"
@@ -35,12 +61,12 @@
           </div>
         </div>
         <div class="content"
-          :class="!showWebs?'dontShowContent':''">
+             :class="!showWebs?'dontShowContent':''">
           <el-tooltip
             :key="index"
             v-for="(web, index) in webs"
             effect="dark" placement="bottom"
-                      :content="web.message">
+            :content="web.message">
             <el-card class="web" @click.native="toWeb(web)">
               <img class="icon" :src="web.icoUrl" alt="">
               <div class="label">{{ web.title }}</div>
@@ -48,10 +74,13 @@
           </el-tooltip>
         </div>
       </el-card>
+      <div style="clear: both"></div>
+    </div>
+    <div class="panels">
       <el-card class="panel articles">
         <div class="panel-label">
           <el-badge :value="1">
-            <i class="hniecs-iconfont">&#xe7a3;</i>热门文章
+            <i class="hniecs-iconfont">&#xe7a3;</i> 热门文章
           </el-badge>
         </div>
         <div class="content">
@@ -82,14 +111,14 @@
       </el-card>
       <el-card class="panel mark">
         <div class="panel-label">
-          <i class="hniecs-iconfont">&#xeb90;</i>活跃记录
+          <i class="hniecs-iconfont">&#xeb90;</i> 活跃记录
         </div>
         <markData class="content"></markData>
       </el-card>
       <el-card class="panel messages">
         <div class="panel-label">
           <el-badge :value="2" class="item" type="primary">
-            <i class="hniecs-iconfont">&#xe6a9;</i>站内信息
+            <i class="hniecs-iconfont">&#xe6a9;</i> 站内信息
           </el-badge>
         </div>
         <div class="content">
