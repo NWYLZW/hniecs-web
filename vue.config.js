@@ -67,13 +67,31 @@ module.exports = {
       sass: {
         // 导入全局变量
         prependData: (_ => {
+          // 根据环境加载不同变量
+          let variables = '@import \'@/assets/style/variables'
+          if (process.env.NODE_ENV === '') {
+            variables += '/pro.scss'
+          } else if (process.env.NODE_ENV === 'production') {
+            variables += '/pro.scss'
+          } else if (process.env.NODE_ENV === 'development') {
+            variables += '/dev.scss'
+          } else {
+            variables += '/pro.scss'
+          }
+          variables += '\';'
+
           // 全局ui变量
           const uiVariables = '@import \'@/assets/style/ui/variables.scss\';'
           // 全局ui变量
           const base = '@import \'@/assets/style/ui/base.scss\';'
           // 全局字体
           const font = '@import \'@/assets/style/font.scss\';'
-          return uiVariables + '\n' + base + '\n' + font
+          return '' +
+            variables + '\n' +
+            uiVariables + '\n' +
+            base + '\n' +
+            font + '\n' +
+            font + '\n'
         })()
       }
     }
