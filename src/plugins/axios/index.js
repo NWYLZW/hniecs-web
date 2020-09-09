@@ -11,10 +11,16 @@ import axios from 'axios'
 const _axios = axios.create(require('./config.js').default)
 // 请求拦截器
 _axios.interceptors.request.use(
-  ...require('./interceptors.js').default.response
+  ...require('./interceptors.js').default.request
 )
 // 响应拦截器
 _axios.interceptors.response.use(
   ...require('./interceptors.js').default.response
 )
+
+_axios.setDomain = function () {
+  console.log(this)
+  return this
+}
+
 export default _axios
