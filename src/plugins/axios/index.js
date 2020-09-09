@@ -18,9 +18,10 @@ _axios.interceptors.response.use(
   ...require('./interceptors.js').default.response
 )
 
-_axios.setDomain = function () {
-  console.log(this)
-  return this
+_axios.paramses = {
+  'static-json': {
+    baseUrl: 'hniecs.com/static-json/'
+  }
 }
 
 export default _axios
