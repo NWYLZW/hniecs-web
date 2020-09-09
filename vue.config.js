@@ -5,8 +5,6 @@
  * @logs[0]   yijie 2020-09-05 创建了vue.config.js文件
  * @logs[1]   yijie 2020-09-07 修改了头部注释的格式
  */
-const resolve = dir => require('path').join(__dirname, dir)
-
 const pages = require('./vue.config/pages.js')
 const devServer = require('./vue.config/devServer')
 
@@ -95,5 +93,5 @@ module.exports = {
         })()
       }
     }
-  },
+  }
 }
