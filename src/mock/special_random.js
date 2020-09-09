@@ -1,9 +1,9 @@
 /**
  * @Description 项目特殊的随机函数
- * @Author      fengzili
+ * @Author      yijie
  * @Date        2020-08-27
 
- * @logs[0]     fengzili 2020-08-27 创建了文件special_random.js
+ * @logs[0]     yijie 2020-08-27 创建了文件special_random.js
  */
 import { Random } from 'mockjs'
 

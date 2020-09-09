@@ -1,8 +1,8 @@
 <!--
     @desc     打卡信息 markData组件
-    @author   fengzili
+    @author   yijie
     @date     2020-09-08
-    @logs[0]  fengzili 2020-09-08 创建了文件markData.vue
+    @logs[0]  yijie 2020-09-08 创建了文件markData.vue
 -->
 <template>
   <div class="markData-main">

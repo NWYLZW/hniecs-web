@@ -1,6 +1,6 @@
 /*
 * @desc:       集市页面js文件 mall.js
-* @author:     fengzili
+* @author:     yijie
 * @createTime: 2020-09-07
 */
 export default {

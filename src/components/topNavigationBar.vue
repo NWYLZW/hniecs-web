@@ -1,10 +1,10 @@
 <!--
     @desc     头部导航条 topNavigationBar组件
-    @author   fengzili
+    @author   yijie
     @date     2020-09-07
-    @logs[0]  fengzili 2020-09-07 创建了文件topNavigationBar.vue
-    @logs[1]  fengzili 2020-09-07 完成了左侧导航条
-    @logs[2]  fengzili 2020-09-07 修复要点击俩次item才会出现下划线的bug 莫名其妙的
+    @logs[0]  yijie 2020-09-07 创建了文件topNavigationBar.vue
+    @logs[1]  yijie 2020-09-07 完成了左侧导航条
+    @logs[2]  yijie 2020-09-07 修复要点击俩次item才会出现下划线的bug 莫名其妙的
 -->
 <template>
   <div class="topNavigationBar-main">

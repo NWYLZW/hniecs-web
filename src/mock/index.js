@@ -1,10 +1,10 @@
 /**
  * @Description mock总路由转发模块
- * @Author      fengzili
+ * @Author      yijie
  * @Date        2020-08-20
 
- * @logs[0]     fengzili 2020-08-20 完善头部注释格式,完成路由分发架构
- * @logs[1]     fengzili 2020-08-25 修改头部注释格式，修复post_obj在get模式下无法被JSON.parse解析的错误
+ * @logs[0]     yijie 2020-08-20 完善头部注释格式,完成路由分发架构
+ * @logs[1]     yijie 2020-08-25 修改头部注释格式，修复post_obj在get模式下无法被JSON.parse解析的错误
  */
 // 引入mockjs
 import Mock from 'mockjs'

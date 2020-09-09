@@ -4,20 +4,20 @@
  *            谨慎添加，谨慎维护
  *            不要是个方法就往里面加，会导致Number对象过于复杂
  *            每次更改向下方logs添加更改信息
- * @author    fengzili
+ * @author    yijie
  * @date      2020-08-11
- * @logs[0]   fengzili 2020-08-11 添加头部注释
+ * @logs[0]   yijie 2020-08-11 添加头部注释
  */
 
 /**
  * 将数字转化为缩写
- * @author      fengzili
+ * @author      yijie
  * @date        2020-08-11
  * @articleUrl  (暂无)
  * @param       digits    小数点后保留位数
  * @param       unit_type 单位类型 en:英文单位,zh:中文单位
  * @returns     转化过后的字符串
- * @logs[0]     fengzili 2020-08-11 创建方法
+ * @logs[0]     yijie 2020-08-11 创建方法
  */
 Number.prototype.format = function (digits, unit_type) {
   const num = this.valueOf()

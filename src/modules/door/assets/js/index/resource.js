@@ -1,6 +1,6 @@
 /*
 * @desc:       资源页面js文件 resource.js
-* @author:     fengzili
+* @author:     yijie
 * @createTime: 2020-09-07
 */
 export default {

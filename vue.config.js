@@ -39,18 +39,11 @@ module.exports = {
 
   // 通过 webpack-merge 合并到最终的配置中。
   configureWebpack: config => {
-    // 设置一些全局变量名
+    // 设置全局变量名
     config.resolve.alias = {
       // 合并默认配置
       ...config.resolve.alias,
-      // 公用静态资源文件夹
-      '@assets': resolve('src/assets'),
-      // 公用组件文件夹
-      '@components': resolve('src/components'),
-      // mock文件夹
-      '@mock': resolve('src/mock'),
-      // 模块组
-      '@modules': resolve('src/modules')
+      ...require('./vue.config.alias.js').resolve.alias
     }
 
     if (process.env.NODE_ENV === '') {

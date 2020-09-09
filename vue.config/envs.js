@@ -1,5 +1,5 @@
 /**
- * @desp        获取run项目后的命令行参数 envs.js
+ * @desc        获取run项目后的命令行参数 envs.js
  * @author      yijie
  * @createTime  2020-09-05 15:05
  * @log[0]      2020-09-05 15:05 yijie 创建了该文件

@@ -1,5 +1,5 @@
 /**
- * @desp        module管理控制 modulesControler.js
+ * @desc        module管理控制 modulesControler.js
  * @author      yijie
  * @createTime  2020-09-05 16:05
  * @log[0]      2020-09-05 16:05 yijie 创建了该文件

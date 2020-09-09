@@ -1,5 +1,5 @@
 /**
- * @desp        nodejs帮助方法 tool.js
+ * @desc        nodejs帮助方法 tool.js
  * @author      yijie
  * @createTime  2020-09-05 16:24
  * @log[0]      2020-09-05 16:24 yijie 创建了该文件

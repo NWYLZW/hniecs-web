@@ -4,23 +4,23 @@
  *            谨慎添加，谨慎维护
  *            不要是个方法就往里面加，会导致Date对象过于复杂
  *            每次更改向下方logs添加更改信息
- * @author    fengzili
+ * @author    yijie
  * @date      2020-08-10
- * @logs[0]   fengzili 2020-08-11 添加头部注释
- * @logs[1]   fengzili 2020-08-20 添加计算时间差值方法
+ * @logs[0]   yijie 2020-08-11 添加头部注释
+ * @logs[1]   yijie 2020-08-20 添加计算时间差值方法
  */
 
 /**
  * 将时间以指定格式转化
  * 使用参考:
  * (new Date(log.ctime*1000).format("yy/MM/dd hh:mm"))
- * @author      fengzili
+ * @author      yijie
  * @date        2020-08-10
  * @articleUrl  (暂无)
 
  * @param       fmt(转化格式字符串)
  * @returns     转化后的指定时间格式字符串
- * @logs[0]     fengzili 2020-08-11 添加头部注释
+ * @logs[0]     yijie 2020-08-11 添加头部注释
  */
 Date.prototype.format = function (fmt) {
   var o = {
@@ -38,7 +38,7 @@ Date.prototype.format = function (fmt) {
 }
 /**
  * 计算时间差值
- * @author          fengzili
+ * @author          yijie
  * @date            2020-08-19
  * @articleUrl      (暂无)
 

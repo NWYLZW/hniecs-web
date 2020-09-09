@@ -1,9 +1,9 @@
 /**
  * @Description mock 的帮助类js
- * @Author      fengzili
+ * @Author      yijie
  * @Date        2020-08-27
 
- * @logs[0]     fengzili 2020-08-27 创建了文件tool.js
+ * @logs[0]     yijie 2020-08-27 创建了文件tool.js
  */
 
 // 返回响应码的枚举值
