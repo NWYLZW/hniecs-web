@@ -5,7 +5,7 @@
  *          vue.config.alias
  * @author  yijie
  * @date    2020-09-09 13:47
- * @log[0]  2020-09-09 13:47 yijie 创建了该文件 vue.config.alias
+ * @logs[0]  2020-09-09 13:47 yijie 创建了该文件 vue.config.alias
  */
 const resolve = dir => require('path').join(__dirname, dir)
 

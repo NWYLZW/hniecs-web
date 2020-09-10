@@ -2,7 +2,7 @@
  * @desc    axios配置文件 config.js
  * @author  yijie
  * @date    2020-09-09 21:21
- * @log[0]  2020-09-09 21:21 yijie 创建了config.js文件
+ * @logs[0]  2020-09-09 21:21 yijie 创建了config.js文件
  */
 export default {
   // 请求超时时间

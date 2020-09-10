@@ -2,7 +2,7 @@
  * @desc        nodejs帮助方法 tool.js
  * @author      yijie
  * @createTime  2020-09-05 16:24
- * @log[0]      2020-09-05 16:24 yijie 创建了该文件
+ * @logs[0]      2020-09-05 16:24 yijie 创建了该文件
  */
 const fs = require('fs')
 

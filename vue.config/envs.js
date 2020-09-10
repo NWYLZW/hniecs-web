@@ -2,7 +2,7 @@
  * @desc        获取run项目后的命令行参数 envs.js
  * @author      yijie
  * @createTime  2020-09-05 15:05
- * @log[0]      2020-09-05 15:05 yijie 创建了该文件
+ * @logs[0]      2020-09-05 15:05 yijie 创建了该文件
  */
 const argv = process.argv.splice(3)
 const match = /^--env\.(.*)=(.*)/

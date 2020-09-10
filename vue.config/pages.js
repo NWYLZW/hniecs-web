@@ -2,7 +2,7 @@
  * @desc        构建多页面应用，页面的配置 pages.js
  * @author      yijie
  * @createTime  2020-09-05 15:09
- * @log[0]      2020-09-05 15:09 yijie 创建了该文件
+ * @logs[0]      2020-09-05 15:09 yijie 创建了该文件
  */
 const pages = {
   index: {

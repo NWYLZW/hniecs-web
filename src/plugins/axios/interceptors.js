@@ -2,7 +2,7 @@
  * @desc    拦截器 interceptors.js
  * @author  yijie
  * @date    2020-09-09 21:51
- * @log[0]  2020-09-09 21:51 yijie 创建了interceptors.js文件
+ * @logs[0]  2020-09-09 21:51 yijie 创建了interceptors.js文件
  */
 import store from '@store'
 

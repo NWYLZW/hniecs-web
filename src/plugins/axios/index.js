@@ -2,8 +2,8 @@
  * @desc    axios插件 index.js
  * @author  yijie
  * @date    2020-09-09 21:14
- * @log[0]  2020-09-09 21:14 yijie 创建了index.js文件
- * @log[1]  2020-09-09 21:52 yijie 抽离拦截器
+ * @logs[0]  2020-09-09 21:14 yijie 创建了index.js文件
+ * @logs[1]  2020-09-09 21:52 yijie 抽离拦截器
  */
 import axios from 'axios'
 

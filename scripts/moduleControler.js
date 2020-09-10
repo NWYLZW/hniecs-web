@@ -2,7 +2,7 @@
  * @desc        module管理控制 modulesControler.js
  * @author      yijie
  * @createTime  2020-09-05 16:05
- * @log[0]      2020-09-05 16:05 yijie 创建了该文件
+ * @logs[0]      2020-09-05 16:05 yijie 创建了该文件
  */
 const fs    = require('fs')
 

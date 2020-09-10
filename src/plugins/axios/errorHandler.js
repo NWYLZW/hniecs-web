@@ -2,7 +2,7 @@
  * @desc    处理错误响应码 errorHandler.js
  * @author  yijie
  * @date    2020-09-09 21:31
- * @log[0]  2020-09-09 21:31 yijie 创建了errorHandler.js文件
+ * @logs[0]  2020-09-09 21:31 yijie 创建了errorHandler.js文件
  */
 
 /**

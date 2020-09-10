@@ -2,7 +2,7 @@
  * @desc        开发服务器配置 devServer.js
  * @author      yijie
  * @createTime  2020-09-05 15:11
- * @log[0]      2020-09-05 15:11 yijie 创建了该文件
+ * @logs[0]      2020-09-05 15:11 yijie 创建了该文件
  */
 const envs = require('./envs.js')
 

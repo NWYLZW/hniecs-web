@@ -3,7 +3,7 @@
  *          接收node 参数将字体文件名设置为新字体文件名
  * @author  yijie
  * @date    2020-09-10 16:02
- * @log[0]  2020-09-10 16:02 yijie 创建了fontHelper.js文件
+ * @logs[0]  2020-09-10 16:02 yijie 创建了fontHelper.js文件
  */
 const fs = require('fs')
 
