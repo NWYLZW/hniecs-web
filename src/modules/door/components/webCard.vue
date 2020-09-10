@@ -11,6 +11,14 @@
     <el-card class="web" @click.native="toWeb(web)">
       <img class="icon" :src="web.icoUrl" alt="">
       <div class="label">{{ web.title }}</div>
+      <div class="mask"
+        :class="{
+          'is-build': web.is.build
+        }">
+        <svg class="hniecs-iconsymbol build-svg" aria-hidden="true">
+          <use xlink:href="#hniecs-building-001"/>
+        </svg>
+      </div>
     </el-card>
   </el-tooltip>
 </template>
@@ -19,6 +27,7 @@
 export default {
   name: 'webCard',
   props: {
+    // 网站信息字典
     web: {
       type: Object,
       default () {
@@ -77,6 +86,25 @@ export default {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+  }
+
+  &:hover .mask.is-build {opacity: 1;}
+  .mask {
+    position: absolute;
+    top: 0;left: 0;
+    width: 100%; height: 100%;
+
+    opacity: 0;
+    background-color: rgba(0, 0, 0, .5);
+
+    transition: .2s;
+    .build-svg {
+      $size: 72px;
+
+      position: relative;
+      top: calc(50% - #{$size}/2);left: calc(50% - #{$size}/2);
+      width: $size; height: $size;
+    }
   }
 }
 </style>
