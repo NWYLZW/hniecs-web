@@ -58,35 +58,6 @@
 
       &.webs, &.services {
         width: calc(50% - 22px);
-
-        .web {
-          @extend .a-link;
-          position: relative;float: left;
-          margin: 9px;
-          width: 128px; height: 148px;
-
-          /deep/ .el-card__body {
-            padding: {
-              top: 10px;bottom: 10px;
-              left: 14px;right: 14px;
-            };
-          }
-          .icon {
-            width: 100px;height: 100px;
-          }
-          .label {
-            width: 100%;
-            text-align: center;
-
-            font: {
-              size: 18px;
-              weight: bold;
-            };
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-          }
-        }
       }
       &.articles {
         width: 350px;

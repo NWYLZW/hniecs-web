@@ -5,11 +5,13 @@
  * @logs[0]   yijie 2020-09-07 创建了文件home.js
  */
 import markData from '@modules/door/components/user/markData'
+import webCard from '@modules/door/components/webCard'
 
 export default {
   name: 'home',
   components: {
-    markData
+    markData,
+    webCard
   },
   props: {},
   data () {
@@ -37,25 +39,6 @@ export default {
      */
     toDetailUrl (carousel) {
       window.open(carousel.url, '_blank')
-    },
-    /**
-     * 前往一个友情连接
-     * @param web
-     */
-    toWeb (web) {
-      if (web.is.build) {
-        this.$message({
-          type: 'warning',
-          message: '你访问的页面正在紧张建设中'
-        })
-      }
-      if (web.url && !web.is.ban) {
-        if (web.is.toNewPage) {
-          window.open(web.url, '_blank')
-        } else {
-          window.location.href = web.url
-        }
-      }
     },
     refresh_services () {
       return new Promise((resolve, reject) => {

@@ -38,16 +38,10 @@
         </div>
         <div class="content flex-box"
              :class="!showServices?'dontShowContent':''">
-          <el-tooltip
+          <web-card
             :key="index"
             v-for="(web, index) in services"
-            effect="dark" placement="bottom"
-            :content="web.is.build?'建设中':web.message">
-            <el-card class="web" @click.native="toWeb(web)">
-              <img class="icon" :src="web.icoUrl" alt="">
-              <div class="label">{{ web.title }}</div>
-            </el-card>
-          </el-tooltip>
+            :web="web"/>
         </div>
       </el-card>
       <el-card class="panel webs">
@@ -62,16 +56,10 @@
         </div>
         <div class="content flex-box"
              :class="!showWebs?'dontShowContent':''">
-          <el-tooltip
+          <web-card
             :key="index"
             v-for="(web, index) in webs"
-            effect="dark" placement="bottom"
-            :content="web.message">
-            <el-card class="web" @click.native="toWeb(web)">
-              <img class="icon" :src="web.icoUrl" alt="">
-              <div class="label">{{ web.title }}</div>
-            </el-card>
-          </el-tooltip>
+            :web="web"/>
         </div>
       </el-card>
       <div style="clear: both"></div>
