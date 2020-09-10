@@ -3,9 +3,13 @@
 * @author:     yijie
 * @createTime: 2020-09-07
 */
+import resourceCard from '@modules/door/components/resourceCard'
+
 export default {
   name: 'resource',
-  components: {},
+  components: {
+    resourceCard
+  },
   props: {},
   data () {
     const tags = [{
