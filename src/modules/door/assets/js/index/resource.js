@@ -1,13 +1,16 @@
 /*
-* @desc:       资源页面js文件 resource.js
-* @author:     yijie
-* @createTime: 2020-09-07
+* @desc   资源页面js文件 resource.js
+* @author yijie
+* @date   2020-09-07
+ * @logs[0]   yijie 2020-09-07 创建了文件home.js
 */
+import carouselItem from '@modules/door/components/carouselItem'
 import resourceCard from '@modules/door/components/resourceCard'
 
 export default {
   name: 'resource',
   components: {
+    carouselItem,
     resourceCard
   },
   props: {},
@@ -26,6 +29,7 @@ export default {
       iconUTF8: '&#xe6f2;'
     }]
     return {
+      carousels: [],
       activeName: 'all',
       resources: [{
         title: 'VC++6.0 编译器',
@@ -52,9 +56,24 @@ export default {
     /**
      * 替换页面
      */
-    tabChange () {
+    tabChange () {},
+    /**
+     * 刷新轮播列表
+     */
+    refresh_carousels () {
+      return new Promise((resolve, reject) => {
+        this.$axios.get('/static-json/door/resource/carousels')
+          .then(response => {
+            this.carousels = response
+            resolve()
+          })
+      })
     }
   },
   mounted () {
+    Promise.all([
+      this.refresh_carousels()
+    ]).then(_ => {
+    })
   }
 }

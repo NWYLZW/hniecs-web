@@ -6,9 +6,11 @@
 -->
 <template>
   <div class="Resource-main">
-    <el-carousel height="350px" direction="vertical" :autoplay="false">
-      <el-carousel-item v-for="item in 3" :key="item">
-        <h3 class="medium">{{ item }}</h3>
+    <el-carousel height="450px" direction="vertical" :autoplay="false">
+      <el-carousel-item
+        :key="index"
+        v-for="(carousel, index) in carousels">
+        <carouselItem :carousel="carousel"/>
       </el-carousel-item>
     </el-carousel>
     <el-tabs
@@ -35,18 +37,4 @@
 
 <style lang="scss" scoped>
 @import "~@/modules/door/assets/style/resource.scss";
-/deep/ .el-carousel__item h3 {
-  margin: 0;
-
-  text-align: center;
-  color: #475669;
-  line-height: 350px;
-
-  &:nth-child(2n) {
-    background-color: #99a9bf;
-  }
-  &:nth-child(2n+1) {
-    background-color: #d3dce6;
-  }
-}
 </style>

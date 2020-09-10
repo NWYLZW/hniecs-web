@@ -4,12 +4,14 @@
  * @date      2020-09-07
  * @logs[0]   yijie 2020-09-07 创建了文件home.js
  */
+import carouselItem from '@modules/door/components/carouselItem'
 import markData from '@modules/door/components/user/markData'
 import webCard from '@modules/door/components/webCard'
 
 export default {
   name: 'home',
   components: {
+    carouselItem,
     markData,
     webCard
   },
@@ -34,12 +36,8 @@ export default {
   watch: {},
   methods: {
     /**
-     * 前往轮播图详情页面
-     * @param carousel 轮播图字典
+     * 刷新服务网站列表
      */
-    toDetailUrl (carousel) {
-      window.open(carousel.url, '_blank')
-    },
     refresh_services () {
       return new Promise((resolve, reject) => {
         this.$axios.get('/static-json/door/home/services')
@@ -49,6 +47,9 @@ export default {
           })
       })
     },
+    /**
+     * 刷新友情链接列表
+     */
     refresh_webs () {
       return new Promise((resolve, reject) => {
         this.$axios.get('/static-json/door/home/webs')
@@ -58,6 +59,9 @@ export default {
           })
       })
     },
+    /**
+     * 刷新文章列表
+     */
     refresh_articles () {
       return new Promise((resolve, reject) => {
         this.$axios.get('/static-json/door/home/articles')
@@ -78,6 +82,9 @@ export default {
           })
       })
     },
+    /**
+     * 刷新轮播列表
+     */
     refresh_carousels () {
       return new Promise((resolve, reject) => {
         this.$axios.get('/static-json/door/home/carousels')
