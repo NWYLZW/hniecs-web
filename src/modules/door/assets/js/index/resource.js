@@ -31,6 +31,8 @@ export default {
     return {
       // 轮播图
       carousels: [],
+      // 资源搜索框input值
+      search: '',
       // 当前选择的资源标签页
       activeName: 'all',
       // 资源列表

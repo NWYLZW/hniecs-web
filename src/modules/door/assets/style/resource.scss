@@ -8,6 +8,20 @@
   padding: {
     top: 30px; bottom: 60px;
   };
+  .tabs-header {
+    $tabs-header-height: 50px;
+    margin-top: 20px;
+    padding: {
+      left: 100px; right: 100px;
+    };
+    width: calc(100% - 200px);height: $tabs-header-height;
+    line-height: $tabs-header-height;
+
+    .search-input {
+      float: right;
+      width: 300px;
+    }
+  }
   .tabs {
     padding: {
       left: 100px; right: 100px;

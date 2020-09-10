@@ -13,6 +13,12 @@
         <carouselItem :carousel="carousel"/>
       </el-carousel-item>
     </el-carousel>
+    <div class="tabs-header">
+      <el-input
+        class="search-input"
+        v-model="search"
+        placeholder="输入想查找的资源"/>
+    </div>
     <el-tabs
       class="tabs"
       @tab-click="tabChange"
