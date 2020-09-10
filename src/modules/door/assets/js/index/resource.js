@@ -29,8 +29,11 @@ export default {
       iconUTF8: '&#xe6f2;'
     }]
     return {
+      // 轮播图
       carousels: [],
+      // 当前选择的资源标签页
       activeName: 'all',
+      // 资源列表
       resources: [{
         title: 'VC++6.0 编译器',
         url: 'http://pic.pc6.com/up/2016-3/2016324173047.jpg',
