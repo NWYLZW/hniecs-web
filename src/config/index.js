@@ -3,6 +3,7 @@
  * @author  yijie
  * @date    2020-09-11 09:46
  * @logs[0] 2020-09-11 09:46 yijie 创建了index.js文件
+ * @logs[1] 2020-09-11 14:10 yijie 添加 productionTip
  */
 import Vue from 'vue'
 const config = (_ => {
@@ -21,6 +22,7 @@ const routes = config.routes
 for (const vueConfigKey in config.vueConfig) {
   Vue.config[vueConfigKey] = config.vueConfig[vueConfigKey]
 }
+Vue.config.productionTip = false
 
 export default {
   routes
