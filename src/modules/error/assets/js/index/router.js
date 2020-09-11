@@ -23,7 +23,10 @@ export default [{
       '@modules/error/views/index/PageNotFound.vue'
     ),
     meta: {
-      title: '你访问的页面找不到啦'
+      title: '你访问的页面找不到啦',
+      unneed: {
+        login: false
+      }
     }
   }]
 }]
