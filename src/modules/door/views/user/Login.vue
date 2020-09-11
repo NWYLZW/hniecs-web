@@ -112,7 +112,7 @@ export default {
       position: relative;float: left;
       padding: 20px;
       width: calc(50% - 40px); height: calc(100% - 40px);
-      background-color: #1f9aff;
+      backdrop-filter: saturate(180%) blur(20px);
 
       color: map-get($use-colors, font-color);
       .top-community-name {
@@ -136,7 +136,8 @@ export default {
     .right {
       position: relative;float: left;
       width: 50%; height: 100%;
-      background-color: #ffffff;
+      background-color: rgba(255, 255, 255, .8);
+      backdrop-filter: saturate(180%) blur(20px);
 
       .right-top-icon {
         @extend .a-link;
