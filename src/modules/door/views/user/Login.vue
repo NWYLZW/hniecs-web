@@ -12,7 +12,7 @@
         <div class="top-community-name">HNIECS</div>
         <div class="center-message">Let's Start Now!</div>
         <div class="bottom-to-about">
-          <i class="hniecs-iconfont">&#xe601;</i> 有关我们
+          <i class="hniecs-iconfont">&#xe601;</i> 关于我们
         </div>
       </div>
       <div class="right">
@@ -66,13 +66,23 @@ export default {
   },
   methods: {
     /**
-     * 登陆
+     * 登陆成功
      */
-    login () {
+    loginSuccess () {
       this.$message({
         type: 'success',
         message: '登陆成功'
       })
+      this.$router.push(this.$route.query.redirect)
+    },
+    /**
+     * 登陆
+     */
+    login () {
+      if (process.env.NODE_ENV === 'development') {
+        sessionStorage.setItem('sessionToken', 'development')
+        this.loginSuccess()
+      }
     },
     /**
      * 前往注册页面

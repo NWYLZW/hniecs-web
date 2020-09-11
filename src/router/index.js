@@ -62,7 +62,7 @@ router.beforeEach((to, from, next) => {
     )
   }
 
-  const isLogin = sessionStorage.getItem('sessiontoken')
+  const isLogin = sessionStorage.getItem('sessionToken')
   // 页面未设置为仅登陆查看 未登陆 不是登陆页面
   if (unneed.login && !isLogin && to.path !== '/door/user/login') {
     next({
