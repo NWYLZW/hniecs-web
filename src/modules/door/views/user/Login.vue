@@ -65,7 +65,7 @@ export default {
       rules: {
         userName: [
           { required: true, message: '请输入用户名', trigger: 'blur' },
-          { min: 3, max: 10, message: '用户名长度错误', trigger: 'blur' }
+          { min: 3, max: 100, message: '用户名长度错误', trigger: 'blur' }
         ],
         pwd: [
           { required: true, message: '请输入密码', trigger: 'blur' }
