@@ -128,6 +128,7 @@ export default {
 <style lang="scss" scoped>
 @import '~@/assets/style/ui/special-effects.scss';
 .main {
+  &:after { @include black-shandow-after(black, 200px) }
   position: absolute;
   width: 100%; height: 100%;
 
@@ -154,7 +155,8 @@ export default {
       position: relative;float: left;
       padding: 20px;
       width: calc(50% - 40px); height: calc(100% - 40px);
-      backdrop-filter: saturate(180%) blur(20px);
+      background-color: rgba(255, 255, 255, .1);
+      backdrop-filter: saturate(180%) blur(5px);
 
       color: map-get($use-colors, font-color);
       .top-community-name {
@@ -179,7 +181,7 @@ export default {
       position: relative;float: left;
       width: 50%; height: 100%;
       background-color: rgba(255, 255, 255, .8);
-      backdrop-filter: saturate(180%) blur(20px);
+      backdrop-filter: saturate(180%) blur(5px);
 
       .right-top-icon {
         @extend .a-link;

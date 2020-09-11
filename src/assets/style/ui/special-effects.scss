@@ -3,6 +3,7 @@
  * @author    yijie
  * @date      2020-09-12
  * @logs[0]   yijie 2020-09-12 创建文件
+ * @logs[1]   yijie 2020-09-12 添加圆圈阴影
  */
 
 @keyframes animate {
@@ -17,38 +18,44 @@
   }
 }
 .colorful-streamer-button {
-  font-family: sans-serif; /*非衬线体*/
-  box-sizing: border-box; /*盒模型大小规则*/
+  $animate-time: 10s;
+  font-family: sans-serif;
+  box-sizing: border-box;
   background: linear-gradient(
-      90deg, #03a9f4, #0347f4, #3703f4,
-      #03a9f4, #0347f4, #3703f4, #03a9f4); /*渐变背景*/
-  border-radius: 60px; /*边框圆角*/
-  background-size: 400%; /*背景大小*/
-  z-index: 1; /*层叠定位*/
+      90deg, #03a9f4, #0347f4, #6703f4,
+      #03a9f4, #0347f4, #6703f4, #03a9f4);
+  border-radius: 60px;
+  background-size: 400%;
+  z-index: 1;
 
-  &:hover {
-    animation: animate 8s linear infinite alternate; /*动画: 名称 时间 线性 循环 播放完回退播放*/
-  }
-  &::before { /*之前添加*/
-    content: ''; /*内容*/
-    position: absolute; /*绝对定位*/
-    top: -5px; /*当设置对立的2个定位属性时，元素的大小将由对立的大小决定*/
-    left: -5px;
-    right: -5px;
-    bottom: -5px; /*当设置对立的2个定位属性时，元素的大小将由对立的大小决定*/
+  animation: animate $animate-time linear infinite alternate;
+  &::before {
     z-index: -1;
+    content: '';
+    position: absolute;
+    top: -5px; left: -5px;
+    right: -5px; bottom: -5px;
+
     background: linear-gradient(
-        90deg, #03a9f4, #0347f4, #3703f4, #03a9f4,
-        #0347f4, #3703f4, #03a9f4);
-    border-radius: 40px;
+        90deg, #03a9f4, #0347f4, #6703f4, #03a9f4,
+        #0347f4, #6703f4, #03a9f4);
+
     background-size: 400%;
-    filter: blur(20px); /*过渡：模糊*/
-    opacity: 0; /*透明度*/
-    transition: 1s; /*过渡时间*/
-  }
-  &:hover::before {
     filter: blur(20px);
     opacity: 1;
-    animation: animate 8s linear infinite; /*注意动画名称统一*/
+    animation: animate $animate-time linear infinite;
+
+    transition: 1s;
   }
+}
+
+@mixin black-shandow-after($shadow-color: black, $shandow-range: 100px ,$z-index: 1) {
+  z-index: $z-index;
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+
+  pointer-events: none;
+  box-shadow: 0 0 $shandow-range $shadow-color inset;
 }
