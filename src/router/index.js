@@ -41,4 +41,10 @@ const router = new VueRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  /* 路由发生变化修改页面title */
+  document.title = (to.meta && to.meta.title) || 'HNIECS'
+  next()
+})
+
 export default router
