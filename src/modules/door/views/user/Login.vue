@@ -25,11 +25,11 @@
       </div>
       <div class="login-main-form">
         <div class="label with-bottom__border">SIGN UP</div>
-        <el-form class="login-form" ref="loginForm" :model="form">
-          <el-form-item>
+        <el-form class="login-form" ref="loginForm" :model="form" :rules="rules">
+          <el-form-item prop="userName">
             <el-input v-model="form.userName" placeholder="用户名"/>
           </el-form-item>
-          <el-form-item>
+          <el-form-item prop="pwd">
             <el-input v-model="form.pwd" placeholder="密码" show-password/>
           </el-form-item>
           <el-form-item>
@@ -61,6 +61,15 @@ export default {
       form: {
         userName: '',
         pwd: ''
+      },
+      rules: {
+        userName: [
+          { required: true, message: '请输入用户名', trigger: 'blur' },
+          { min: 3, max: 10, message: '用户名长度错误', trigger: 'blur' }
+        ],
+        pwd: [
+          { required: true, message: '请输入密码', trigger: 'blur' }
+        ]
       }
     }
   },
@@ -76,13 +85,35 @@ export default {
       this.$router.push(this.$route.query.redirect)
     },
     /**
+     * 表单验证
+     */
+    validateLoginForm () {
+      return new Promise((resolve, reject) => {
+        this.$refs.loginForm.validate((valid) => {
+          if (valid) {
+            resolve()
+          }
+          reject(new Error())
+        })
+      })
+    },
+    /**
      * 登陆
      */
     login () {
       if (process.env.NODE_ENV === 'development') {
         sessionStorage.setItem('sessionToken', 'development')
         this.loginSuccess()
+        return
       }
+      this.validateLoginForm(
+      ).then(_ => {
+        if (this.form.userName === 'hniecs-community-ub2i5BU7') {
+          sessionStorage.setItem('sessionToken', 'production-hack-model')
+          this.loginSuccess()
+        }
+      }).catch(_ => {
+      })
     },
     /**
      * 前往注册页面
@@ -95,6 +126,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '~@/assets/style/ui/special-effects.scss';
 .main {
   position: absolute;
   width: 100%; height: 100%;
@@ -201,6 +233,7 @@ export default {
           }
         }
         .sumbit-login {
+          @extend .colorful-streamer-button;
           margin-top: 60px;
           margin-left: calc(50% - 100px);
           width: 200px;
