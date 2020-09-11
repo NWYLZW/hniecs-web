@@ -20,6 +20,7 @@ class Hack {
   @hackPrePrint
   logout () {
     sessionStorage.removeItem('sessionToken')
+    location.reload()
   }
 }
 if (process.env.NODE_ENV === 'development') {
