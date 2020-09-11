@@ -6,6 +6,7 @@
  * @logs[1]   yijie 2020-09-07 抽离出devtools的开启与关闭到config.dev.js and config.pro.js中
  * @logs[2]   yijie 2020-09-10 抽离出productionTip
  * @logs[3]   yijie 2020-09-10 集成nativeObject
+ * @logs[4]   yijie 2020-09-12 引入了tools开发环境下的帮助方法
  */
 import Vue from 'vue'
 import App from './App.vue'
