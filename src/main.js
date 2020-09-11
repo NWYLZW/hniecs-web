@@ -5,16 +5,14 @@
  * @logs[0]   yijie 2020-09-05 创建了文件main.js
  * @logs[1]   yijie 2020-09-07 抽离出devtools的开启与关闭到config.dev.js and config.pro.js中
  * @logs[2]   yijie 2020-09-10 抽离出productionTip
+ * @logs[3]   yijie 2020-09-10 集成nativeObject
  */
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
 
-// 修改原生对象方法
-import '@assets/js/nativeObject/Object'
-import '@assets/js/nativeObject/Date'
-import '@assets/js/nativeObject/Number'
+import '@assets/js/nativeObject'
 
 // 注册外置插件
 require('./plugins').default(Vue)
