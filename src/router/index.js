@@ -3,22 +3,18 @@
  * @author    yijie
  * @date      2020-09-05
  * @logs[0]   yijie 2020-09-05 创建了index.js文件
- * @logs[0]   yijie 2020-09-08 添加了pageNotFound页面
+ * @logs[1]   yijie 2020-09-08 添加了pageNotFound页面
+ * @logs[1]   yijie 2020-09-11 优化routes的获取，向外封闭
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import errorRouter from '@modules/error/assets/js/router.js'
 
-let modulesRoutes = []
-if (process.env.NODE_ENV === '') {
-} else if (process.env.NODE_ENV === 'production') {
-  modulesRoutes = require('../config/pro.js').routes
-} else if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development') {
   Vue.use(VueRouter)
-  modulesRoutes = require('../config/dev.js').routes
-} else {
 }
+const modulesRoutes = require('../config').default.routes
 
 const baseRoutes = [
   ...errorRouter, {
