@@ -13,6 +13,7 @@ import router from './router'
 import store from './store'
 
 import '@assets/js/nativeObject'
+import '@/tools'
 
 // 注册外置插件
 require('./plugins').default(Vue)
