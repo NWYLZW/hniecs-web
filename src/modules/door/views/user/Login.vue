@@ -132,6 +132,7 @@ export default {
   position: absolute;
   width: 100%; height: 100%;
 
+  background-position: center;
   background-image: url("#{$base-path}/static/images/door/login-background-image-01.jpg");
 
   .login-card {
