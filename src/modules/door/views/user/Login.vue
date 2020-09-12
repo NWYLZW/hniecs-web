@@ -101,17 +101,24 @@ export default {
      * 登陆
      */
     login () {
-      if (process.env.NODE_ENV === 'development') {
-        sessionStorage.setItem('sessionToken', 'development')
-        this.loginSuccess()
-        return
-      }
       this.validateLoginForm(
       ).then(_ => {
         if (this.form.userName === 'hniecs-community-ub2i5BU7') {
           sessionStorage.setItem('sessionToken', 'production-hack-model')
           this.loginSuccess()
         }
+        require('@modules/door/assets/js/rpc.js').default.user.login(
+          this.form.userName,
+          this.form.pwd
+        ).then(_ => {
+          this.loginSuccess()
+        }).catch(_ => {
+          console.log(_)
+          this.$message({
+            type: 'error',
+            message: _.code
+          })
+        })
       }).catch(_ => {
       })
     },

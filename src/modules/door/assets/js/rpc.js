@@ -10,8 +10,16 @@ import axios from '@plugins/axios'
 
 export default {
   user: {
-    login () {
-      return axios.get()
+    /**
+     * 用户登录
+     * @param userName  用户名
+     * @param password  密码
+     * @returns {*}
+     */
+    login (userName, password) {
+      return axios.post('/spring-api/user/base/login', {
+        userName, password
+      })
     }
   }
 }

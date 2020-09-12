@@ -7,7 +7,8 @@
 const envs = require('./envs.js')
 
 const apiHosts = [
-  'http://hniecs.com'
+  'http://hniecs.com',
+  'http://localhost:10000'
 ]
 const allowedHosts = [
   '.hniecs.com'
@@ -30,6 +31,14 @@ const devServer = {
       target: apiHosts[0],
       pathRewrite: {
         '^/static-json/': apiHosts[0] + '/static-json/'
+      }
+    },
+    '/spring-api/': {
+      // 跨域
+      changeOrigin: true,
+      target: apiHosts[1],
+      pathRewrite: {
+        '^/spring-api/': apiHosts[1]
       }
     }
   },
