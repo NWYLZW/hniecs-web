@@ -22,7 +22,9 @@ module.exports = {
       // mock文件夹
       '@mock': resolve('src/mock'),
       // 模块组
-      '@modules': resolve('src/modules')
+      '@modules': resolve('src/modules'),
+      // 模块组
+      '@plugins': resolve('src/plugins')
     }
   }
 }
