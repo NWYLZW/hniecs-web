@@ -65,10 +65,11 @@ export default {
       rules: {
         userName: [
           { required: true, message: '请输入用户名', trigger: 'blur' },
-          { min: 3, max: 100, message: '用户名长度错误', trigger: 'blur' }
+          { min: 4, max: 12, message: '用户名长度错误', trigger: 'blur' }
         ],
         pwd: [
-          { required: true, message: '请输入密码', trigger: 'blur' }
+          { required: true, message: '请输入密码', trigger: 'blur' },
+          { min: 6, max: 20, message: '密码长度错误', trigger: 'blur' }
         ]
       }
     }
@@ -107,20 +108,19 @@ export default {
           sessionStorage.setItem('sessionToken', 'production-hack-model')
           this.loginSuccess()
         }
-        require('@modules/door/assets/js/rpc.js').default.user.login(
-          this.form.userName,
-          this.form.pwd
-        ).then(_ => {
-          this.loginSuccess()
-        }).catch(_ => {
-          console.log(_)
-          this.$message({
-            type: 'error',
-            message: _.code
+        this.$store
+          .dispatch(
+            'user/login',
+            [this.form.userName, this.form.pwd]
+          ).then(_ => {
+            this.loginSuccess()
+          }).catch(err => {
+            this.$message({
+              type: 'error',
+              message: err.message
+            })
           })
-        })
-      }).catch(_ => {
-      })
+      }).catch(_ => {})
     },
     /**
      * 前往注册页面
