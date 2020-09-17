@@ -7,13 +7,11 @@
 const envs = require('./envs.js')
 
 const apiHosts = [
-  // 'http://hniecs.com',
-  'http://hniecs.fengzli.cn',
+  'http://hniecs.com',
   'http://localhost:10000'
 ]
 const allowedHosts = [
-  '.hniecs.com',
-  '.fengzli.cn'
+  '.hniecs.com'
 ]
 
 const publicHost = envs.publicHost || 'localhost'
@@ -40,7 +38,7 @@ const devServer = {
       changeOrigin: true,
       target: apiHosts[1],
       pathRewrite: {
-        '^/spring-api/': apiHosts[1] + '/'
+        '^/spring-api/': apiHosts[1]
       }
     }
   },
