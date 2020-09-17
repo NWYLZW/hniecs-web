@@ -26,10 +26,10 @@
       <div class="login-main-form">
         <div class="label with-bottom__border">SIGN UP</div>
         <el-form class="login-form" ref="loginForm" :model="form" :rules="rules">
-          <el-form-item prop="userName">
+          <el-form-item @keypress.native.enter="login" prop="userName">
             <el-input v-model="form.userName" placeholder="用户名"/>
           </el-form-item>
-          <el-form-item prop="pwd">
+          <el-form-item @keypress.native.enter="login" prop="pwd">
             <el-input v-model="form.pwd" placeholder="密码" show-password/>
           </el-form-item>
           <el-form-item>
@@ -69,7 +69,7 @@ export default {
         ],
         pwd: [
           { required: true, message: '请输入密码', trigger: 'blur' },
-          { min: 6, max: 20, message: '密码长度错误', trigger: 'blur' }
+          { min: 4, max: 20, message: '密码长度错误', trigger: 'blur' }
         ]
       }
     }

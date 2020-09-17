@@ -60,6 +60,10 @@
             <div slot="content">个性设置</div>
             <el-button icon="el-icon-setting" circle></el-button>
           </el-tooltip>
+          <el-tooltip placement="bottom">
+            <div slot="content">登出</div>
+            <el-button icon="hniecs-iconfont hniecs-log-out" @click="logout" circle></el-button>
+          </el-tooltip>
           <div style="clear: both;"></div>
         </div>
       </el-popover>
@@ -174,6 +178,26 @@ export default {
     }
   },
   methods: {
+    /**
+     * 登出
+     */
+    logout () {
+      this.$store
+        .dispatch(
+          'user/logout'
+        ).then(_ => {
+          this.$message({
+            type: 'success',
+            message: '退出登陆成功'
+          })
+          location.reload()
+        }).catch(err => {
+          this.$message({
+            type: 'error',
+            message: err.message
+          })
+        })
+    },
     /**
      * 查找某个路径对应的nav item
      * @param path 某个路径

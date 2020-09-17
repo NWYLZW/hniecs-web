@@ -37,8 +37,8 @@ export default {
           if (_.code !== 200) {
             reject(_); return
           }
-          commit('setUserData', _.user)
-          sessionStorage.setItem('sessionToken', _.sessionToken)
+          commit('setUserData', _.data.user)
+          sessionStorage.setItem('sessionToken', _.data.sessionToken)
           resolve(_)
         }).catch(err => {
           reject(err)
