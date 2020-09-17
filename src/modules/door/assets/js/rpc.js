@@ -20,6 +20,13 @@ export default {
       return axios.post('/spring-api/user/base/login', {
         userName, password
       })
+    },
+    /**
+     * 用户登出
+     * @returns {*}
+     */
+    logout () {
+      return axios.get('/spring-api/user/base/logout')
     }
   }
 }
