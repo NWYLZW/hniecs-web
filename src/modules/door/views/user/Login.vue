@@ -23,7 +23,7 @@
           © [2020] [湖南工程学院计算机协会]
         </div>
       </div>
-      <div class="login-main-form">
+      <div class="login-main-form" v-loading="isLogin">
         <div class="label with-bottom__border">SIGN UP</div>
         <el-form class="login-form" ref="loginForm" :model="form" :rules="rules">
           <el-form-item @keypress.native.enter="login" prop="userName">
@@ -31,6 +31,9 @@
           </el-form-item>
           <el-form-item @keypress.native.enter="login" prop="pwd">
             <el-input v-model="form.pwd" placeholder="密码" show-password/>
+          </el-form-item>
+          <el-form-item>
+            <el-checkbox v-model="isRemenberMe">记住我</el-checkbox>
           </el-form-item>
           <el-form-item>
             <el-button class="sumbit-login" type="primary" @click="login">登陆</el-button>
@@ -55,6 +58,10 @@ export default {
   name: 'Login',
   data () {
     return {
+      // 是否正在登陆
+      isLogin: false,
+      // 是否记住我
+      isRemenberMe: false,
       // 是否展示注册入口
       showRegisterEntrance: true,
       // 登陆表单
@@ -62,6 +69,7 @@ export default {
         userName: '',
         pwd: ''
       },
+      // 表单验证规则
       rules: {
         userName: [
           { required: true, message: '请输入用户名', trigger: 'blur' },
@@ -71,6 +79,14 @@ export default {
           { required: true, message: '请输入密码', trigger: 'blur' },
           { min: 4, max: 20, message: '密码长度错误', trigger: 'blur' }
         ]
+      }
+    }
+  },
+  watch: {
+    isRemenberMe () {
+      localStorage.setItem('login-isRemenberMe', this.isRemenberMe)
+      if (!this.isRemenberMe) {
+        localStorage.removeItem('remenber-user-loginData')
       }
     }
   },
@@ -102,25 +118,26 @@ export default {
      * 登陆
      */
     login () {
+      this.isLogin = true
       this.validateLoginForm(
       ).then(_ => {
-        if (this.form.userName === 'hniecs-community-ub2i5BU7') {
-          sessionStorage.setItem('sessionToken', 'production-hack-model')
-          this.loginSuccess()
-        }
         this.$store
           .dispatch(
             'user/login',
             [this.form.userName, this.form.pwd]
           ).then(_ => {
+            this.isLogin = false
             this.loginSuccess()
           }).catch(err => {
+            this.isLogin = false
             this.$message({
               type: 'error',
               message: err.message
             })
           })
-      }).catch(_ => {})
+      }).catch(_ => {
+        this.isLogin = false
+      })
     },
     /**
      * 前往注册页面
@@ -128,7 +145,17 @@ export default {
     toRegisterView () {
     }
   },
-  mounted () {}
+  mounted () {
+    this.isRemenberMe = (localStorage.getItem('login-isRemenberMe') === 'true')
+    if (this.isRemenberMe) {
+      let user = localStorage.getItem('remenber-user-loginData')
+      if (user != null) {
+        user = JSON.parse(user)
+        this.form.userName = user.userName
+        this.form.pwd = '密码已加密'
+      }
+    }
+  }
 }
 </script>
 
@@ -244,7 +271,7 @@ export default {
         }
         .sumbit-login {
           @extend .colorful-streamer-button;
-          margin-top: 60px;
+          margin-top: 30px;
           margin-left: calc(50% - 100px);
           width: 200px;
           border-radius: 100px;

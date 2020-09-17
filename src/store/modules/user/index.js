@@ -58,11 +58,29 @@ export default {
      */
     login ({ dispatch, commit }, [userName, pwd]) {
       return new Promise((resolve, reject) => {
+        const isRemenberMe = (localStorage.getItem('login-isRemenberMe') === 'true')
+        pwd = (_ => {
+          if (isRemenberMe) {
+            let user = localStorage.getItem('remenber-user-loginData')
+            if (user != null) {
+              user = JSON.parse(user)
+              if (user.userName === userName) {
+                return user.pwd
+              }
+            }
+          }
+          return require('js-sha256').sha256(pwd)
+        })()
         userRpc.user.login(
           userName, pwd
         ).then(_ => {
           if (_.code !== 200) {
             reject(_); return
+          }
+          if (isRemenberMe) {
+            localStorage.setItem('remenber-user-loginData', JSON.stringify({
+              userName, pwd
+            }))
           }
           commit('setUserData', _.data.user)
           sessionStorage.setItem('sessionToken', _.data.sessionToken)
