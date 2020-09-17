@@ -12,7 +12,7 @@ export default {
   state: {
     // 用户数据
     userData: {},
-    // 左上角app数组
+    // app列表
     topNavApps: []
   },
   mutations: {
@@ -27,20 +27,36 @@ export default {
     /**
      * 设置用户数据
      * @param state user.state
-     * @param apps  待添加覆盖的左上角app数组
+     * @param apps  待添加覆盖的app列表
      */
     setApps (state, apps) {
-      state.apps = apps
+      state.topNavApps = apps
     }
   },
   actions: {
     /**
+     * 刷新app列表
+     * @param   commit  vuex.store.user.commit对象
+     */
+    refresh_apps ({ commit }) {
+      return new Promise((resolve, reject) => {
+        userRpc.user.getApps(
+        ).then(_ => {
+          commit('setApps', _.data)
+          resolve()
+        }).catch(err => {
+          reject(err)
+        })
+      })
+    },
+    /**
      * 登陆
+     * @param dispatch  vuex.store.user.dispatch对象
      * @param commit    vuex.store.user.commit对象
      * @param userName  用户名
      * @param pwd       密码
      */
-    login ({ commit }, [userName, pwd]) {
+    login ({ dispatch, commit }, [userName, pwd]) {
       return new Promise((resolve, reject) => {
         userRpc.user.login(
           userName, pwd
@@ -50,7 +66,8 @@ export default {
           }
           commit('setUserData', _.data.user)
           sessionStorage.setItem('sessionToken', _.data.sessionToken)
-          resolve(_)
+          dispatch('refresh_apps')
+            .then(resolve).catch(reject)
         }).catch(err => {
           reject(err)
         })

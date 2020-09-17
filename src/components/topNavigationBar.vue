@@ -121,29 +121,6 @@ export default {
       default: _ => {
         return []
       }
-    },
-    // app列表
-    apps: {
-      type: Array,
-      default: _ => {
-        return [{
-          name: '后台管理',
-          iconUTF8: '&#xe76e;'
-        }, {
-          name: '我的消息',
-          iconUTF8: '&#xe6a2;',
-          menus: [{
-            name: '公告',
-            iconUTF8: '&#xe6aa;'
-          }, {
-            name: '聊天',
-            iconUTF8: '&#xe6a9;'
-          }, {
-            name: '看板',
-            iconUTF8: '&#xe6ab;'
-          }]
-        }]
-      }
     }
   },
   data () {
@@ -158,6 +135,10 @@ export default {
     // 当前路由路径
     cur_route_path () {
       return this.$route.path
+    },
+    // app列表
+    apps () {
+      return this.$store.state.user.topNavApps
     }
   },
   watch: {
@@ -259,7 +240,6 @@ export default {
   padding: 0 $paddings;
   width: calc(100% - 2*#{$paddings}); height: 72px;
   background-color: map-get($use-colors, background);
-  border-radius: 0 0 16px 16px;
   box-shadow: 0 0 15px black;
   > .left {
     @extend .cant-sel;

@@ -27,6 +27,13 @@ export default {
      */
     logout () {
       return axios.get('/spring-api/user/base/logout')
+    },
+    /**
+     * 获取用户可使用的app列表
+     * @returns {*}
+     */
+    getApps () {
+      return axios.get('/spring-api/user/Role/getApps')
     }
   }
 }
