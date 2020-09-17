@@ -40,7 +40,7 @@ const devServer = {
       changeOrigin: true,
       target: apiHosts[1],
       pathRewrite: {
-        '^/spring-api/': apiHosts[1]
+        '^/spring-api/': apiHosts[1] + '/'
       }
     }
   },

@@ -10,7 +10,10 @@ import userRpc from '@modules/door/assets/js/rpc.js'
 export default {
   namespaced: true,
   state: {
-    userData: {}
+    // 用户数据
+    userData: {},
+    // 左上角app数组
+    topNavApps: []
   },
   mutations: {
     /**
@@ -20,6 +23,14 @@ export default {
      */
     setUserData (state, userData) {
       state.userData = userData
+    },
+    /**
+     * 设置用户数据
+     * @param state user.state
+     * @param apps  待添加覆盖的左上角app数组
+     */
+    setApps (state, apps) {
+      state.apps = apps
     }
   },
   actions: {
