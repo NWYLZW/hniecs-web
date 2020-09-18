@@ -16,12 +16,12 @@ export default (status, other) => {
   switch (status) {
     case 401:
       // 401: 未登录状态，跳转登录页
-      localStorage.removeItem('sessionToken')
+      sessionStorage.removeItem('sessionToken')
       location.reload()
       break
     case 403:
       // 403 token过期,移除本地存储中的token，跳转登录页
-      localStorage.removeItem('sessionToken')
+      sessionStorage.removeItem('sessionToken')
       location.reload()
       break
     case 404:
