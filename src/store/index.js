@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
 
 if (process.env.NODE_ENV === '') {
 } else if (process.env.NODE_ENV === 'production') {
@@ -12,5 +13,7 @@ export default new Vuex.Store({
   state: require('./state.js').default,
   mutations: require('./mutations.js').default,
   actions: require('./actions.js').default,
-  modules: require('./modules').default
+  modules: require('./modules').default,
+
+  plugins: [createPersistedState()]
 })

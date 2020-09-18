@@ -70,7 +70,8 @@
       <div class="apps">
         <div class="app"
              :key="index"
-             v-for="(app, index) in apps">
+             v-for="(app, index) in apps"
+             @click="openApp(app)">
           <el-tooltip v-if="!app.menus"
             :content="app.name" placement="bottom">
             <span
@@ -158,6 +159,12 @@ export default {
     }
   },
   methods: {
+    /**
+     * 打开一个app
+     */
+    openApp (app) {
+      this.$router.push(app.url)
+    },
     /**
      * 登出
      */
