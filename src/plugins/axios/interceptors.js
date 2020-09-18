@@ -2,23 +2,18 @@
  * @desc    拦截器 interceptors.js
  * @author  yijie
  * @date    2020-09-09 21:51
- * @logs[0]  2020-09-09 21:51 yijie 创建了interceptors.js文件
+ * @logs[0] 2020-09-09 21:51 yijie 创建了interceptors.js文件
+ * @logs[1] 2020-09-18 10:03 yijie 删除不必要的处理
  */
-import store from '@store'
-
 export default {
   // 请求拦截器
   request: [
     config => {
-      // 从vuex里获取token
-      const token = store.state.token
-      // 如果token存在就在请求头里添加
-      token && (config.headers.token = token)
       return config
     },
     error => {
       error.data = {
-        code: 1001,
+        code: 500,
         message: '服务器异常'
       }
       return Promise.reject(error)
@@ -30,7 +25,7 @@ export default {
     response => {
       // 清除本地存储中的token,如果需要刷新token，在这里通过旧的token跟服务器换新token，将新的token设置的vuex中
       if (response.data && response.data.code === 401) {
-        localStorage.removeItem('token')
+        localStorage.removeItem('sessionToken')
       }
       // 只返回response中的data数据
       return response.data
