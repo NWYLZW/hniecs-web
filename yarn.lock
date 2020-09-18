@@ -11094,6 +11094,14 @@ vue-loader@^15.9.2:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
+vue-router-tab@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.npm.taobao.org/vue-router-tab/download/vue-router-tab-1.2.0.tgz#3faa50a840ee56ac0047dd0e20b799708762c3cc"
+  integrity sha1-P6pQqEDuVqwAR90OILeZcIdiw8w=
+  dependencies:
+    vue "^2.6.11"
+    vue-router "^3.2.0"
+
 vue-router@^3.2.0:
   version "3.4.3"
   resolved "https://registry.npm.taobao.org/vue-router/download/vue-router-3.4.3.tgz#fa93768616ee338aa174f160ac965167fa572ffa"

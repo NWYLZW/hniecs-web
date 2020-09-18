@@ -52,19 +52,21 @@ router.beforeEach((to, from, next) => {
   // 根据路由中的meta配置修改页面title
   document.title = (to.meta && to.meta.title) || 'HNIECS'
   // meta中支持配置的路由权限参数
-  const unneed = {
+  const need = {
     // 默认需要登陆
     login: true,
+    // 默认不需要管理员权限
+    admin: false,
     // 默认不需要超级管理员权限
     superAdmin: false,
     ...(
-      (to.meta && to.meta.unneed) || {}
+      (to.meta && to.meta.need) || {}
     )
   }
 
   const isLogin = sessionStorage.getItem('sessionToken')
   // 页面未设置为仅登陆查看 未登陆 不是登陆页面
-  if (unneed.login && !isLogin && to.path !== '/door/user/login') {
+  if (need.login && !isLogin && to.path !== '/door/user/login') {
     next({
       path: '/door/user/login',
       query: { redirect: to.fullPath }

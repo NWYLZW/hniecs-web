@@ -24,7 +24,7 @@ export default [{
     ),
     meta: {
       title: '你访问的页面找不到啦',
-      unneed: {
+      need: {
         login: false
       }
     }
