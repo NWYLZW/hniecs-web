@@ -9,4 +9,5 @@
 export default Vue => {
   Vue.prototype.$axios = require('./axios').default
   Vue.use(require('./element-ui.js').default)
+  Vue.use(require('./vue-router-tab.js').default)
 }
