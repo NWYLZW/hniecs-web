@@ -6,13 +6,20 @@
  * @logs[1] 2020-09-19 15:09 yijie 将manage应用视图导入移至该文件
  */
 
-const impoartManageView = view => () =>
-  import(
-    /* webChunkName: "admin-manage" */
-    '@modules/admin/views/manage/' + view + '.vue'
-  )
+const importView = {
+  mannage: view => () =>
+    import(
+      /* webChunkName: "admin-manage" */
+      '@modules/admin/views/manage/' + view + '.vue'
+    ),
+  user: view => () =>
+    import(
+      /* webChunkName: "admin-user" */
+      '@modules/admin/views/user/' + view + '.vue'
+    )
+}
 export {
-  impoartManageView
+  importView
 }
 
 export default [
