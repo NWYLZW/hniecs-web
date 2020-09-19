@@ -7,7 +7,7 @@
 
 <template>
   <div>
-    123
+    <router-tab />
   </div>
 </template>
 

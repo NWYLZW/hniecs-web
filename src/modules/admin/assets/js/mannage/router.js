@@ -5,17 +5,14 @@
  * @logs[0] 2020-09-18 15:30 yijie 创建了文件router.js
  * @logs[1] 2020-09-18 16:35 yijie 修改了导入路由页面的方式
  */
+import { impoartManageView } from '@modules/admin/assets/js/router'
 
-const impoartPageView = view => () =>
-  import(
-    /* webChunkName: "admin-manage" */
-    '@modules/admin/views/manage/' + view + '.vue'
-  )
+console.log(impoartManageView)
 
 export default [{
   path: '/admin/manage/index',
   name: 'admin-manage-index',
-  component: impoartPageView('Index'),
+  component: impoartManageView('Index'),
   meta: {
     title: '后台管理',
     need: { admin: true }
@@ -23,10 +20,20 @@ export default [{
   children: [{
     path: '/admin/manage/user',
     name: 'admin-manage-user',
-    component: impoartPageView('User'),
+    component: impoartManageView('User'),
     meta: {
       title: '用户管理',
       need: { admin: true }
-    }
+    },
+    children: [{
+      path: '/admin/manage/user-invitationCode',
+      component: impoartManageView('User'),
+      meta: {
+        title: '邀请码管理',
+        icon: 'icon-user',
+        key: 'path',
+        closable: false
+      }
+    }]
   }]
 }]
