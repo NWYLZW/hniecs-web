@@ -47,11 +47,39 @@
         </div>
       </div>
       <el-input
-        class="invitation-codes"
+        class="invitation-codes left"
         v-model="invitationCodes"
-        :rows="4"
-        :autosize="{ minRows: 2, maxRows: 6}"
+        :rows="14" resize="none"
         placeholder="输入邀请码(多个邀请码使用,分隔)" type="textarea"/>
+      <div class="right-option">
+        <el-tooltip effect="dark" content="邀请次数" placement="top">
+          <el-input-number
+            v-model="availableCount"
+            :min="0" :max="100"/>
+        </el-tooltip>
+        <el-tooltip effect="dark" content="标签名" placement="top">
+          <el-input class="tagNameInput" v-model="tagName"/>
+        </el-tooltip>
+        <div class="btns">
+          <el-tooltip effect="dark" content="提交" placement="top">
+            <el-button type="success" icon="el-icon-check" circle/>
+          </el-tooltip>
+          <el-tooltip effect="dark" content="清空" placement="top">
+            <el-button type="danger" icon="el-icon-delete" circle/>
+          </el-tooltip>
+        </div>
+        <el-upload
+          class="upload-card"
+          action="https://jsonplaceholder.typicode.com/posts/"
+          drag multiple>
+          <i class="el-icon-upload"/>
+          <div class="el-upload__text">
+            将支付宝或微信导出的xlsx文件拖到此处
+            <br>或<em v-html="'点击上传'"/>
+          </div>
+        </el-upload>
+      </div>
+      <div style="clear: both;"></div>
     </el-card>
   </div>
 </template>
@@ -65,8 +93,9 @@ export default {
   },
   data () {
     return {
+      // 搜索邀请码框 内容
       searchInvitationCode: '',
-      invitationCodes: '',
+      // 标签结构 sel当前选择标签分类 list标签列表
       tag: {
         sel: '全部',
         list: [{
@@ -78,7 +107,13 @@ export default {
         }, {
           label: '其他'
         }]
-      }
+      },
+      // 待添加的邀请码
+      invitationCodes: '',
+      // 待添加的邀请码 邀请次数
+      availableCount: 1,
+      // 待添加的邀请码 标签名
+      tagName: ''
     }
   },
   methods: {
@@ -119,10 +154,34 @@ export default {
   }
   .invitation-operate-card {
     float: left;
-    width: 650px;height: 400px;
+    width: 750px;
 
-    .invitation-codes {
-      width: 450px;
+    .invitation-codes.left {
+      float: left;
+      margin-right: 10px;
+      width: 400px;
+    }
+    .right-option {
+      float: left;
+      width: calc(100% - 410px);
+
+      .tagNameInput {
+        margin-top: 10px;
+      }
+      .btns {
+        width: 100%;
+        margin-top: 10px;
+      }
+      .upload-card {
+        width: 100%; height: 155px;
+        margin-top: 10px;
+        /deep/ .el-upload {
+          width: 100%; height: 100%;
+        }
+        /deep/ .el-upload-dragger {
+          width: 100%; height: 100%;
+        }
+      }
     }
   }
 }

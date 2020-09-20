@@ -27,8 +27,8 @@ export default [{
       path: '/admin/manage/user',
       component: importView.user('InvitationCode'),
       meta: {
-        title: '邀请码管理',
-        icon: 'icon-user',
+        title: '邀请码',
+        icon: 'hniecs-iconfont hniecs-invitation-code',
         key: 'path',
         closable: false
       }
