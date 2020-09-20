@@ -27,7 +27,7 @@
       <el-tag type="success">{{ data.tagName }}</el-tag>
 
       <div style="float: right;">
-        <i class="status-icon hniecs-iconfont" v-html="'&#xe657;'"/>{{ data.availableInviteCount }}
+        <i class="status-icon hniecs-iconfont" v-html="'&#xe61a;'"/>{{ data.availableInviteCount }}
       </div>
     </div>
     <div class="message">
