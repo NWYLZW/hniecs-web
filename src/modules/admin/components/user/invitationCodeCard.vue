@@ -7,7 +7,7 @@
 
 <template>
   <div class="invitation-code-card-main">
-    <div class="code-content">{{ data.invitationCode }}</div>
+    <div class="code-content pointer" @click="changeAvailableInviteContent">{{ data.invitationCode }}</div>
     <div class="option">
       <el-tooltip effect="dark"
                   v-if="data.status === 0"
@@ -24,11 +24,17 @@
                   content="已禁用" placement="top">
         <i class="status-icon hniecs-iconfont" v-html="'&#xe610;'" style="color: #fe2637;"/>
       </el-tooltip>
-      <el-tag type="success">{{ data.tagName }}</el-tag>
+      <el-tag
+        class="pointer"
+        @click="changeAvailableInviteTagName"
+        type="success">{{ data.tagName }}</el-tag>
 
-      <div style="float: right;">
-        <i class="status-icon hniecs-iconfont" v-html="'&#xe61a;'"/>{{ data.availableInviteCount }}
-      </div>
+      <el-tooltip effect="dark"
+                  :content="'可使用次数' + data.availableInviteCount" placement="top">
+        <div class="pointer" @click="changeAvailableInviteCount" style="float: right;">
+          <i class="status-icon hniecs-iconfont" v-html="'&#xe61a;'"/>{{ data.availableInviteCount }}
+        </div>
+      </el-tooltip>
     </div>
     <div class="message">
       <span class="author">
@@ -52,26 +58,62 @@
 export default {
   name: 'invitationCodeCard',
   props: {
+    // 邀请码数据结构
     data: {
       type: Object,
       default () {
-        return {
-          // 邀请码内容
-          invitationCode: 'bxcsuiyfgs126GYUIhoh7984123njib5849659HUIHUIfyutasd34789274sbajhg',
-          // 状态 0 未使用，1 已使用，2 禁用
-          status: 0,
-          // 标签名
-          tagName: '',
-          // 剩余邀请次数
-          availableInviteCount: 0,
-          // 创建用户
-          creater: {
-            name: ''
-          },
-          ctime: '',
-          mtime: ''
-        }
+        return {}
       }
+    }
+  },
+  methods: {
+    /**
+     * 修改邀请码的内容
+     */
+    changeAvailableInviteContent () {
+      this.$prompt('重置邀请码', '', {
+        confirmButtonText: '确认修改',
+        cancelButtonText: '取消',
+        inputPattern: /^\S*$/,
+        inputErrorMessage: '不可输入空白字符'
+      }).then(({ value }) => {
+        this.$message({
+          type: 'success',
+          message: '新邀请码是' + value
+        })
+      }).catch(_ => {})
+    },
+    /**
+     * 修改邀请码的标签名
+     */
+    changeAvailableInviteTagName () {
+      this.$prompt('重置邀请码标签名', '', {
+        confirmButtonText: '确认修改',
+        cancelButtonText: '取消',
+        inputPattern: /^\S*$/,
+        inputErrorMessage: '不可输入空白字符'
+      }).then(({ value }) => {
+        this.$message({
+          type: 'success',
+          message: '新邀请码标签名是' + value
+        })
+      }).catch(_ => {})
+    },
+    /**
+     * 修改邀请码的使用次数
+     */
+    changeAvailableInviteCount () {
+      this.$prompt('重置邀请码可邀请次数', '', {
+        confirmButtonText: '确认修改',
+        cancelButtonText: '取消',
+        inputPattern: /^[1-9]\d*$/,
+        inputErrorMessage: '请输入数字'
+      }).then(({ value }) => {
+        this.$message({
+          type: 'success',
+          message: '新邀请码次数是' + value
+        })
+      }).catch(_ => {})
     }
   }
 }
@@ -79,6 +121,10 @@ export default {
 
 <style lang="scss" scoped>
 .invitation-code-card-main {
+  .pointer {
+    cursor: pointer;
+    user-select: none;
+  }
   margin: {
     bottom: 20px;
   };
