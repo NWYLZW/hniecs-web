@@ -59,17 +59,17 @@ export default {
           // 邀请码内容
           invitationCode: 'bxcsuiyfgs126GYUIhoh7984123njib5849659HUIHUIfyutasd34789274sbajhg',
           // 状态 0 未使用，1 已使用，2 禁用
-          status: 2,
+          status: 0,
           // 标签名
-          tagName: 'wechat',
+          tagName: '',
           // 剩余邀请次数
-          availableInviteCount: '789',
+          availableInviteCount: 0,
           // 创建用户
           creater: {
-            name: 'YiJie'
+            name: ''
           },
-          ctime: '2020-09-12T05:00:00.000+00:00',
-          mtime: '2020-09-11T05:00:00.000+00:00'
+          ctime: '',
+          mtime: ''
         }
       }
     }

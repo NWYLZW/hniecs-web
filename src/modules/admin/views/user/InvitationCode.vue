@@ -21,24 +21,16 @@
           </el-option>
         </el-select>
       </div>
-      <div class="wrraper" v-infinite-scroll="loadMoreInvitationCode">
-        <invitationCodeCard/>
-        <invitationCodeCard/>
-        <invitationCodeCard/>
-        <invitationCodeCard/>
-        <invitationCodeCard/>
-        <invitationCodeCard/>
-        <invitationCodeCard/>
-        <invitationCodeCard/>
-        <invitationCodeCard/>
-        <invitationCodeCard/>
-        <invitationCodeCard/>
-        <invitationCodeCard/>
-        <invitationCodeCard/>
-        <invitationCodeCard/>
-        <invitationCodeCard/>
-        <invitationCodeCard/>
-      </div>
+      <div class="wrraper"
+           v-infinite-scroll="loadMoreInvitationCode">
+          <invitationCodeCard
+            :key="index" :data="invitationCode"
+            v-for="(invitationCode, index) in invitationCodes"/>
+          <div
+            v-if="is.loadMoreInvitationCode"
+            v-loading="true"
+            class="infinite-scroll-loading"/>
+        </div>
     </el-card>
     <el-card class="invitation-operate-card">
       <div slot="header" class="clearfix">
@@ -47,11 +39,38 @@
         </div>
       </div>
       <el-input
+        v-if="submitModel === 'text'"
         class="invitation-codes left"
-        v-model="invitationCodes"
-        :rows="14" resize="none"
+        :rows="16" resize="none"
         placeholder="输入邀请码(多个邀请码使用,分隔)" type="textarea"/>
+      <el-upload
+        v-else
+        class="upload-card"
+        name="excelFile"
+        action="https://jsonplaceholder.typicode.com/posts/"
+        accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        :limit="1"
+        :auto-upload="false"
+        drag :multiple="false"
+        :on-exceed="_ => {
+              $message({
+              'type': 'warning',
+              'message': '最多上传一个文件'
+            })
+          }">
+        <i class="el-icon-upload"/>
+        <div class="el-upload__text">
+          将支付宝或微信导出的xlsx文件拖到此处
+          <br>或<em v-html="'点击上传'"/>
+        </div>
+      </el-upload>
       <div class="right-option">
+        <el-tooltip effect="dark" content="资金阈值, 等于该阈值才会被记录进数据库" placement="top">
+          <el-input-number
+            style="margin-bottom: 10px;"
+            v-model="thresholdMoney"
+            :min="0" :max="100"/>
+        </el-tooltip>
         <el-tooltip effect="dark" content="邀请次数" placement="top">
           <el-input-number
             v-model="availableCount"
@@ -61,6 +80,12 @@
           <el-input class="tagNameInput" v-model="tagName"/>
         </el-tooltip>
         <div class="btns">
+          <el-tooltip effect="dark" :content="submitModel==='text'?'文件模式':'文本模式'" placement="top">
+            <el-button type="info"
+                       :icon=" 'hniecs-iconfont ' + (submitModel==='text'?'hniecs-article':'hniecs-writing')"
+                       @click="changeSumbitModel"
+                       circle/>
+          </el-tooltip>
           <el-tooltip effect="dark" content="提交" placement="top">
             <el-button type="success" icon="el-icon-check" circle/>
           </el-tooltip>
@@ -68,16 +93,6 @@
             <el-button type="danger" icon="el-icon-delete" circle/>
           </el-tooltip>
         </div>
-        <el-upload
-          class="upload-card"
-          action="https://jsonplaceholder.typicode.com/posts/"
-          drag multiple>
-          <i class="el-icon-upload"/>
-          <div class="el-upload__text">
-            将支付宝或微信导出的xlsx文件拖到此处
-            <br>或<em v-html="'点击上传'"/>
-          </div>
-        </el-upload>
       </div>
       <div style="clear: both;"></div>
     </el-card>
@@ -93,8 +108,33 @@ export default {
   },
   data () {
     return {
+      // 界面控制
+      is: {
+        // 是否在滚动加载邀请码列表数据
+        loadMoreInvitationCode: false
+      },
+      // 锁死邀请码列表加载
+      lockLoadInvitationCode: false,
       // 搜索邀请码框 内容
       searchInvitationCode: '',
+
+      // 展示邀请码列表
+      invitationCodes: [{
+        invitationCode: 'bxcsuiyfgs126GYUIhoh7984123njib5849659HUIHUIfyutasd34789274sbajhg',
+        status: 0,
+        tagName: '微信',
+        availableInviteCount: 489,
+        creater: {
+          name: 'YiJie'
+        },
+        ctime: '2020-09-12T05:00:00.000+00:00',
+        mtime: '2020-09-11T05:00:00.000+00:00'
+      }],
+
+      // 邀请码阈值
+      thresholdMoney: 30,
+      // 提交模式 text 文本模式、file 文件模式‘
+      submitModel: 'text',
       // 标签结构 sel当前选择标签分类 list标签列表
       tag: {
         sel: '全部',
@@ -109,7 +149,7 @@ export default {
         }]
       },
       // 待添加的邀请码
-      invitationCodes: '',
+      invitationCodesStr: '',
       // 待添加的邀请码 邀请次数
       availableCount: 1,
       // 待添加的邀请码 标签名
@@ -118,7 +158,40 @@ export default {
   },
   methods: {
     loadMoreInvitationCode () {
-      console.log(1)
+      // 如果正在加载，或者被禁止加载了 直接返回
+      const ableLoad = (
+        this.is.loadMoreInvitationCode ||
+        this.lockLoadInvitationCode)
+      if (ableLoad) return
+
+      this.is.loadMoreInvitationCode = true
+      setTimeout(_ => {
+        this.invitationCodes.push({
+          invitationCode: 'bxcsuiyfgs126GYUIhoh7984123njib5849659HUIHUIfyutasd34789274sbajhg',
+          status: 0,
+          tagName: '微信',
+          availableInviteCount: 489,
+          creater: {
+            name: 'YiJie'
+          },
+          ctime: '2020-09-12T05:00:00.000+00:00',
+          mtime: '2020-09-11T05:00:00.000+00:00'
+        })
+        if (this.invitationCodes.length >= 3) {
+          this.lockLoadInvitationCode = true
+        }
+        this.is.loadMoreInvitationCode = false
+      }, 500)
+    },
+    /**
+     * 切换邀请码的提交模式
+     */
+    changeSumbitModel () {
+      if (this.submitModel === 'text') {
+        this.submitModel = 'file'
+      } else {
+        this.submitModel = 'text'
+      }
     }
   }
 }
@@ -145,10 +218,13 @@ export default {
       width: 120px;
     }
 
-    /deep/ .el-card__body{
-      height: calc(100% - 118px);
-      overflow: auto;
+    /deep/ .el-card__body {
+      height: 700px;
+      overflow-x: hidden;
       .wrraper {
+        .infinite-scroll-loading {
+          height: 50px;
+        }
       }
     }
   }
@@ -161,6 +237,20 @@ export default {
       margin-right: 10px;
       width: 400px;
     }
+    .upload-card {
+      float: left;
+      width: 400px;height: 348px;
+      margin-right: 10px;
+      /deep/ .el-upload {
+        width: 100%; height: 100%;
+        .el-upload-dragger {
+          width: 100%; height: 100%;
+          .el-icon-upload {
+            margin-top: 130px;
+          }
+        }
+      }
+    }
     .right-option {
       float: left;
       width: calc(100% - 410px);
@@ -171,16 +261,6 @@ export default {
       .btns {
         width: 100%;
         margin-top: 10px;
-      }
-      .upload-card {
-        width: 100%; height: 155px;
-        margin-top: 10px;
-        /deep/ .el-upload {
-          width: 100%; height: 100%;
-        }
-        /deep/ .el-upload-dragger {
-          width: 100%; height: 100%;
-        }
       }
     }
   }
