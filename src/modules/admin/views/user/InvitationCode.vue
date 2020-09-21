@@ -24,6 +24,7 @@
       <div class="wrraper"
            v-infinite-scroll="loadMoreInvitationCode">
           <invitationCodeCard
+            @updated="invitationCodeUpdate"
             :key="index" :data="invitationCode"
             v-for="(invitationCode, index) in invitationCodes"/>
           <div
@@ -35,7 +36,9 @@
     <el-card class="invitation-operate-card">
       <div slot="header" class="clearfix">
         <div class="title">
-          <i class="hniecs-iconfont">&#xe76e;</i> 邀请码管理
+          <svg class="hniecs-iconsymbol" style="font-size: 20px;" aria-hidden="true">
+            <use xlink:href="#hniecs-invitationCode"/>
+          </svg> 邀请码管理
         </div>
       </div>
       <el-input
@@ -157,6 +160,38 @@ export default {
     }
   },
   methods: {
+    /**
+     * 邀请码状态更改
+     * @param invitationCode  邀请码对象字典
+     * @param changeProperty  被修改的属性
+     * @param value           要被修改的值
+     */
+    invitationCodeUpdate ([invitationCode, changeProperty, value]) {
+      if (!invitationCode) return
+      const index = this.invitationCodes.indexOf(invitationCode)
+      if (index === -1) return
+
+      switch (changeProperty) {
+        case 'id':
+          if (value === -1) {
+            this.invitationCodes.splice(index, 1)
+          }
+          break
+        case 'content':
+          this.invitationCodes[index].invitationCode = value
+          break
+        case 'tagName':
+          this.invitationCodes[index].tagName = value
+          break
+        case 'count':
+          this.invitationCodes[index].availableInviteCount = value
+          break
+        default: break
+      }
+    },
+    /**
+     * 加载更多的邀请码
+     */
     loadMoreInvitationCode () {
       // 如果正在加载，或者被禁止加载了 直接返回
       const ableLoad = (

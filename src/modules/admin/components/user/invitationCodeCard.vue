@@ -83,6 +83,7 @@ export default {
           type: 'success',
           message: '该邀请码已被删除'
         })
+        this.$emit('updated', [this.data, 'id', -1])
       }).catch(_ => {})
     },
     /**
@@ -99,6 +100,7 @@ export default {
           type: 'success',
           message: '新邀请码是' + value
         })
+        this.$emit('updated', [this.data, 'content', value])
       }).catch(_ => {})
     },
     /**
@@ -115,6 +117,7 @@ export default {
           type: 'success',
           message: '新邀请码标签名是' + value
         })
+        this.$emit('updated', [this.data, 'tagName', value])
       }).catch(_ => {})
     },
     /**
@@ -131,6 +134,7 @@ export default {
           type: 'success',
           message: '新邀请码次数是' + value
         })
+        this.$emit('updated', [this.data, 'count', value])
       }).catch(_ => {})
     }
   }
