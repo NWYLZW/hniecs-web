@@ -7,6 +7,9 @@
 
 <template>
   <div class="invitation-code-card-main">
+    <span class="delete-btn" @click="deleteMe">
+      <i class="hniecs-iconfont" v-html="'&#xe613;'"/>
+    </span>
     <div class="code-content pointer" @click="changeAvailableInviteContent">{{ data.invitationCode }}</div>
     <div class="option">
       <el-tooltip effect="dark"
@@ -68,6 +71,21 @@ export default {
   },
   methods: {
     /**
+     * 删除本条邀请码
+     */
+    deleteMe () {
+      this.$confirm('是否确认删除该条邀请码?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(_ => {
+        this.$message({
+          type: 'success',
+          message: '该邀请码已被删除'
+        })
+      }).catch(_ => {})
+    },
+    /**
      * 修改邀请码的内容
      */
     changeAvailableInviteContent () {
@@ -121,6 +139,7 @@ export default {
 
 <style lang="scss" scoped>
 .invitation-code-card-main {
+  position: relative;
   .pointer {
     cursor: pointer;
     user-select: none;
@@ -133,6 +152,19 @@ export default {
 
   border-radius: 8px;
   box-shadow: 0 0 10px #dddddd;
+  .delete-btn {
+    @extend .pointer;
+    position: absolute;
+    top: -5px;
+    left: calc(100% - 10px);
+
+    opacity: 0;
+    color: lightcoral;
+    transition: .2s;
+  }
+  &:hover .delete-btn {
+    opacity: 1;
+  }
   .code-content {
     padding: {
       left: 10px; right: 10px;
