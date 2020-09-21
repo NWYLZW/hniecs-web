@@ -79,17 +79,24 @@
             v-model="availableCount"
             :min="0" :max="100"/>
         </el-tooltip>
-        <el-tooltip effect="dark" content="标签名" placement="top">
-          <el-input class="tagNameInput"
-                    v-if="submitModel === 'text'"
-                    v-model="tagName"/>
-          <el-select class="tagNameInput"
-                     v-else
-                     v-model="tagName" placeholder="请选择上传文件类型">
-            <el-option label="支付宝" value="支付宝"/>
-            <el-option label="微信" value="微信"/>
-          </el-select>
-        </el-tooltip>
+        <!-- if不能放在里面，不然切换的时候会导致tooltip不见 -->
+        <template v-if="submitModel === 'text'">
+          <el-tooltip
+            effect="dark" content="标签名" placement="top">
+            <el-input class="tagNameInput"
+                      v-model="tagName"/>
+          </el-tooltip>
+        </template>
+        <template v-else>
+          <el-tooltip
+            effect="dark" content="标签名" placement="top">
+            <el-select class="tagNameInput"
+                       v-model="tagName" placeholder="请选择上传文件类型">
+              <el-option label="支付宝" value="支付宝"/>
+              <el-option label="微信" value="微信"/>
+            </el-select>
+          </el-tooltip>
+        </template>
         <div class="btns">
           <el-tooltip effect="dark" :content="submitModel==='text'?'文件模式':'文本模式'" placement="top">
             <el-button type="info"
