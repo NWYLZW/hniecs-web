@@ -33,7 +33,7 @@ export default {
      * @returns {*}
      */
     getApps () {
-      return axios.get('/spring-api/user/Role/getApps')
+      return axios.get('/spring-api/user/rule/getApps')
     }
   }
 }
