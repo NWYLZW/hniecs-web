@@ -13,6 +13,7 @@
   "dependencies": {
     "axios": "^0.20.0",
     "core-js": "^3.6.5",
+    "deploy-cli-service": "^1.1.2",
     "echarts": "^4.9.0",
     "element-ui": "^2.13.2",
     "js-md5": "^0.7.3",
