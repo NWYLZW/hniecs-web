@@ -41,7 +41,7 @@
     </div>
     <div class="message">
       <span class="author">
-        <i class="hniecs-iconfont" v-html="'&#xeb9c;'"/>{{ data.creater.name }}
+        <i class="hniecs-iconfont" v-html="'&#xeb9c;'"/>{{ data.creator.name }}
       </span>
       <el-tooltip class="item" effect="dark" content="上次修改时间" placement="top">
         <span class="modify-time" style="float: right;margin-left: 10px;">

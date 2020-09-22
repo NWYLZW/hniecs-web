@@ -151,7 +151,7 @@ export default {
         status: 0,
         tagName: '微信',
         availableInviteCount: 489,
-        creater: {
+        creator: {
           name: 'YiJie'
         },
         ctime: '2020-09-12T05:00:00.000+00:00',
@@ -230,7 +230,7 @@ export default {
           status: 0,
           tagName: '微信',
           availableInviteCount: 489,
-          creater: {
+          creator: {
             name: 'YiJie'
           },
           ctime: '2020-09-12T05:00:00.000+00:00',
