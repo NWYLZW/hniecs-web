@@ -43,6 +43,7 @@
       </div>
       <el-input
         v-if="submitModel === 'text'"
+        v-model="invitationCodesStr"
         class="invitation-codes left"
         :rows="16" resize="none"
         placeholder="输入邀请码(多个邀请码使用,分隔)" type="textarea"/>
@@ -68,7 +69,10 @@
         </div>
       </el-upload>
       <div class="right-option">
-        <el-tooltip effect="dark" content="资金阈值, 等于该阈值才会被记录进数据库" placement="top">
+        <el-tooltip
+          v-if="submitModel === 'file'"
+          effect="dark" placement="top"
+          content="资金阈值, 等于该阈值才会被记录进数据库">
           <el-input-number
             style="margin-bottom: 10px;"
             v-model="thresholdMoney"
@@ -79,36 +83,41 @@
             v-model="availableCount"
             :min="0" :max="100"/>
         </el-tooltip>
-        <!-- if不能放在里面，不然切换的时候会导致tooltip不见 -->
-        <template v-if="submitModel === 'text'">
-          <el-tooltip
-            effect="dark" content="标签名" placement="top">
-            <el-input class="tagNameInput"
-                      v-model="tagName"/>
-          </el-tooltip>
-        </template>
-        <template v-else>
-          <el-tooltip
-            effect="dark" content="标签名" placement="top">
-            <el-select class="tagNameInput"
-                       v-model="tagName" placeholder="请选择上传文件类型">
-              <el-option label="支付宝" value="支付宝"/>
-              <el-option label="微信" value="微信"/>
-            </el-select>
-          </el-tooltip>
-        </template>
+
+        <el-input
+          v-model="tagName" v-if="submitModel === 'text'"
+          class="tagNameInput" placeholder="设置邀请码标签"/>
+        <el-select
+          v-model="tagName" v-else
+          class="tagNameInput" placeholder="请选择上传文件类型">
+          <el-option label="支付宝" value="支付宝"/>
+          <el-option label="微信" value="微信"/>
+        </el-select>
         <div class="btns">
-          <el-tooltip effect="dark" :content="submitModel==='text'?'文件模式':'文本模式'" placement="top">
-            <el-button type="info"
-                       :icon=" 'hniecs-iconfont ' + (submitModel==='text'?'hniecs-article':'hniecs-writing')"
-                       @click="changeSumbitModel"
-                       circle/>
+          <el-tooltip effect="dark" placement="bottom" :content="submitModel==='text'?'文件模式':'文本模式'">
+            <el-button
+              :icon=" 'hniecs-iconfont ' + (submitModel==='text'?'hniecs-article':'hniecs-writing')"
+              @click="changeSumbitModel"
+              type="info" circle/>
           </el-tooltip>
-          <el-tooltip effect="dark" content="提交" placement="top">
-            <el-button type="success" icon="el-icon-check" circle/>
+          <el-tooltip effect="dark" placement="bottom" content="提交">
+            <el-button
+              icon="el-icon-check"
+              type="success" circle/>
           </el-tooltip>
-          <el-tooltip effect="dark" content="清空" placement="top">
-            <el-button type="danger" icon="el-icon-delete" circle/>
+          <el-tooltip effect="dark" placement="bottom" content="清空">
+            <el-button
+              icon="el-icon-delete"
+              @click="_ => {
+                $confirm('是否确认清空文本内容?', '提示', {
+                  confirmButtonText: '确定',
+                  cancelButtonText: '取消',
+                  type: 'warning'
+                }).then(_ => {
+                  invitationCodesStr = ''
+                }).catch(_ => {})
+              }"
+              type="danger" circle/>
           </el-tooltip>
         </div>
       </div>
