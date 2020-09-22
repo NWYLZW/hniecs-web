@@ -1,5 +1,5 @@
 /**
- * @desc        module管理控制 modulesControler.js
+ * @desc        module管理控制 modulesController.js
  * @author      yijie
  * @createTime  2020-09-05 16:05
  * @logs[0]      2020-09-05 16:05 yijie 创建了该文件
@@ -77,25 +77,25 @@ const rpcHelper = {
 /**
  * 模块组控制对象
  */
-class modulesControler {
+class modulesController {
   _modules = []
 
   /**
-   * 创建一个modulesControler实例
+   * 创建一个modulesController实例
    * @returns {Promise<unknown>}  .then(mc => {}).catch(err => {})
    */
   static create () {
     return new Promise((resolve, reject) => {
       this.init()
         .then(args => {
-          resolve(new modulesControler(args))
+          resolve(new modulesController(args))
         }).catch(err => {
           reject(err)
         })
     })
   }
   /**
-   * 初始化modulesControler实例的数据
+   * 初始化modulesController实例的数据
    * @returns {Promise<unknown>} .then(args => {}).catch(err => {})
    */
   static init () {
@@ -143,7 +143,7 @@ class modulesControler {
     message:  '展示已有模块列表',
     fun:      _ => {
       return new Promise((resolve, reject) => {
-        modulesControler.init()
+        modulesController.init()
           .then(({modules}) => {
             this._modules = modules
             this.showModules()
@@ -372,9 +372,9 @@ class modulesControler {
   }
 }
 
-const moduleControlerPromise = modulesControler.create()
+const moduleControllerPromise = modulesController.create()
 
-moduleControlerPromise
+moduleControllerPromise
   .then(mc => {
     const fun = _ => {
       mc.menu()
