@@ -107,6 +107,7 @@
           </el-tooltip>
           <el-tooltip effect="dark" placement="bottom" content="提交">
             <el-button
+              @click="submitNewInvitationCodes"
               icon="el-icon-check"
               type="success" circle/>
           </el-tooltip>
@@ -168,11 +169,9 @@ export default {
         list: [{
           label: '全部'
         }, {
-          label: 'ali'
+          label: '微信'
         }, {
-          label: 'wechat'
-        }, {
-          label: '其他'
+          label: '支付宝'
         }]
       },
       // 待添加的邀请码
@@ -181,6 +180,11 @@ export default {
       availableCount: 1,
       // 待添加的邀请码 标签名
       tagName: ''
+    }
+  },
+  watch: {
+    'tag.sel' () {
+      this.reloadInvitationCodes()
     }
   },
   methods: {
@@ -226,7 +230,7 @@ export default {
 
       this.is.loadMoreInvitationCode = true
 
-      userRpc.search({
+      userRpc.searchInvitationCode({
         invitationCode: this.searchInvitationCode,
         tagName: (_ => {
           if (this.tag.sel === '全部') {
@@ -268,12 +272,47 @@ export default {
         this.submitModel = 'text'
       }
     },
+    /**
+     * 重载邀请码列表信息
+     */
     reloadInvitationCodes () {
       this.pageCount = 0
       this.invitationCodes = []
       this.lockLoadInvitationCode = false
       this.is.loadMoreInvitationCode = false
       this.loadMoreInvitationCode()
+    },
+    /**
+     * 添加邀请码
+     */
+    submitNewInvitationCodes () {
+      if (this.submitModel === 'text') {
+        const invitationCodes = this.invitationCodesStr.split(',')
+        if (invitationCodes.length === 0 || invitationCodes[0] === '') {
+          this.$message({
+            type: 'warning',
+            message: '邀请码内容为空'
+          })
+          return
+        }
+        userRpc.addInvitationCodes({
+          invitationCodes: invitationCodes,
+          tagName: this.tagName,
+          availableCount: this.availableCount
+        }).then(_ => {
+          this.$message({
+            type: 'success',
+            message: _.data.successCount + '个邀请码添加成功, ' + _.data.failureCount + '个邀请码添加失败'
+          })
+          this.reloadInvitationCodes()
+        }).catch(_ => {
+          this.$message({
+            type: 'error',
+            message: _.message
+          })
+        })
+      } else {
+      }
     }
   }
 }
