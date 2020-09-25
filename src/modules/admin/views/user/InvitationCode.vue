@@ -12,7 +12,12 @@
         <div class="title">
           <i class="hniecs-iconfont">&#xe647;</i> 已下发邀请码
         </div>
-        <el-input class="search" v-model="searchInvitationCode" placeholder="搜索邀请码"/>
+        <el-input
+          @blur="reloadInvitationCodes"
+          @keyup.native.enter="reloadInvitationCodes"
+          v-model="searchInvitationCode"
+          class="search"
+          placeholder="搜索邀请码"/>
         <el-select class="tag-name-sel" v-model="tag.sel" placeholder="邀请码类型">
           <el-option
             :key="index"
@@ -127,6 +132,7 @@
 </template>
 
 <script>
+import userRpc from '@modules/admin/assets/js/user/rpc.js'
 import invitationCodeCard from '@modules/admin/components/user/invitationCodeCard'
 export default {
   name: 'InvitationCode',
@@ -146,17 +152,11 @@ export default {
       searchInvitationCode: '',
 
       // 展示邀请码列表
-      invitationCodes: [{
-        invitationCode: 'bxcsuiyfgs126GYUIhoh7984123njib5849659HUIHUIfyutasd34789274sbajhg',
-        status: 0,
-        tagName: '微信',
-        availableInviteCount: 489,
-        creator: {
-          name: 'YiJie'
-        },
-        ctime: '2020-09-12T05:00:00.000+00:00',
-        mtime: '2020-09-11T05:00:00.000+00:00'
-      }],
+      invitationCodes: [],
+      // 当前加载的页码
+      loadPage: 0,
+      // 一页加载的个数
+      loadSize: 10,
 
       // 邀请码阈值
       thresholdMoney: 30,
@@ -220,27 +220,43 @@ export default {
       // 如果正在加载，或者被禁止加载了 直接返回
       const ableLoad = (
         this.is.loadMoreInvitationCode ||
-        this.lockLoadInvitationCode)
+        this.lockLoadInvitationCode
+      )
       if (ableLoad) return
 
       this.is.loadMoreInvitationCode = true
-      setTimeout(_ => {
-        this.invitationCodes.push({
-          invitationCode: 'bxcsuiyfgs126GYUIhoh7984123njib5849659HUIHUIfyutasd34789274sbajhg',
-          status: 0,
-          tagName: '微信',
-          availableInviteCount: 489,
-          creator: {
-            name: 'YiJie'
-          },
-          ctime: '2020-09-12T05:00:00.000+00:00',
-          mtime: '2020-09-11T05:00:00.000+00:00'
-        })
-        if (this.invitationCodes.length >= 3) {
-          this.lockLoadInvitationCode = true
-        }
+
+      userRpc.search({
+        invitationCode: this.searchInvitationCode,
+        tagName: (_ => {
+          if (this.tag.sel === '全部') {
+            return ''
+          } else {
+            return this.tag.sel
+          }
+        })(),
+        page: this.loadPage,
+        size: this.loadSize
+      }).then(_ => {
+        this.invitationCodes = [
+          ...this.invitationCodes,
+          ..._.data
+        ]
         this.is.loadMoreInvitationCode = false
-      }, 500)
+        if (_.data.length === 0 || _.data.length < this.loadSize) {
+          this.lockLoadInvitationCode = true
+          return
+        }
+
+        this.loadPage += 1
+      }).catch(_ => {
+        this.$message({
+          type: 'warning',
+          message: _.message
+        })
+        this.lockLoadInvitationCode = true
+        this.is.loadMoreInvitationCode = false
+      })
     },
     /**
      * 切换邀请码的提交模式
@@ -251,6 +267,13 @@ export default {
       } else {
         this.submitModel = 'text'
       }
+    },
+    reloadInvitationCodes () {
+      this.pageCount = 0
+      this.invitationCodes = []
+      this.lockLoadInvitationCode = false
+      this.is.loadMoreInvitationCode = false
+      this.loadMoreInvitationCode()
     }
   }
 }

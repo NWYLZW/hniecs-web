@@ -27,7 +27,7 @@
                   content="已禁用" placement="top">
         <i class="status-icon hniecs-iconfont" v-html="'&#xe610;'" style="color: #fe2637;"/>
       </el-tooltip>
-      <el-tag
+      <el-tag v-if="data.tagName !== null && data.tagName !== ''"
         class="pointer"
         @click="changeAvailableInviteTagName"
         type="success">{{ data.tagName }}</el-tag>
@@ -41,10 +41,10 @@
     </div>
     <div class="message">
       <span class="author">
-        <i class="hniecs-iconfont" v-html="'&#xeb9c;'"/>{{ data.creator.name }}
+        <i class="hniecs-iconfont" v-html="'&#xeb9c;'"/>{{ data.creator.userName }}
       </span>
       <el-tooltip class="item" effect="dark" content="上次修改时间" placement="top">
-        <span class="modify-time" style="float: right;margin-left: 10px;">
+        <span v-if="data.mtime !== null" class="modify-time" style="float: right;margin-left: 10px;">
           <i class="hniecs-iconfont" v-html="'&#xe626;'"/>{{ new Date(data.mtime).format('yyyy-MM-dd') }}
         </span>
       </el-tooltip>

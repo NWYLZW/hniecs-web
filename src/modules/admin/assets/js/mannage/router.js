@@ -30,7 +30,8 @@ export default [{
         title: '邀请码',
         icon: 'hniecs-iconfont hniecs-invitation-code',
         key: 'path',
-        closable: false
+        closable: false,
+        keepAlive: false
       }
     }]
   }]
