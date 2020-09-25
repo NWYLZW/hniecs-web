@@ -56,9 +56,7 @@ export default {
    * @param availableCount    Integer   N   0   邀请码可用次数
    * @param thresholdMoney    String    N   0   邀请码录入数据库阈值
    */
-  importInvitationCodes ({
-    excelFile, tagName, availableCount, thresholdMoney
-  }) {
+  importInvitationCodes ({ excelFile, tagName, availableCount, thresholdMoney }) {
     const formData = new FormData(document.createElement('form'))
     formData.append('excelFile', excelFile)
     formData.append('tagName', tagName)
@@ -73,6 +71,27 @@ export default {
         }
       }, {
         headers: { 'Content-Type': 'multipart/form-data' }
+      }).catch(reject)
+    })
+  },
+  /**
+   * 修改invitationCode
+   * @param id                Integer     Y   ""  邀请码id
+   * @param invitationCode    String      N   ""  待添加的邀请码列表
+   * @param tagName           String      N   ""  邀请码标签
+   * @param availableCount    Integer     N   0   邀请码可用次数
+   * @param status            Integer     N   0   邀请码状态
+   */
+  changeInvitationCode ({ id, invitationCode, tagName, availableCount, status }) {
+    return new Promise((resolve, reject) => {
+      axios.post('/spring-api/admin/invitationCode/importFromExcel', {
+        id, invitationCode, tagName, availableCount, status
+      }).then(_ => {
+        if (_.code !== 200) {
+          reject(_)
+        } else {
+          resolve(_)
+        }
       }).catch(reject)
     })
   }

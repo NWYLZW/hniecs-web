@@ -192,25 +192,39 @@ export default {
      * @param changeProperty  被修改的属性
      * @param value           要被修改的值
      */
-    invitationCodeUpdate ([invitationCode, changeProperty, value]) {
+    invitationCodeUpdate ([invitationCode, changeProperty, value, successCallBack]) {
       if (!invitationCode) return
       const index = this.invitationCodes.indexOf(invitationCode)
       if (index === -1) return
 
+      const mappingRelations = {
+        content: 'invitationCode',
+        tagName: 'tagName',
+        count: 'availableInviteCount',
+        status: 'status'
+      }
       switch (changeProperty) {
         case 'id':
           if (value === -1) {
             this.invitationCodes.splice(index, 1)
           }
           break
-        case 'content':
-          this.invitationCodes[index].invitationCode = value
-          break
-        case 'tagName':
-          this.invitationCodes[index].tagName = value
-          break
-        case 'count':
-          this.invitationCodes[index].availableInviteCount = value
+        case 'content': case 'tagName': case 'count':
+          this.invitationCodes[index][mappingRelations[changeProperty]] = value
+          userRpc.changeInvitationCode({
+            id: invitationCode.id,
+            [mappingRelations[changeProperty]]: value
+          }).then(_ => {
+            this.$message({
+              type: 'success',
+              message: _.message
+            })
+          }).catch(_ => {
+            this.$message({
+              type: 'warning',
+              message: _.message
+            })
+          })
           break
         default: break
       }
