@@ -32,9 +32,9 @@ export default {
   },
   /**
    * 根据json格式请求信息添加邀请码
-   * invitationCodes   Array      Y   []  待添加的邀请码列表
-   * tagName           String     Y   ""  标签名
-   * availableCount    Integer    N   0   邀请码可用次数
+   * @param invitationCodes   Array      Y   []  待添加的邀请码列表
+   * @param tagName           String     Y   ""  标签名
+   * @param availableCount    Integer    N   0   邀请码可用次数
    */
   addInvitationCodes ({ invitationCodes, tagName, availableCount }) {
     return new Promise((resolve, reject) => {
@@ -46,6 +46,33 @@ export default {
         } else {
           resolve(_)
         }
+      }).catch(reject)
+    })
+  },
+  /**
+   * 根据json格式请求信息添加邀请码
+   * @param excelFile         File      Y   ""  excel表格文件
+   * @param tagName           String    Y   ""  标签名
+   * @param availableCount    Integer   N   0   邀请码可用次数
+   * @param thresholdMoney    String    N   0   邀请码录入数据库阈值
+   */
+  importInvitationCodes ({
+    excelFile, tagName, availableCount, thresholdMoney
+  }) {
+    const formData = new FormData(document.createElement('form'))
+    formData.append('excelFile', excelFile)
+    formData.append('tagName', tagName)
+    formData.append('availableCount', availableCount)
+    formData.append('thresholdMoney', thresholdMoney)
+    return new Promise((resolve, reject) => {
+      axios.post('/spring-api/admin/invitationCode/importFromExcel', formData).then(_ => {
+        if (_.code !== 200) {
+          reject(_)
+        } else {
+          resolve(_)
+        }
+      }, {
+        headers: { 'Content-Type': 'multipart/form-data' }
       }).catch(reject)
     })
   }

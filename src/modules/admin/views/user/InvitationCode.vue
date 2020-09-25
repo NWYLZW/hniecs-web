@@ -54,19 +54,17 @@
         placeholder="输入邀请码(多个邀请码使用,分隔)" type="textarea"/>
       <el-upload
         v-else
+        ref="uploadExcelFile"
         class="upload-card"
         name="excelFile"
-        action="https://jsonplaceholder.typicode.com/posts/"
-        accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        :limit="1"
-        :auto-upload="false"
-        drag :multiple="false"
+        action="" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        :limit="1" :auto-upload="false" :multiple="false"
         :on-exceed="_ => {
-              $message({
+            $message({
               'type': 'warning',
               'message': '最多上传一个文件'
             })
-          }">
+          }" drag>
         <i class="el-icon-upload"/>
         <div class="el-upload__text">
           将支付宝或微信导出的xlsx文件拖到此处
@@ -151,6 +149,17 @@ export default {
       lockLoadInvitationCode: false,
       // 搜索邀请码框 内容
       searchInvitationCode: '',
+      // 标签结构 sel当前选择标签分类 list标签列表
+      tag: {
+        sel: '全部',
+        list: [{
+          label: '全部'
+        }, {
+          label: '微信'
+        }, {
+          label: '支付宝'
+        }]
+      },
 
       // 展示邀请码列表
       invitationCodes: [],
@@ -163,17 +172,6 @@ export default {
       thresholdMoney: 30,
       // 提交模式 text 文本模式、file 文件模式‘
       submitModel: 'text',
-      // 标签结构 sel当前选择标签分类 list标签列表
-      tag: {
-        sel: '全部',
-        list: [{
-          label: '全部'
-        }, {
-          label: '微信'
-        }, {
-          label: '支付宝'
-        }]
-      },
       // 待添加的邀请码
       invitationCodesStr: '',
       // 待添加的邀请码 邀请次数
@@ -312,6 +310,23 @@ export default {
           })
         })
       } else {
+        userRpc.importInvitationCodes({
+          excelFile: this.$refs.uploadExcelFile.uploadFiles[0].raw,
+          tagName: this.tagName,
+          availableCount: this.availableCount,
+          thresholdMoney: this.thresholdMoney
+        }).then(_ => {
+          this.$message({
+            type: 'success',
+            message: _.data.successCount + '个邀请码添加成功, ' + _.data.failureCount + '个邀请码添加失败'
+          })
+          this.reloadInvitationCodes()
+        }).catch(_ => {
+          this.$message({
+            type: 'error',
+            message: _.message
+          })
+        })
       }
     }
   }
@@ -360,6 +375,7 @@ export default {
     }
     .upload-card {
       float: left;
+      padding-bottom: 40px;
       width: 400px;height: 348px;
       margin-right: 10px;
       /deep/ .el-upload {
