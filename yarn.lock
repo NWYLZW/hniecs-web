@@ -11319,6 +11319,11 @@ vue-loader@^15.9.2:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
+vue-property-decorator@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.npm.taobao.org/vue-property-decorator/download/vue-property-decorator-9.0.0.tgz#0a5f6d47d33ca62a8876108ccfa65c2c4fb7325a"
+  integrity sha1-Cl9tR9M8piqIdhCMz6ZcLE+3Mlo=
+
 vue-router-tab@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npm.taobao.org/vue-router-tab/download/vue-router-tab-1.2.0.tgz#3faa50a840ee56ac0047dd0e20b799708762c3cc"
