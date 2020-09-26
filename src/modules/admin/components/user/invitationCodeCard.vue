@@ -58,6 +58,62 @@
 </template>
 
 <script>
+import { MessageBox } from 'element-ui'
+
+const operatePreConfirm = ({ title, inputPattern, inputErrorMessage }) => {
+  /**
+   * @param target 对应 methods 这个对象
+   * @param name 对应属性方法的名称
+   * @param descriptor 对应属性方法的修饰符
+   */
+  return function (target, name, descriptor) {
+    const fn = descriptor.value
+    descriptor.value = function (...args) {
+      MessageBox.prompt(title, '', {
+        confirmButtonText: '确认修改',
+        cancelButtonText: '取消',
+        inputPattern: inputPattern,
+        inputErrorMessage: inputErrorMessage
+      }).then(({ value }) => {
+        fn.call(this, value)
+      }).catch(_ => {})
+    }
+  }
+}
+
+class Test {
+  @operatePreConfirm({
+    title: '重置邀请码',
+    inputPattern: /^\S*$/,
+    inputErrorMessage: '不可输入空白字符'
+  })
+  changeAvailableInviteContent (value) {
+    this.vueInstance.$message({
+      type: 'success',
+      message: '新邀请码是' + value
+    })
+    this.vueInstance.$emit('updated', [this.data, 'content', value])
+  }
+
+  constructor (vueInstance) {
+    this.vueInstance = vueInstance
+  }
+
+  @operatePreConfirm({
+    title: '重置邀请码标签名',
+    inputPattern: /^\S*$/,
+    inputErrorMessage: '不可输入空白字符'
+  })
+  changeAvailableInviteTagName (value) {
+    this.vueInstance.$message({
+      type: 'success',
+      message: '新邀请码标签名是' + value
+    })
+    this.vueInstance.$emit('updated', [this.data, 'tagName', value])
+  }
+}
+const t = new Test()
+
 export default {
   name: 'invitationCodeCard',
   props: {
@@ -67,6 +123,11 @@ export default {
       default () {
         return {}
       }
+    }
+  },
+  data () {
+    return {
+      de: new Test(this)
     }
   },
   methods: {
@@ -90,35 +151,13 @@ export default {
      * 修改邀请码的内容
      */
     changeAvailableInviteContent () {
-      this.$prompt('重置邀请码', '', {
-        confirmButtonText: '确认修改',
-        cancelButtonText: '取消',
-        inputPattern: /^\S*$/,
-        inputErrorMessage: '不可输入空白字符'
-      }).then(({ value }) => {
-        this.$message({
-          type: 'success',
-          message: '新邀请码是' + value
-        })
-        this.$emit('updated', [this.data, 'content', value])
-      }).catch(_ => {})
+      t.changeAvailableInviteContent()
     },
     /**
      * 修改邀请码的标签名
      */
     changeAvailableInviteTagName () {
-      this.$prompt('重置邀请码标签名', '', {
-        confirmButtonText: '确认修改',
-        cancelButtonText: '取消',
-        inputPattern: /^\S*$/,
-        inputErrorMessage: '不可输入空白字符'
-      }).then(({ value }) => {
-        this.$message({
-          type: 'success',
-          message: '新邀请码标签名是' + value
-        })
-        this.$emit('updated', [this.data, 'tagName', value])
-      }).catch(_ => {})
+      t.changeAvailableInviteTagName()
     },
     /**
      * 修改邀请码的使用次数
