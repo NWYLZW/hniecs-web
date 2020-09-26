@@ -51,12 +51,12 @@ export { returnJsons, packageReturn }
 
 const tool = {
   /**
-     * 对模版函数进行分页处理
-     * @param maxNum               最大页数
-     * @param defaultValue         默认值字典
-     * @param specialName          为page与num设置特殊的名字
-     * @param specialReturnModel  设置成功与失败时特殊的返回模式
-     */
+   * 对模版函数进行分页处理
+   * @param maxNum               最大页数
+   * @param defaultValue         默认值字典
+   * @param specialName          为page与num设置特殊的名字
+   * @param specialReturnModel  设置成功与失败时特殊的返回模式
+   */
   pagination (maxNum, defaultValue, specialName, specialReturnModel) {
     const
       numName = (specialName && specialName.num) || 'num'
