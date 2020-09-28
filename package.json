@@ -13,18 +13,16 @@
   "dependencies": {
     "axios": "^0.20.0",
     "core-js": "^3.6.5",
-    "deploy-cli-service": "^1.1.2",
     "echarts": "^4.9.0",
     "element-ui": "^2.13.2",
     "js-md5": "^0.7.3",
     "js-sha256": "^0.9.0",
     "vue": "^2.6.11",
-    "vue-property-decorator": "^9.0.0",
+    "vue-class-component": "^7.2.6",
     "vue-router": "^3.2.0",
     "vue-router-tab": "^1.2.0",
     "vuex": "^3.4.0",
-    "vuex-persistedstate": "^3.1.0",
-    "webpack-dev-server": "^3.11.0"
+    "vuex-persistedstate": "^3.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -36,8 +34,10 @@
     "@vue/cli-service": "~4.5.0",
     "@vue/eslint-config-standard": "^5.1.2",
     "@vue/test-utils": "^1.0.3",
+    "@babel/preset-flow": "^7.10.4",
     "babel-eslint": "^10.1.0",
     "chromedriver": "85",
+    "deploy-cli-service": "^1.1.2",
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-node": "^11.1.0",
@@ -46,6 +46,8 @@
     "eslint-plugin-vue": "^6.2.2",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.2",
-    "vue-template-compiler": "^2.6.11"
+    "vue-property-decorator": "^9.0.0",
+    "vue-template-compiler": "^2.6.11",
+    "webpack-dev-server": "^3.11.0"
   }
 }

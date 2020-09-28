@@ -133,6 +133,7 @@
 <script>
 import userRpc from '@modules/admin/assets/js/user/rpc.js'
 import invitationCodeCard from '@modules/admin/components/user/invitationCodeCard'
+
 export default {
   name: 'InvitationCode',
   components: {
@@ -192,7 +193,7 @@ export default {
      * @param changeProperty  被修改的属性
      * @param value           要被修改的值
      */
-    invitationCodeUpdate ([invitationCode, changeProperty, value, successCallBack]) {
+    invitationCodeUpdate ([invitationCode: InvitationCode, changeProperty, value]) {
       if (!invitationCode) return
       const index = this.invitationCodes.indexOf(invitationCode)
       if (index === -1) return
@@ -210,7 +211,6 @@ export default {
           }
           break
         case 'content': case 'tagName': case 'count':
-          this.invitationCodes[index][mappingRelations[changeProperty]] = value
           userRpc.changeInvitationCode({
             id: invitationCode.id,
             [mappingRelations[changeProperty]]: value
@@ -219,6 +219,7 @@ export default {
               type: 'success',
               message: _.message
             })
+            this.invitationCodes[index][mappingRelations[changeProperty]] = value
           }).catch(_ => {
             this.$message({
               type: 'warning',

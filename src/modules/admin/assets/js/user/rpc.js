@@ -84,7 +84,7 @@ export default {
    */
   changeInvitationCode ({ id, invitationCode, tagName, availableCount, status }) {
     return new Promise((resolve, reject) => {
-      axios.post('/spring-api/admin/invitationCode/importFromExcel', {
+      axios.put('/spring-api/admin/invitationCode/one', {
         id, invitationCode, tagName, availableCount, status
       }).then(_ => {
         if (_.code !== 200) {

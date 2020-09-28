@@ -58,124 +58,86 @@
 </template>
 
 <script>
-import { MessageBox } from 'element-ui'
+import { Component, Prop, Vue } from 'vue-property-decorator'
+import { InputOperatePreConfirm } from '@decorator/operatePreConfirm'
+import User from '@cObj/User'
+import type WithCtimeMtime from '@cObj/WithCtimeMtime'
 
-const operatePreConfirm = ({ title, inputPattern, inputErrorMessage }) => {
-  /**
-   * @param target 对应 methods 这个对象
-   * @param name 对应属性方法的名称
-   * @param descriptor 对应属性方法的修饰符
-   */
-  return function (target, name, descriptor) {
-    const fn = descriptor.value
-    descriptor.value = function (...args) {
-      MessageBox.prompt(title, '', {
-        confirmButtonText: '确认修改',
-        cancelButtonText: '取消',
-        inputPattern: inputPattern,
-        inputErrorMessage: inputErrorMessage
-      }).then(({ value }) => {
-        fn.call(this, value)
-      }).catch(_ => {})
-    }
-  }
+/**
+ * 邀请码对象
+ */
+class InvitationCode implements WithCtimeMtime {
+  // 邀请码id
+  id: number;
+  // 标签名
+  tagName: string;
+  // 邀请码内容
+  invitationCode: string;
+  // 邀请码可使用次数
+  availableInviteCount: number;
+
+  // 邀请码状态 0,未使用 1,已使用 2,已禁用
+  status: number;
+
+  // 创建者实体
+  creator: User;
 }
+export { InvitationCode }
 
-class Test {
-  @operatePreConfirm({
+export default @Component class invitationCodeCard extends Vue {
+  @Prop([InvitationCode, Object])
+  // 邀请码数据结构
+  data: InvitationCode;
+
+  /**
+   * 删除本条邀请码
+   */
+  deleteMe () {
+    this.$confirm('是否确认删除该条邀请码?', '提示', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning'
+    }).then(_ => {
+      this.$emit('updated', [this.data, 'id', -1])
+    }).catch(_ => {})
+  }
+
+  /**
+   * 修改邀请码的内容
+   * @param value 修改后的值
+   */
+  @InputOperatePreConfirm({
     title: '重置邀请码',
     inputPattern: /^\S*$/,
     inputErrorMessage: '不可输入空白字符'
   })
   changeAvailableInviteContent (value) {
-    this.vueInstance.$message({
-      type: 'success',
-      message: '新邀请码是' + value
-    })
-    this.vueInstance.$emit('updated', [this.data, 'content', value])
+    this.$emit('updated', [this.data, 'content', value])
   }
 
-  constructor (vueInstance) {
-    this.vueInstance = vueInstance
-  }
-
-  @operatePreConfirm({
+  /**
+   * 修改邀请码的标签名
+   * @param value 修改后的值
+   */
+  @InputOperatePreConfirm({
     title: '重置邀请码标签名',
     inputPattern: /^\S*$/,
     inputErrorMessage: '不可输入空白字符'
   })
   changeAvailableInviteTagName (value) {
-    this.vueInstance.$message({
-      type: 'success',
-      message: '新邀请码标签名是' + value
-    })
-    this.vueInstance.$emit('updated', [this.data, 'tagName', value])
+    this.$emit('updated', [this.data, 'tagName', value])
   }
-}
-const t = new Test()
 
-export default {
-  name: 'invitationCodeCard',
-  props: {
-    // 邀请码数据结构
-    data: {
-      type: Object,
-      default () {
-        return {}
-      }
-    }
-  },
-  data () {
-    return {
-      de: new Test(this)
-    }
-  },
-  methods: {
-    /**
-     * 删除本条邀请码
-     */
-    deleteMe () {
-      this.$confirm('是否确认删除该条邀请码?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(_ => {
-        this.$message({
-          type: 'success',
-          message: '该邀请码已被删除'
-        })
-        this.$emit('updated', [this.data, 'id', -1])
-      }).catch(_ => {})
-    },
-    /**
-     * 修改邀请码的内容
-     */
-    changeAvailableInviteContent () {
-      t.changeAvailableInviteContent()
-    },
-    /**
-     * 修改邀请码的标签名
-     */
-    changeAvailableInviteTagName () {
-      t.changeAvailableInviteTagName()
-    },
-    /**
-     * 修改邀请码的使用次数
-     */
-    changeAvailableInviteCount () {
-      this.$prompt('重置邀请码可邀请次数', '', {
-        confirmButtonText: '确认修改',
-        cancelButtonText: '取消',
-        inputPattern: /^[1-9]\d*$/,
-        inputErrorMessage: '请输入数字'
-      }).then(({ value }) => {
-        this.$message({
-          type: 'success',
-          message: '新邀请码次数是' + value
-        })
-        this.$emit('updated', [this.data, 'count', value])
-      }).catch(_ => {})
-    }
+  /**
+   * 修改邀请码的使用次数
+   */
+  @InputOperatePreConfirm({
+    title: '重置邀请码可邀请次数',
+    inputPattern: /^[1-9]\d*$/,
+    inputErrorMessage: '请输入数字'
+  })
+  changeAvailableInviteCount (value) {
+    this.$emit('updated', [this.data, 'count', value])
   }
 }
 </script>

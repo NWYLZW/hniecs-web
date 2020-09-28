@@ -24,7 +24,11 @@ module.exports = {
       // 模块组
       '@modules': resolve('src/modules'),
       // 模块组
-      '@plugins': resolve('src/plugins')
+      '@plugins': resolve('src/plugins'),
+      // 公用装饰器
+      '@decorator': resolve('src/decorator'),
+      // 常用基础继承对象
+      '@cObj': resolve('src/assets/js/commonObject')
     }
   }
 }
