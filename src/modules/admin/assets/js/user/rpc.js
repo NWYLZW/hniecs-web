@@ -76,16 +76,16 @@ export default {
   },
   /**
    * 修改invitationCode
-   * @param id                Integer     Y   ""  邀请码id
-   * @param invitationCode    String      N   ""  待添加的邀请码列表
-   * @param tagName           String      N   ""  邀请码标签
-   * @param availableCount    Integer     N   0   邀请码可用次数
-   * @param status            Integer     N   0   邀请码状态
+   * @param id                    Integer     Y   ""  邀请码id
+   * @param invitationCode        String      N   ""  待添加的邀请码列表
+   * @param tagName               String      N   ""  邀请码标签
+   * @param availableInviteCount  Integer     N   0   邀请码可用次数
+   * @param status                Integer     N   0   邀请码状态
    */
-  changeInvitationCode ({ id, invitationCode, tagName, availableCount, status }) {
+  changeInvitationCode ({ id, invitationCode, tagName, availableInviteCount, status }) {
     return new Promise((resolve, reject) => {
       axios.put('/spring-api/admin/invitationCode/one', {
-        id, invitationCode, tagName, availableCount, status
+        id, invitationCode, tagName, availableInviteCount, status
       }).then(_ => {
         if (_.code !== 200) {
           reject(_)

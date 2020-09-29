@@ -167,7 +167,7 @@ export default {
       // 当前加载的页码
       loadPage: 0,
       // 一页加载的个数
-      loadSize: 10,
+      loadSize: 5,
 
       // 邀请码阈值
       thresholdMoney: 30,
