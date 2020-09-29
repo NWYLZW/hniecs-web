@@ -110,5 +110,20 @@ export default {
         }
       }).catch(reject)
     })
+  },
+  /**
+   * 获取invitationCode的所有tagName列表
+   */
+  getTagNames () {
+    return new Promise((resolve, reject) => {
+      axios.get('/spring-api/admin/invitationCode/tagNames'
+      ).then(_ => {
+        if (_.code !== 200) {
+          reject(_)
+        } else {
+          resolve(_)
+        }
+      }).catch(reject)
+    })
   }
 }

@@ -153,13 +153,7 @@ export default {
       // 标签结构 sel当前选择标签分类 list标签列表
       tag: {
         sel: '全部',
-        list: [{
-          label: '全部'
-        }, {
-          label: '微信'
-        }, {
-          label: '支付宝'
-        }]
+        list: []
       },
 
       // 展示邀请码列表
@@ -299,6 +293,29 @@ export default {
       }
     },
     /**
+     * 获取邀请码tagName列表
+     */
+    refreshTagNames () {
+      return new Promise((resolve, reject) => {
+        adminUserRpc.getTagNames(
+        ).then(_ => {
+          this.tag.list = []
+          for (const index in _.data) {
+            this.tag.list.push({
+              label: _.data[index]
+            })
+          }
+          resolve()
+        }).catch(_ => {
+          this.$message({
+            type: 'warning',
+            message: '服务器出现了错误,请联系管理员'
+          })
+          reject(_)
+        })
+      })
+    },
+    /**
      * 重载邀请码列表信息
      */
     reloadInvitationCodes () {
@@ -306,7 +323,10 @@ export default {
       this.invitationCodes = []
       this.lockLoadInvitationCode = false
       this.is.loadMoreInvitationCode = false
-      this.loadMoreInvitationCode()
+      this.refreshTagNames(
+      ).then(_ => {
+        this.loadMoreInvitationCode()
+      }).catch(_ => {})
     },
     /**
      * 添加邀请码
@@ -357,6 +377,9 @@ export default {
         })
       }
     }
+  },
+  mounted () {
+    this.refreshTagNames().then(_ => {}).catch(_ => {})
   }
 }
 </script>
