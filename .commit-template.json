@@ -46,32 +46,48 @@
     "desc": "版本回退"
   }],
   "scopes": [{
-    "name": "controller",
-    "title": "controller",
-    "desc": "控制层被修改时使用"
+    "name": "page",
+    "title": "page",
+    "desc": "页面内容"
   }, {
-    "name": "service",
-    "title": "service",
-    "desc": "业务层被修改时使用"
+    "name": "object",
+    "title": "obj",
+    "desc": "对象模型"
   }, {
-    "name": "model",
-    "title": "model",
-    "desc": "模型层被修改时使用"
+    "name": "component",
+    "title": "comp",
+    "desc": "组件"
   }, {
-    "name": "dao",
-    "title": "dao",
-    "desc": "dao层被修改时使用"
+    "name": "mock",
+    "title": "mock",
+    "desc": "mock模拟数据"
+  }, {
+    "name": "decorator",
+    "title": "deco",
+    "desc": "装饰器"
+  }, {
+    "name": "router",
+    "title": "router",
+    "desc": "路由"
+  }, {
+    "name": "store",
+    "title": "store",
+    "desc": "vuex store变动"
+  }, {
+    "name": "assets",
+    "title": "assets",
+    "desc": "静态文件变动"
   }, {
     "name": "tool",
     "title": "tool",
-    "desc": "工具文件被修改时使用"
+    "desc": "工具类"
   }, {
     "name": "config",
     "title": "config",
-    "desc": "配置文件被修改时使用"
+    "desc": "配置文件"
   }, {
     "name": "other",
     "title": "other",
-    "desc": "其他文件被修改时使用"
+    "desc": "其他未在上述变化范围的文件使用"
   }]
 }
