@@ -15,17 +15,17 @@
       <el-tooltip effect="dark"
                   v-if="data.status === 0"
                   content="未使用" placement="top">
-        <i class="status-icon hniecs-iconfont" v-html="'&#xe657;'" style="color: #1f9aff;"/>
+        <i @click="changeStatus(2)" class="status-icon hniecs-iconfont" v-html="'&#xe657;'" style="color: #1f9aff;"/>
       </el-tooltip>
       <el-tooltip effect="dark"
                   v-else-if="data.status === 1"
                   content="已使用" placement="top">
-        <i class="status-icon hniecs-iconfont" v-html="'&#xe657;'"/>
+        <i @click="changeStatus(2)" class="status-icon hniecs-iconfont" v-html="'&#xe657;'"/>
       </el-tooltip>
       <el-tooltip effect="dark"
                   v-else-if="data.status === 2"
                   content="已禁用" placement="top">
-        <i class="status-icon hniecs-iconfont" v-html="'&#xe610;'" style="color: #fe2637;"/>
+        <i @click="changeStatus(0)" class="status-icon hniecs-iconfont" v-html="'&#xe610;'" style="color: #fe2637;"/>
       </el-tooltip>
       <el-tag v-if="data.tagName !== null && data.tagName !== ''"
         class="pointer"
@@ -99,6 +99,20 @@ export default @Component class invitationCodeCard extends Vue {
       type: 'warning'
     }).then(_ => {
       this.$emit('updated', [this.data, 'id', -1])
+    }).catch(_ => {})
+  }
+
+  /**
+   * 修改邀请码使用状态
+   * @param status
+   */
+  changeStatus (status) {
+    this.$confirm('是否' + (status === 2 ? '禁用' : '启用') + '该条邀请码?', '提示', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning'
+    }).then(_ => {
+      this.$emit('updated', [this.data, 'status', status])
     }).catch(_ => {})
   }
 
@@ -196,6 +210,7 @@ export default @Component class invitationCodeCard extends Vue {
     line-height: 36px;
 
     .status-icon {
+      @extend .pointer;
       margin-right: 10px;
     }
   }

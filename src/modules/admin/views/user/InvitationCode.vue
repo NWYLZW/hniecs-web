@@ -210,7 +210,7 @@ export default {
             this.invitationCodes.splice(index, 1)
           }
           break
-        case 'content': case 'tagName': case 'count':
+        case 'content': case 'tagName': case 'count': case 'status':
           userRpc.changeInvitationCode({
             id: invitationCode.id,
             [mappingRelations[changeProperty]]: value
