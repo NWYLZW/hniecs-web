@@ -94,5 +94,21 @@ export default {
         }
       }).catch(reject)
     })
+  },
+  /**
+   * 删除invitationCode
+   * @param id  Long     Y   ""  邀请码id
+   */
+  deleteInvitationCode ({ id }) {
+    return new Promise((resolve, reject) => {
+      axios.delete(`/spring-api/admin/invitationCode/one?id=${id}`
+      ).then(_ => {
+        if (_.code !== 200) {
+          reject(_)
+        } else {
+          resolve(_)
+        }
+      }).catch(reject)
+    })
   }
 }

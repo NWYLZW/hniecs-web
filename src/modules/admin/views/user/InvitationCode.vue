@@ -131,7 +131,7 @@
 </template>
 
 <script>
-import userRpc from '@modules/admin/assets/js/user/rpc.js'
+import adminUserRpc from '@modules/admin/assets/js/user/rpc.js'
 import invitationCodeCard from '@modules/admin/components/user/invitationCodeCard'
 
 export default {
@@ -165,7 +165,7 @@ export default {
       // 展示邀请码列表
       invitationCodes: [],
       // 当前加载的页码
-      loadPage: 0,
+      loadPage: 1,
       // 一页加载的个数
       loadSize: 5,
 
@@ -207,11 +207,24 @@ export default {
       switch (changeProperty) {
         case 'id':
           if (value === -1) {
-            this.invitationCodes.splice(index, 1)
+            adminUserRpc.deleteInvitationCode({
+              id: invitationCode.id
+            }).then(_ => {
+              this.$message({
+                type: 'success',
+                message: _.message
+              })
+              this.reloadInvitationCodes()
+            }).catch(_ => {
+              this.$message({
+                type: 'warning',
+                message: _.message
+              })
+            })
           }
           break
         case 'content': case 'tagName': case 'count': case 'status':
-          userRpc.changeInvitationCode({
+          adminUserRpc.changeInvitationCode({
             id: invitationCode.id,
             [mappingRelations[changeProperty]]: value
           }).then(_ => {
@@ -243,7 +256,7 @@ export default {
 
       this.is.loadMoreInvitationCode = true
 
-      userRpc.searchInvitationCode({
+      adminUserRpc.searchInvitationCode({
         invitationCode: this.searchInvitationCode,
         tagName: (_ => {
           if (this.tag.sel === '全部') {
@@ -289,7 +302,7 @@ export default {
      * 重载邀请码列表信息
      */
     reloadInvitationCodes () {
-      this.pageCount = 0
+      this.loadPage = 1
       this.invitationCodes = []
       this.lockLoadInvitationCode = false
       this.is.loadMoreInvitationCode = false
@@ -308,7 +321,7 @@ export default {
           })
           return
         }
-        userRpc.addInvitationCodes({
+        adminUserRpc.addInvitationCodes({
           invitationCodes: invitationCodes,
           tagName: this.tagName,
           availableCount: this.availableCount
@@ -325,7 +338,7 @@ export default {
           })
         })
       } else {
-        userRpc.importInvitationCodes({
+        adminUserRpc.importInvitationCodes({
           excelFile: this.$refs.uploadExcelFile.uploadFiles[0].raw,
           tagName: this.tagName,
           availableCount: this.availableCount,
