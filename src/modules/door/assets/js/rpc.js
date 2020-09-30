@@ -14,7 +14,6 @@ export default {
      * 用户登录
      * @param userName  用户名
      * @param password  密码
-     * @returns {*}
      */
     login (userName, password) {
       return axios.post('/spring-api/user/base/login', {
@@ -23,14 +22,29 @@ export default {
     },
     /**
      * 用户登出
-     * @returns {*}
      */
     logout () {
       return axios.get('/spring-api/user/base/logout')
     },
     /**
+     * 用户注册
+     * @param userName          Y   ""  用户名
+     * @param password          Y   ""  密码
+     * @param realName          Y   ""  用户名
+     * @param schoolNum         Y   ""  用户名
+     * @param profession        Y   ""  用户名
+     * @param classNum          Y   ""  用户名
+     * @param qqNum             Y   ""  用户名
+     * @param telNum            Y   ""  用户名
+     * @param invitationCode    Y   ""  邀请码
+     */
+    registered ({ userName, password, realName, schoolNum, profession, classNum, qqNum, telNum, invitationCode }) {
+      return axios.post('/spring-api/user/base/registered', {
+        userName, password, realName, schoolNum, profession, classNum, qqNum, telNum, invitationCode
+      })
+    },
+    /**
      * 获取用户可使用的app列表
-     * @returns {*}
      */
     getApps () {
       return axios.get('/spring-api/user/rule/getApps')
