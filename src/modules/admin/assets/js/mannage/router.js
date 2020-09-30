@@ -10,7 +10,7 @@ import { importView } from '@modules/admin/assets/js/router'
 export default [{
   path: '/admin/manage/index',
   name: 'admin-manage-index',
-  component: importView.mannage('Index'),
+  component: importView.manage('Index'),
   meta: {
     title: '后台管理',
     need: { admin: true }
@@ -18,7 +18,7 @@ export default [{
   children: [{
     path: '/admin/manage/user',
     name: 'admin-manage-user',
-    component: importView.mannage('User'),
+    component: importView.manage('User'),
     meta: {
       title: '用户管理',
       need: { admin: true }

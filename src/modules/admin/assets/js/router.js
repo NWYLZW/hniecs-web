@@ -7,7 +7,7 @@
  */
 
 const importView = {
-  mannage: view => () =>
+  manage: view => () =>
     import(
       /* webChunkName: "admin-manage" */
       '@modules/admin/views/manage/' + view + '.vue'
