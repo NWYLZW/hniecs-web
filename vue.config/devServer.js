@@ -8,7 +8,7 @@ const envs = require('./envs.js')
 
 const apiHosts = [
   // 'http://hniecs.com',
-  'http://hniecs.fengzli.cn',
+  'http://hniecs.com',
   'http://localhost:10000'
 ]
 const allowedHosts = [
