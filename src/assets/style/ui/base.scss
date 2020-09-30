@@ -4,6 +4,7 @@
  * @date      2020-09-08
  * @logs[0]   yijie 2020-09-08 添加头部注释
  */
+// 超链接
 .a-link {
   cursor: pointer;
   transition: .2s;
@@ -11,4 +12,10 @@
     color: #008bff;
     text-shadow: 0 0 10px #eeeeee;
   }
+}
+
+// 居中
+.centered {
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
 }

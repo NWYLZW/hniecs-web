@@ -4,3 +4,123 @@
  * @date      2020-09-07 11:05
  * @logs[0]   2020-09-07 11:05 yijie 创建了文件registered.scss
  */
+@import '~@/assets/style/ui/special-effects.scss';
+.main {
+  &:after { @include black-shandow-after(black, 64px) }
+  position: absolute;
+  width: 100%; height: 100%;
+
+  background-position: center;
+
+  .registered-card {
+    @extend .centered;
+    position: absolute;
+    height: 650px;
+
+    @media screen and (min-width: $width-large) {
+      width: 800px;
+    }
+    @media screen and (min-width: $width-medium) and (max-width: $width-large) {
+      width: 450px;
+    }
+    @media screen and (max-width: $width-medium) {
+      width: 280px;
+    }
+
+    border-radius: 16px;
+    box-shadow: 0 0 10px #d0d0d0;
+
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, .2);
+    backdrop-filter: saturate(180%) blur(5px);
+
+    transition: .5s;
+    .header {
+      position: relative;
+      width: 100%; height: 200px;
+      @keyframes scaleMax {
+        0%    { transform: scale(0.2); }
+        100%  { transform: scale(1); }
+      }
+      .icon-image {
+        position: relative;
+        top: calc(50% - 60px); left: calc(50% - 60px);
+        width: 120px; height: 120px;
+
+        animation: .5s scaleMax;
+      }
+      .steps {
+        bottom: 0;
+        position: absolute;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        .step {
+          margin: 20px;
+          width: 10px; height: 10px;
+          background-color: white;
+          border-radius: 50%;
+
+          transition: .2s;
+          &.sel {
+            background-color: #78bbef;
+            box-shadow: 0 0 10px white;
+          }
+          &.pass {
+            background-color: #7cef78;
+          }
+        }
+      }
+    }
+    .content {
+      position: absolute;
+      @media screen and (min-width: $width-large) {
+        $pad: 40px;
+        padding: {
+          left: $pad; right: $pad;
+        };
+        width: calc(100% - #{$pad}*2);
+      }
+      @media screen and (min-width: $width-medium) and (max-width: $width-large) {
+        $pad: 20px;
+        padding: {
+          left: $pad; right: $pad;
+        };
+        width: calc(100% - #{$pad}*2);
+      }
+      @media screen and (max-width: $width-medium) {
+        $pad: 10px;
+        padding: {
+          left: $pad; right: $pad;
+        };
+        width: calc(100% - #{$pad}*2);
+      }
+      height: 320px;
+      opacity: 0; pointer-events: none;
+
+      &.show {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      transition: .5s;
+    }
+    .bottom-btns {
+      position: absolute;
+      margin: {
+        left: 30px; right: 30px;
+      };
+      bottom: 30px;
+      width: calc(100% - 60px);
+
+      .el-button {
+        width: 100px;
+        &:first-child {
+          float: left;
+        }
+        &:last-child {
+          float: right;
+        }
+      }
+    }
+  }
+}

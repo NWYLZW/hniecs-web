@@ -6,6 +6,7 @@
  * @logs[1]   yijie 2020-09-12 添加圆圈阴影
  */
 
+// 多彩按钮
 @keyframes animate {
   0% {
     background-position: 0; /*修改背景定位，实现渐变色炫光*/
@@ -49,6 +50,7 @@
   }
 }
 
+// 阴影特效
 @mixin black-shandow-after($shadow-color: black, $shandow-range: 100px ,$z-index: 1) {
   z-index: $z-index;
   content: "";
