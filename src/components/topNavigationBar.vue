@@ -143,9 +143,7 @@ export default {
     },
     // 用户信息
     userData () {
-      return {
-        avatarUrl: process.env.BASE_URL + 'static/images/default-avatar.png'
-      }
+      return this.$store.state.user.userData
     }
   },
   watch: {
