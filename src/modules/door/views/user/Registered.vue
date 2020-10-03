@@ -6,9 +6,15 @@
 -->
 
 <template>
-  <div class="main" :style="'background-image: url(' + backgroundImages[curPageIndex-1] + ')'">
-    <div class="registered-card">
+  <div class="main">
+    <div v-loading="isRegistered" class="registered-card">
       <div class="header">
+        <div class="back-login" @click="toLogin">
+          <i class="hniecs-iconfont"
+             style="display: inline-block;transform: rotate(90deg)"
+             v-html="'&#xe665;'"/>
+          返回登陆
+        </div>
         <img class="icon-image" src="@assets/image/logo.svg" alt="None">
         <div class="steps">
           <div
@@ -83,6 +89,7 @@
         </div>
       </el-form>
     </div>
+    <remote-js :src="digitalrainSrc"/>
   </div>
 </template>
 
