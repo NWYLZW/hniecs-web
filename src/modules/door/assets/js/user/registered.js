@@ -56,7 +56,7 @@ export default {
      * 点击了底部的按钮
      * @param clickIndex  按钮的序号
      */
-    clickBottomBtn: function (clickIndex) {
+    clickBottomBtn (clickIndex) {
       switch (clickIndex) {
         case 1:
           // 上一步
@@ -64,10 +64,39 @@ export default {
           break
         case 2:
           // 下一步
-          this.curPageIndex += 1
+          this.checkValue(
+          ).then(_ => {
+            this.curPageIndex += 1
+          }).catch(e => {
+            this.$message({
+              type: 'warning',
+              message: e.message
+            })
+          })
           break
         case 3:
           // 提交
+          if (!RegExp('^[0-9]{6,16}$').test(this.form.qqNum)) {
+            this.$message({
+              type: 'warning',
+              message: 'qq号码不符合格式要求'
+            })
+            return
+          }
+          if (this.form.telNum !== '' && !RegExp('^1[3-9]\\d{9}$').test(this.form.telNum)) {
+            this.$message({
+              type: 'warning',
+              message: '电话号码不符合格式要求'
+            })
+            return
+          }
+          if (!RegExp('^\\S{1,50}$').test(this.form.invitationCode)) {
+            this.$message({
+              type: 'warning',
+              message: '邀请码不符合格式要求'
+            })
+            return
+          }
           this.isRegistered = true
           doorRpc.user.registered({
             userName: this.form.userName,
@@ -84,6 +113,7 @@ export default {
               type: 'success',
               message: '注册成功'
             })
+            this.toLogin()
           }).catch(_ => {
             this.$message({
               type: 'error',
@@ -104,6 +134,54 @@ export default {
       this.$router.push({
         name: 'login',
         query: this.$route.query
+      })
+    },
+    /**
+     * 校验当前页面输入值是否正确
+     */
+    checkValue () {
+      return new Promise((resolve, reject) => {
+        const specialCharPattern = '-,_,.,@'
+        const zhPattern = '\u4E00-\u9FA5'
+        const letterPattern = 'a-z,A-Z'
+
+        let min, max, pattern
+        switch (this.curPageIndex) {
+          case 1:
+            min = 3; max = 12
+            pattern = '^' + '[' + letterPattern + ']' + '[' + zhPattern + ',' + letterPattern + ',\\d,' + specialCharPattern + ']{' + min + ',' + max + '}'
+            if (!RegExp(pattern).test(this.form.userName)) {
+              reject(new Error('用户名不符合格式要求'))
+            }
+
+            min = 5; max = 20
+            pattern = '^[' + letterPattern + ',\\d,' + specialCharPattern + ']{' + min + ',' + max + '}'
+            if (!RegExp(pattern).test(this.form.password)) {
+              reject(new Error('密码不符合格式要求'))
+            }
+            if (this.form.password !== this.form.confirmPassword) {
+              reject(new Error('确认密码和原密码不一致'))
+            }
+            break
+          case 2:
+            if (!RegExp('^[\u4E00-\u9FA5]{2,5}$').test(this.form.realName)) {
+              reject(new Error('真实姓名不符合格式要求'))
+            }
+            if (!RegExp('^20[0-9]{10}$').test(this.form.schoolNum)) {
+              reject(new Error('学号不符合格式要求'))
+            }
+            if (!RegExp('^[\u4E00-\u9FA5]{2,20}$').test(this.form.profession)) {
+              reject(new Error('专业名不符合格式要求'))
+            }
+            if (!RegExp('^[0-9]{4}$').test(this.form.classNum)) {
+              reject(new Error('班级号不符合格式要求'))
+            }
+            break
+          default:
+            reject(new Error('发生了未知错误'))
+            break
+        }
+        resolve()
       })
     }
   }

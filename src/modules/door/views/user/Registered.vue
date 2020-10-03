@@ -33,15 +33,15 @@
           }">
           <el-form-item label="用户名"
                         prop="userName">
-            <el-input v-model="form.userName"/>
+            <el-input v-model="form.userName" placeholder="字母or中文or数字or-or_or.or@ (不能以 数字，特殊字符，中文 开头) 4-12位"/>
           </el-form-item>
           <el-form-item label="密码"
                         prop="password">
-            <el-input v-model="form.password" show-password/>
+            <el-input v-model="form.password" placeholder="字母or中文or数字or-or_or.or@ 5-20位" show-password/>
           </el-form-item>
           <el-form-item label="确认密码"
                         prop="confirmPassword">
-            <el-input v-model="form.confirmPassword" show-password/>
+            <el-input v-model="form.confirmPassword" placeholder="再次输入上方密码，进行确认" show-password/>
           </el-form-item>
         </div>
         <div
@@ -50,19 +50,19 @@
           }">
           <el-form-item label="真实姓名"
                         prop="realName">
-            <el-input v-model="form.realName"/>
+            <el-input v-model="form.realName" placeholder="上交到学校，登记入册(勿乱填)"/>
           </el-form-item>
           <el-form-item label="学号"
                         prop="realName">
-            <el-input v-model="form.schoolNum"/>
+            <el-input v-model="form.schoolNum" placeholder="上交到学校，登记入册(勿乱填)"/>
           </el-form-item>
           <el-form-item label="专业"
                         prop="realName">
-            <el-input v-model="form.profession"/>
+            <el-input v-model="form.profession" placeholder="上交到学校，登记入册(勿乱填)"/>
           </el-form-item>
           <el-form-item label="班级"
                         prop="realName">
-            <el-input v-model="form.classNum"/>
+            <el-input v-model="form.classNum" placeholder="上交到学校，登记入册(勿乱填)"/>
           </el-form-item>
         </div>
         <div
@@ -71,15 +71,15 @@
           }">
           <el-form-item label="联系QQ"
                         prop="qqNum">
-            <el-input v-model="form.qqNum"/>
+            <el-input v-model="form.qqNum" placeholder="用于拉你进会员群，确认后填写"/>
           </el-form-item>
           <el-form-item label="联系电话"
                         prop="telNum">
-            <el-input v-model="form.telNum"/>
+            <el-input v-model="form.telNum" placeholder="选填"/>
           </el-form-item>
           <el-form-item label="邀请码"
                         prop="invitationCode">
-            <el-input v-model="form.invitationCode"/>
+            <el-input v-model="form.invitationCode" placeholder="扫码财务收款码 交易后的订单号"/>
           </el-form-item>
         </div>
         <div class="bottom-btns">
