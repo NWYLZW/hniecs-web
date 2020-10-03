@@ -2,17 +2,24 @@
  * @desc        开发服务器配置 devServer.js
  * @author      yijie
  * @createTime  2020-09-05 15:11
- * @logs[0]      2020-09-05 15:11 yijie 创建了该文件
+ * @logs[0]     2020-09-05 15:11 yijie 创建了该文件
+ * @logs[1]     2020-10-03 17:58 yijie 添加staticApiHost, springApiHost, staticApiPath, springApiPath均从启动参数中获取
  */
 const envs = require('./envs.js')
 
-const apiHosts = [
-  // 'http://hniecs.com',
-  'http://hniecs.com',
-  'http://localhost:10000'
-]
+const apiHosts = {
+  'static-json': 'http://' +
+    (envs.staticApiHost || 'hniecs.com'),
+  'spring-api': 'http://' +
+    (envs.springApiHost || 'localhost:10000')
+}
+const apiPaths = {
+  'static-json': envs.staticApiPath || '/static-json/',
+  'spring-api': envs.springApiPath || '/'
+}
+
 const allowedHosts = [
-  // '.hniecs.com',
+  '.hniecs.com',
   '.fengzli.cn'
 ]
 
@@ -30,17 +37,17 @@ const devServer = {
     '/static-json/': {
       // 跨域
       changeOrigin: true,
-      target: apiHosts[0],
+      target: apiHosts['static-json'],
       pathRewrite: {
-        '^/static-json/': apiHosts[0] + '/static-json/'
+        '^/static-json/': apiHosts['static-json'] + apiPaths['static-json']
       }
     },
     '/spring-api/': {
       // 跨域
       changeOrigin: true,
-      target: apiHosts[1],
+      target: apiHosts['spring-api'],
       pathRewrite: {
-        '^/spring-api/': apiHosts[1] + '/'
+        '^/spring-api/': apiHosts['spring-api'] + apiPaths['spring-api']
       }
     }
   },
