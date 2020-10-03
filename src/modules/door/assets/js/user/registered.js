@@ -131,10 +131,7 @@ export default {
      * 前往登陆界面
      */
     toLogin () {
-      this.$router.push({
-        name: 'login',
-        query: this.$route.query
-      })
+      location.href = process.env.BASE_URL + 'door/user/login'
     },
     /**
      * 校验当前页面输入值是否正确

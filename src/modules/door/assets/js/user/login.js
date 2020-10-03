@@ -97,10 +97,7 @@ export default {
      * 前往注册页面
      */
     toRegisterView () {
-      this.$router.push({
-        name: 'registered',
-        query: this.$route.query
-      })
+      location.href = process.env.BASE_URL + 'door/user/registered'
     }
   },
   mounted () {
