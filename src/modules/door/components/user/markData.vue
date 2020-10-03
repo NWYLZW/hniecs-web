@@ -3,6 +3,7 @@
     @author   yijie
     @date     2020-09-08
     @logs[0]  yijie 2020-09-08 创建了文件markData.vue
+    @logs[1]  yijie 2020-10-03 按需引入了echarts
 -->
 <template>
   <div class="markData-main">
@@ -36,7 +37,16 @@
 </template>
 
 <script>
-import echarts from 'echarts'
+// 引入 ECharts 主模块
+const echarts = require('echarts/lib/echarts')
+// 引入热力图
+require('echarts/lib/chart/heatmap')
+
+// 引入提示框和标题组件
+require('echarts/lib/component/title')
+require('echarts/lib/component/tooltip')
+require('echarts/lib/component/visualMap')
+require('echarts/lib/component/calendar')
 
 export default {
   name: 'markData',
