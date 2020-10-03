@@ -34,7 +34,7 @@
         title="个人中心" trigger="hover">
         <el-avatar slot="reference"
           :size="48"
-          src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"/>
+          :src="userData.avatarUrl"/>
         <div class="user-center-panel">
           <div class="labels">
             <div class="label">
@@ -140,6 +140,12 @@ export default {
     // app列表
     apps () {
       return this.$store.state.user.topNavApps
+    },
+    // 用户信息
+    userData () {
+      return {
+        avatarUrl: process.env.BASE_URL + 'static/images/default-avatar.png'
+      }
     }
   },
   watch: {
