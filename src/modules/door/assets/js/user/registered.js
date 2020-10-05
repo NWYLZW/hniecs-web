@@ -106,7 +106,15 @@ export default {
             profession: this.form.profession,
             classNum: this.form.classNum,
             qqNum: this.form.qqNum,
-            telNum: this.form.telNum,
+            ...(_ => {
+              if (this.form.telNum === '') {
+                return {}
+              } else {
+                return {
+                  telNum: this.form.telNum
+                }
+              }
+            })(),
             invitationCode: this.form.invitationCode
           }).then(_ => {
             this.$message({
