@@ -134,7 +134,7 @@ export default {
   },
   computed: {
     // 当前路由路径
-    cur_route_path () {
+    curRoutePath () {
       return this.$route.path
     },
     // app列表
@@ -147,9 +147,9 @@ export default {
     }
   },
   watch: {
-    cur_route_path () {
+    curRoutePath () {
       this.lock_sel = true
-      const findItem = this.findPathItem(this.cur_route_path)
+      const findItem = this.findPathItem(this.curRoutePath)
       if (findItem) {
         this.selItem = findItem
       }
@@ -219,7 +219,7 @@ export default {
     }
   },
   mounted () {
-    const findItem = this.findPathItem(this.cur_route_path)
+    const findItem = this.findPathItem(this.curRoutePath)
     if (findItem) {
       this.selItem = findItem
     } else {
