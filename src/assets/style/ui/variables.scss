@@ -4,25 +4,33 @@
  * @date      2020-09-08
  * @logs[0]   yijie 2020-09-08 添加头部注释
  */
+/**
+  格式
+  page-background:  页面背景色,
+  vice-background:  页面二选背景色,
+  background:       主背景色,
+  font-color:       与主背景色相搭的文本字体色,
+  title-color:      标题色,
+  border:           边框色,
+*/
 // 浅色系
 $shallow-blue: (
-  main-background: rgb(255,255,255),
-  vice-background: rgb(255,255,255),
-  background: #3a8ee6,
-  page-background: #f5f5f5,
-  foreground: #78bbef,
-  font-color: rgb(48,49,51),
-  border:     #78bbef,
+  page-background:  #ffffff,
+  vice-background:  #fefefe,
+  background:       #3a8ee6,
+  font-color:       #e8e8e8,
+  title-color:      #000000,
+  border:           #78bbef,
 );
 
 //深色模式（夜间）
-$dark-color: (
-  main-background: rgb(23, 21, 20),
-  vice-background: rgb(35,34,34),
-  background: #292525,
-  page-background: #f5f5f5,
-  foreground: #292525,
-  font-color: #e8e8e8,
+$dark-black: (
+  page-background:  #171514,
+  vice-background:  #232222,
+  background:       #153557,
+  font-color:       #e8e8e8,
+  title-color:      #e8e8e8,
+  border:           #485c6c,
 );
 
 // 当前使用的颜色系
