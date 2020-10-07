@@ -5,6 +5,7 @@
  * @logs[0]   yijie 2020-09-07 创建了文件home.scss
  */
 .main {
+  background: map_get($use-colors, main-background);
   padding: {
     left: 150px;
     right: 150px;
@@ -20,6 +21,9 @@
     width: 100%;
 
     > .panel {
+      border: transparent;
+      background: map_get($use-colors, vice-background);
+      color: map_get($use-colors, font-color);
       float: left;
       margin: {
         bottom: 20px;
