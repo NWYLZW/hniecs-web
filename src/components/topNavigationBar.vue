@@ -72,7 +72,7 @@
              :key="index"
              v-for="(app, index) in apps"
              @click="openApp(app)">
-          <el-tooltip v-if="!app.menus"
+          <el-tooltip v-if="!app.menuChildren"
             :content="app.name" placement="bottom">
             <span
               class="hniecs-iconfont"
@@ -89,7 +89,7 @@
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item
                 :key="index"
-                v-for="(menuItem, index) in app.menus">
+                v-for="(menuItem, index) in app.menuChildren">
                 <span
                   style="float: left;margin-right: 10px;"
                   class="hniecs-iconfont"
