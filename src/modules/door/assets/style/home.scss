@@ -5,12 +5,22 @@
  * @logs[0]   yijie 2020-09-07 创建了文件home.scss
  */
 .main {
+  background: map_get($use-colors, main-background);
   padding: {
     left: 150px;
     right: 150px;
   };
   .top-carousel {
-    margin-top: 20px;
+    position: relative;
+    left: -10%;
+    width: 120%;
+    //margin-top: 20px;
+    /deep/ .el-carousel__arrow--left {
+      left: 20%!important;
+    };
+    /deep/ .el-carousel__arrow--right {
+      right: 20%!important;
+    };
   }
   .panels {
     padding: {
@@ -20,6 +30,9 @@
     width: 100%;
 
     > .panel {
+      border: transparent;
+      background: map_get($use-colors, vice-background);
+      color: map_get($use-colors, font-color);
       float: left;
       margin: {
         bottom: 20px;

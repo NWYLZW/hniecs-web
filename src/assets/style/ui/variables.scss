@@ -6,11 +6,23 @@
  */
 // 浅色系
 $shallow-blue: (
+  main-background: rgb(255,255,255),
+  vice-background: rgb(255,255,255),
   background: #3a8ee6,
   page-background: #f5f5f5,
   foreground: #78bbef,
-  font-color: #e8e8e8,
+  font-color: rgb(48,49,51),
   border:     #78bbef,
+);
+
+//深色模式（夜间）
+$dark-color: (
+  main-background: rgb(23, 21, 20),
+  vice-background: rgb(35,34,34),
+  background: #292525,
+  page-background: #f5f5f5,
+  foreground: #292525,
+  font-color: #e8e8e8,
 );
 
 // 当前使用的颜色系
