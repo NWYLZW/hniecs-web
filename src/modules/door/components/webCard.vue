@@ -64,7 +64,10 @@ export default {
   @extend .a-link;
   position: relative;float: left;
   margin: 9px;
+  border: transparent;
   width: 128px; height: 148px;
+  color: map-get($use-colors, title-color);
+  background: map_get($use-colors, page-background);
 
   /deep/ .el-card__body {
     padding: {
